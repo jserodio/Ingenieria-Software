@@ -1,6 +1,9 @@
 package org.buscaminas;
 
+
+
 public class Buscaminas {
+	private Buscaminas miBuscaminas;
 	private TableroBuilder tableroBuilder;
 	public void setTableroBuilder(TableroBuilder tb){
 		tableroBuilder = tb;
@@ -13,6 +16,9 @@ public class Buscaminas {
 		tableroBuilder.construirTablero();
 	}
 	
+	public Buscaminas getBuscaminas(){
+        return miBuscaminas;
+    }	
 	
 	public static void main(String[] args){
 		Buscaminas buscaminas = new Buscaminas();

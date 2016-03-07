@@ -8,6 +8,15 @@ public abstract class TableroBuilder {
 	public void construirTablero(){
 		tablero = new Tablero();
 	}
+
+	public void asignarFilas(){
+		
+	}
+	
+	public void asignarColumnas(){
+		
+	}
+
 }
 
 
