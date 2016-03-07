@@ -7,15 +7,3 @@ public abstract class Casilla {
 	
 	
 }
-public class Vacia extends Casilla{
-	public Vacia(){
-	}
-}
-public class Mina extends Casilla{
-	public Mina(){
-	}
-}
-public class Numero extends Casilla{
-	public Numero(){
-	}
-}

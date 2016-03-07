@@ -10,12 +10,4 @@ public abstract class TableroBuilder {
 	}
 }
 
-public class BuilderN1 extends TableroBuilder{
-	
-}
-public class BuilderN2 extends TableroBuilder{
-	
-}
-public class BuilderN3 extends TableroBuilder{
-	
-}
+
