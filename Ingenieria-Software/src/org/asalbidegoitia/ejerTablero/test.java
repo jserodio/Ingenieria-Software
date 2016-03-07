@@ -1,4 +1,4 @@
-package prueba;
+package org.asalbidegoitia.ejerTablero;
 
 public class test {
 
