@@ -1,4 +1,4 @@
-package org.asalbidegoitia.ejerTablero;
+package org.buscaminas;
 
 public class BuilderN3 extends TableroBuilder {
 
