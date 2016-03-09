@@ -7,6 +7,7 @@ public abstract class TableroBuilder {
 	}
 	public void construirTablero(){
 		tablero = new Tablero();
+		
 	}
 }
 
