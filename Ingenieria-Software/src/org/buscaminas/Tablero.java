@@ -4,46 +4,63 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Tablero {
+	private int nivel;
 	private int columnas;
 	private int filas;
 	private Casilla[][] matriz;
-	public Tablero(int pFilas, int pColumnas){
-		filas=pFilas;
-		columnas=pColumnas;
+	
+	public Tablero(int pNivel){
+		nivel = pNivel;
+		switch (pNivel){
+		case 1:	filas=7; columnas=10;
+		break;
+		case 2: filas=10; columnas=15;
+		break;
+		case 3: filas=12; columnas=25;
+		break;
+		default:	//falla
+		break;
+		
+		}
+		
 		String pTipo;
 		int fil=0;
 		int col=0;
-		while(fil<=filas){
-			while(col<=columnas){
-				int numeroAleatorio = (int) (Math.random()*3+1);
-				if(numeroAleatorio==1){
-					pTipo="vacia";
-					matriz[fil][col]=this.crearCasilla(pTipo);
-				}
-				else if(numeroAleatorio==2){
-					pTipo="numero";
-					matriz[fil][col]=this.crearCasilla(pTipo);
-				}
-				else if(numeroAleatorio==3){
-					pTipo="mina";
-					matriz[fil][col]=this.crearCasilla(pTipo);
-				}
+		while(fil<=filas-1){
+			while(col<=columnas-1){
+				pTipo = "sinMina";
+				matriz[fil][col] = this.crearCasilla(pTipo);
 				col++;
 			}
 			fil++;
 			col=0;
+		}
+		
+		int filRandom;
+		int colRandom;
+		int numMinas = columnas*nivel;
+		int minasIntroducidas=0;
+		while(minasIntroducidas <= numMinas){
+				filRandom = (int) Math.random()*(filas);
+				colRandom = (int) Math.random()*(columnas);	
+				while (matriz[fil][col] instanceof Mina){
+					filRandom = (int) Math.random()*(filas);
+					colRandom = (int) Math.random()*(columnas);	
+				}
+				matriz[filRandom][colRandom]= this.crearCasilla("mina");
+								
+				
+				minasIntroducidas++;
 		}
 		fil=0;
 		col=0;
 		while(fil<=filas){
 			while(col<=columnas){
 				this.obtenerVecinosCasillaX(matriz[fil][col]);
-				col++;
 			}
-			fil++;
-			col=0;
 		}
 	}
+	
 	public Casilla crearCasilla (String pTipo){
 		Casilla miCasilla = FabricaCasilla.getFabricaCasilla().crearCasilla(pTipo);	
 		return miCasilla;
