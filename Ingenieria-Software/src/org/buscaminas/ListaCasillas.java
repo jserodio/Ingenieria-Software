@@ -15,11 +15,8 @@ public class ListaCasillas {
 		Casilla c;
 		while(it.hasNext()){
 			c=it.next();
-			if(c instanceof Vacia && c.getAbierta()==false && c.getFlag()==false){
+			if(c instanceof SinMina && c.getAbierta()==false && c.getFlag()==false){
 				((Vacia)c).setAbierta();
-			}
-			else if(c instanceof Numero && c.getAbierta()==false && c.getFlag()==false){
-				((Numero)c).setAbierta();
 			}
 		}
 	}

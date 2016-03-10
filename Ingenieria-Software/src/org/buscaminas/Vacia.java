@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Vacia extends Casilla {
-	
 	public Vacia(){
 		super();
 	}
@@ -15,4 +14,5 @@ public class Vacia extends Casilla {
 	public void abrirVecinos(){
 		this.getVecinos().abrirCasillas();
 	}
+	
 }
