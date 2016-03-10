@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class Casilla {
 	private boolean flag;
 	private boolean abierta;
-	private ArrayList<Casilla> vecinos;
+	private ListaCasillas vecinos;
 	
 	public Casilla(){
 		flag=false;
@@ -16,18 +16,25 @@ public abstract class Casilla {
 	public void setAbierta(){
 		abierta=true;
 	}
+	public boolean getFlag(){
+		return this.flag;
+	}
+	
+	public void setFlag(boolean pFlag){
+		flag=pFlag;
+	}
 	
 	public boolean getAbierta(){
 		return abierta;
 	}
 	
-	public ArrayList<Casilla> getVecinos(){
+	public ListaCasillas getVecinos(){
 		return vecinos;
 	}
-	public void setVecinos(ArrayList<Casilla> pVecinos){
+	public void setVecinos(ListaCasillas pVecinos){
 		vecinos=pVecinos;
 	}
-	
-	
-	
+	public void eliminarVecinosAbiertos(){
+		vecinos.eliminarCasillasAbiertas();
+	}
 }
