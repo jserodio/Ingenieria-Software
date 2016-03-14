@@ -18,7 +18,6 @@ public class Tablero {
 		break;
 		default:	//falla
 		break;
-		
 		}
 		
 		String pTipo;
