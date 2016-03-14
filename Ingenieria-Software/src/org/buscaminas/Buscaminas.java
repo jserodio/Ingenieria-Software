@@ -5,20 +5,30 @@ package org.buscaminas;
 public class Buscaminas {
 	private Buscaminas miBuscaminas;
 	private TableroBuilder tableroBuilder;
-	public void setTableroBuilder(TableroBuilder tb){
-		tableroBuilder = tb;
+	
+	private Buscaminas() {	}
+	
+	public Buscaminas getBuscaminas(){
+        if (miBuscaminas == null){
+        	miBuscaminas = new Buscaminas();
+        }
+		return miBuscaminas;
+    }	
+	
+	private void construirTablero(){
+		tableroBuilder.construirTablero();
 	}
+	
+	public void setTableroBuilder(TableroBuilder pTB){
+		tableroBuilder = pTB;
+	}
+	
+	
 	public Tablero getTablero(){
 		construirTablero();
 		return tableroBuilder.getTablero();
 	}
-	public void construirTablero(){
-		tableroBuilder.construirTablero();
-	}
 	
-	public Buscaminas getBuscaminas(){
-        return miBuscaminas;
-    }	
 	
 	public static void main(String[] args){
 		Buscaminas buscaminas = new Buscaminas();

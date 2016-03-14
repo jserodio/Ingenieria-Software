@@ -9,7 +9,7 @@ public class Tablero {
 	private int columnas;
 	private int filas;
 	private Casilla[][] matriz;
-	
+
 	public Tablero(int pNivel){
 		nivel = pNivel;
 		switch (pNivel){
@@ -67,7 +67,7 @@ public class Tablero {
 		Casilla miCasilla = FabricaCasilla.getFabricaCasilla().crearCasilla(pTipo);	
 		return miCasilla;
 	}
-	
+
 	public boolean descubrirCasilla(int pFila, int pColumna){
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
 		boolean finaliza=false;
