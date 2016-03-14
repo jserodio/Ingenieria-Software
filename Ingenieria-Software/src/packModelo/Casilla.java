@@ -1,4 +1,4 @@
-package org.buscaminas;
+package packModelo;
 
 import java.util.ArrayList;
 

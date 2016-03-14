@@ -1,4 +1,4 @@
-package org.buscaminas;
+package packModelo;
 
 public class SinMina extends Casilla {
 	private int num;
