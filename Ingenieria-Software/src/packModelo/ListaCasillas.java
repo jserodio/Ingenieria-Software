@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ListaCasillas {
+	
 	private ArrayList<Casilla> listaCasillas;
 	
 	public ListaCasillas(){
@@ -54,6 +55,4 @@ public class ListaCasillas {
 		listaCasillas.remove(pCasilla);
 	}
 	
-	
-
 }

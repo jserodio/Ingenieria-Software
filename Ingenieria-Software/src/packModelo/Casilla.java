@@ -2,15 +2,9 @@ package packModelo;
 
 public abstract class Casilla {
 	
-	private boolean flag;
-	private boolean abierta;
-	private ListaCasillas vecinos;
-	
-	public Casilla(){
-		flag=false;
-		abierta=false;
-		vecinos=null;
-	}
+	private boolean flag = false;;
+	private boolean abierta = false;
+	private ListaCasillas vecinos = null;
 	
 	public void setAbierta(){
 		abierta=true;
