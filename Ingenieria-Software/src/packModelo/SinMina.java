@@ -6,9 +6,11 @@ public class SinMina extends Casilla {
 	public SinMina(){
 		
 	}
+	
 	public int getNum(){
 		return num;
 	}
+	
 	public void setNum(int pNum){
 		num=pNum;
 	}
@@ -19,9 +21,11 @@ public class SinMina extends Casilla {
 			this.abrirVecinos();
 		}
 	}
+	
 	public void abrirVecinos(){
 		this.getVecinos().abrirCasillas();
 	}
+	
 	public int vecinosConMina(){
 		return this.getVecinos().vecinosConMina();
 	}
