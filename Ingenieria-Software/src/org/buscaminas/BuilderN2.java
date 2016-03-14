@@ -2,12 +2,7 @@ package org.buscaminas;
 
 public class BuilderN2 extends TableroBuilder {
 
-	public void asignarFilas(){
-		
+	public void construirTablero(){
+		tablero=new Tablero(2);
 	}
-	
-	public void asignarColumnas(){
-		
-	}
-	
 }

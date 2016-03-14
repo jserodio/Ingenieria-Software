@@ -1,21 +1,26 @@
 package org.buscaminas;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
-public class Numero extends Casilla {
+public class SinMina extends Casilla {
 	private int num;
 	
-	public Numero(){
-		super();
+	public SinMina(){
+		
 	}
-	
+	public int getNum(){
+		return num;
+	}
 	public void setNum(int pNum){
 		num=pNum;
 	}
+	
 	public void setAbierta(){
 		super.setAbierta();
-		int num=this.vecinosConMina();
+		if(getNum()==0){
+			this.abrirVecinos();
+		}
+	}
+	public void abrirVecinos(){
+		this.getVecinos().abrirCasillas();
 	}
 	public int vecinosConMina(){
 		return this.getVecinos().vecinosConMina();
