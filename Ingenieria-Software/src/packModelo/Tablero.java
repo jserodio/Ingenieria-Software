@@ -18,7 +18,6 @@ public class Tablero {
 		break;
 		default:	//falla
 		break;
-		
 		}
 		
 		String pTipo;
@@ -58,6 +57,40 @@ public class Tablero {
 			}
 		}
 
+	}
+	
+	public int getColumnaXCasilla(Casilla pCasilla){
+		int col=0;
+		boolean salir=false;
+		int fil=0;
+		while(fil<=filas&&salir==false){
+			while(col<=columnas&&salir==false){
+				if(matriz[fil][col].equals(pCasilla)){
+					salir=true;
+				}
+				col++;
+			}
+			fil++;
+			col=0;
+		}
+		return col;
+	}
+	
+	public int getFilaXCasilla(Casilla pCasilla){
+		int col=0;
+		boolean salir=false;
+		int fil=0;
+		while(fil<=filas&&salir==false){
+			while(col<=columnas&&salir==false){
+				if(matriz[fil][col].equals(pCasilla)){
+					salir=true;
+				}
+				col++;
+			}
+			fil++;
+			col=0;
+		}
+		return fil;
 	}
 	
 	public int getColumnaXCasilla(Casilla pCasilla){
