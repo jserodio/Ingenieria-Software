@@ -17,7 +17,7 @@ public class ListaCasillas {
 		while(it.hasNext()){
 			c=it.next();
 			if(c instanceof SinMina && c.getAbierta()==false && c.getFlag()==false){
-				((Vacia)c).setAbierta();
+				((SinMina)c).setAbierta();
 			}
 		}
 	}

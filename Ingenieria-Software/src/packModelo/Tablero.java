@@ -69,20 +69,11 @@ public class Tablero {
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
 		boolean finaliza=false;
 		if(!pCasilla.equals(null)){
-			if(pCasilla instanceof Vacia){
-				((Vacia)pCasilla).setAbierta();
-				return finaliza;
-			}
-			else if(pCasilla instanceof Mina){
-				return ((Mina)pCasilla).finalizarJuego();
-				
-			}
-			else if(pCasilla instanceof SinMina){
+			if(pCasilla instanceof SinMina){
 				((SinMina)pCasilla).setAbierta();
 				return finaliza;
-			}
-			else{
-				return finaliza;
+			} else {
+				return ((Mina)pCasilla).finalizarJuego();				
 			}
 		}
 		else{
@@ -114,8 +105,8 @@ public class Tablero {
 		ListaCasillas vecinos = new ListaCasillas();
 		
 		vecinos.borrar();
-		int col=getColumna(pCasilla);
-		int fil=getFila(pCasilla);
+		int col=getColumnaXCasilla(pCasilla);
+		int fil=getFilaXCasilla(pCasilla);
 		if(fil-1<0&&col-1<0){
 			Casilla c1=matriz[fil][col+1];
 			Casilla c2=matriz[fil+1][col+1];
@@ -217,7 +208,7 @@ public class Tablero {
 		pCasilla.setVecinos(vecinos);
 	}
 	
-	public int getColumna(Casilla pCasilla){
+	public int getColumnaXCasilla(Casilla pCasilla){
 		int col=0;
 		boolean salir=false;
 		int fil=0;
@@ -234,7 +225,7 @@ public class Tablero {
 		return col;
 	}
 	
-	public int getFila(Casilla pCasilla){
+	public int getFilaXCasilla(Casilla pCasilla){
 		int col=0;
 		boolean salir=false;
 		int fil=0;
