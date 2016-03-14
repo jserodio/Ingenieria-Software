@@ -48,7 +48,7 @@ public class ListaCasillas {
 	public void borrar(){
 		listaCasillas.clear();
 	}
-	public void añadir(Casilla pCasilla){
+	public void anadir(Casilla pCasilla){
 		listaCasillas.add(pCasilla);
 	}
 	public void eliminarCasilla(Casilla pCasilla){

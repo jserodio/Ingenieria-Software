@@ -1,8 +1,5 @@
 package packModelo;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 public class Tablero {
 
 	private int nivel;
@@ -80,8 +77,8 @@ public class Tablero {
 				return ((Mina)pCasilla).finalizarJuego();
 				
 			}
-			else if(pCasilla instanceof Numero){
-				((Numero)pCasilla).setAbierta();
+			else if(pCasilla instanceof SinMina){
+				((SinMina)pCasilla).setAbierta();
 				return finaliza;
 			}
 			else{
@@ -92,10 +89,12 @@ public class Tablero {
 			return finaliza;
 		}
 	}
+	
 	public Casilla obtenerCasilla(int pFila, int pColumna){
 		Casilla c=matriz[pFila][pColumna];
 		return c;
 	}
+	
 	public void obtenerVecinos(){
 		int fil=0;
 		int col=0;
@@ -110,8 +109,10 @@ public class Tablero {
 			col=0;
 		}
 	}
+	
 	public void obtenerVecinosCasillaX(Casilla pCasilla){
-		ListaCasillas vecinos=null;
+		ListaCasillas vecinos = new ListaCasillas();
+		
 		vecinos.borrar();
 		int col=getColumna(pCasilla);
 		int fil=getFila(pCasilla);
@@ -119,9 +120,9 @@ public class Tablero {
 			Casilla c1=matriz[fil][col+1];
 			Casilla c2=matriz[fil+1][col+1];
 			Casilla c3=matriz[fil+1][col+1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
 		}
 		else if(fil-1<0&&(col-1>=0&&col+1<=columnas)){			
 			Casilla c1=matriz[fil][col-1];
@@ -129,19 +130,19 @@ public class Tablero {
 			Casilla c3=matriz[fil+1][col-1];
 			Casilla c4=matriz[fil+1][col];
 			Casilla c5=matriz[fil+1][col+1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-			vecinos.añadir(c4);
-			vecinos.añadir(c5);
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+			vecinos.anadir(c4);
+			vecinos.anadir(c5);
 		}
 		else if(fil-1<0&&col+1>columnas){
 			Casilla c1=matriz[fil][col-1];
 			Casilla c2=matriz[fil+1][col-1];
 			Casilla c3=matriz[fil+1][col];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
 		}
 		else if((fil-1>=0&&fil+1<=filas)&&col-1<0){
 			Casilla c1=matriz[fil-1][col];
@@ -149,11 +150,11 @@ public class Tablero {
 			Casilla c3=matriz[fil][col+1];
 			Casilla c4=matriz[fil+1][col];
 			Casilla c5=matriz[fil+1][col+1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-			vecinos.añadir(c4);
-			vecinos.añadir(c5);
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+			vecinos.anadir(c4);
+			vecinos.anadir(c5);
 		}
 		else if((fil-1>=0&&fil+1<=filas)&&(col-1>=0&&col+1<=columnas)){
 			Casilla c1=matriz[fil-1][col-1];
@@ -164,14 +165,14 @@ public class Tablero {
 			Casilla c6=matriz[fil+1][col-1];
 			Casilla c7=matriz[fil+1][col];
 			Casilla c8=matriz[fil+1][col+1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-			vecinos.añadir(c4);
-			vecinos.añadir(c5);
-			vecinos.añadir(c6);
-			vecinos.añadir(c7);
-			vecinos.añadir(c8);
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+			vecinos.anadir(c4);
+			vecinos.anadir(c5);
+			vecinos.anadir(c6);
+			vecinos.anadir(c7);
+			vecinos.anadir(c8);
 		}
 		else if((fil-1>=0&&fil+1<=filas)&&col+1>columnas){
 			Casilla c1=matriz[fil-1][col];
@@ -179,19 +180,19 @@ public class Tablero {
 			Casilla c3=matriz[fil][col-1];
 			Casilla c4=matriz[fil+1][col-1];
 			Casilla c5=matriz[fil+1][col];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-			vecinos.añadir(c4);
-			vecinos.añadir(c5);
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+			vecinos.anadir(c4);
+			vecinos.anadir(c5);
 		}
 		else if(fil+1>filas&&col-1<0){
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col+1];
 			Casilla c3=matriz[fil][col+1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
 		}
 		else if(fil+1>filas&&(col-1>=0&&col+1<=columnas)){
 			Casilla c1=matriz[fil][col-1];
@@ -199,22 +200,23 @@ public class Tablero {
 			Casilla c3=matriz[fil-1][col];
 			Casilla c4=matriz[fil-1][col+1];
 			Casilla c5=matriz[fil][col+1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-			vecinos.añadir(c4);
-			vecinos.añadir(c5);
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+			vecinos.anadir(c4);
+			vecinos.anadir(c5);
 		}
 		else if(fil+1>filas&&col+1>columnas){
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col-1];
 			Casilla c3=matriz[fil][col-1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
 		}
 		pCasilla.setVecinos(vecinos);
 	}
+	
 	public int getColumna(Casilla pCasilla){
 		int col=0;
 		boolean salir=false;
@@ -231,6 +233,7 @@ public class Tablero {
 		}
 		return col;
 	}
+	
 	public int getFila(Casilla pCasilla){
 		int col=0;
 		boolean salir=false;

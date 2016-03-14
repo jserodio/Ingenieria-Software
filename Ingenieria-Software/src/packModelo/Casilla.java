@@ -9,24 +9,27 @@ public abstract class Casilla {
 	public void setAbierta(){
 		abierta=true;
 	}
-	public boolean getFlag(){
-		return this.flag;
-	}
 	
 	public void setFlag(boolean pFlag){
 		flag=pFlag;
+	}
+	
+	public void setVecinos(ListaCasillas pVecinos){
+		vecinos=pVecinos;
 	}
 	
 	public boolean getAbierta(){
 		return abierta;
 	}
 	
+	public boolean getFlag(){
+		return this.flag;
+	}
+	
 	public ListaCasillas getVecinos(){
 		return vecinos;
 	}
-	public void setVecinos(ListaCasillas pVecinos){
-		vecinos=pVecinos;
-	}
+
 	public void eliminarVecinosAbiertos(){
 		vecinos.eliminarCasillasAbiertas();
 	}
