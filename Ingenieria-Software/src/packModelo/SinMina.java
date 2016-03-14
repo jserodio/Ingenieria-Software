@@ -1,23 +1,23 @@
 package packModelo;
 
 public class SinMina extends Casilla {
-	private int num;
+	private int numVecinosMina;
 	
 	public SinMina(){
 		
 	}
 	
-	public int getNum(){
-		return num;
+	public int getNumVecinosMina(){
+		return numVecinosMina;
 	}
 	
-	public void setNum(int pNum){
-		num=pNum;
+	public void setNumVecinosMina(int pNum){
+		numVecinosMina=pNum;
 	}
 	
 	public void setAbierta(){
 		super.setAbierta();
-		if(getNum()==0){
+		if(getNumVecinosMina()==0){
 			this.abrirVecinos();
 		}
 	}
@@ -26,7 +26,8 @@ public class SinMina extends Casilla {
 		this.getVecinos().abrirCasillas();
 	}
 	
-	public int vecinosConMina(){
+	public int obtenerNumVecinosMina(){
 		return this.getVecinos().vecinosConMina();
 	}
+	
 }

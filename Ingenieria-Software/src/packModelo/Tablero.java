@@ -49,13 +49,7 @@ public class Tablero {
 				
 				minasIntroducidas++;
 		}
-		fil=0;
-		col=0;
-		while(fil<=filas){
-			while(col<=columnas){
-				this.obtenerVecinosCasillaX(matriz[fil][col]);
-			}
-		}
+		this.obtenerVecinos();
 
 	}
 	
@@ -127,6 +121,9 @@ public class Tablero {
 			while(col<=columnas){
 				c=matriz[fil][col];
 				this.obtenerVecinosCasillaX(c);
+				if (c instanceof SinMina){
+					((SinMina) c).setNumVecinosMina(((SinMina)c).obtenerNumVecinosMina());
+				}
 				col++;
 			}
 			fil++;
