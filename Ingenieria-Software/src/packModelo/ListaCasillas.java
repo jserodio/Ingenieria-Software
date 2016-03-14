@@ -1,9 +1,10 @@
-package org.buscaminas;
+package packModelo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ListaCasillas {
+	
 	private ArrayList<Casilla> listaCasillas;
 	
 	public ListaCasillas(){
@@ -16,7 +17,7 @@ public class ListaCasillas {
 		while(it.hasNext()){
 			c=it.next();
 			if(c instanceof SinMina && c.getAbierta()==false && c.getFlag()==false){
-				((Vacia)c).setAbierta();
+				((SinMina)c).setAbierta();
 			}
 		}
 	}
@@ -47,13 +48,11 @@ public class ListaCasillas {
 	public void borrar(){
 		listaCasillas.clear();
 	}
-	public void añadir(Casilla pCasilla){
+	public void anadir(Casilla pCasilla){
 		listaCasillas.add(pCasilla);
 	}
 	public void eliminarCasilla(Casilla pCasilla){
 		listaCasillas.remove(pCasilla);
 	}
 	
-	
-
 }

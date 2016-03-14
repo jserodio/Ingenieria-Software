@@ -1,4 +1,4 @@
-package org.buscaminas;
+package packModelo;
 
 public abstract class TableroBuilder {
 	protected Tablero tablero;

@@ -1,4 +1,4 @@
-package org.buscaminas;
+package packModelo;
 
 public class BuilderN1 extends TableroBuilder {
 	

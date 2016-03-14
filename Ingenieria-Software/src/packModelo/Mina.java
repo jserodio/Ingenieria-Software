@@ -1,4 +1,4 @@
-package org.buscaminas;
+package packModelo;
 
 public class Mina extends Casilla{
 

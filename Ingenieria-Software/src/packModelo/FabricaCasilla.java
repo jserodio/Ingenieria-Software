@@ -1,4 +1,4 @@
-package org.buscaminas;
+package packModelo;
 
 public class FabricaCasilla {
 	private static FabricaCasilla miFabricaCasilla;

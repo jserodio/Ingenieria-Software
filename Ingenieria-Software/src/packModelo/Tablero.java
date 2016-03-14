@@ -1,14 +1,12 @@
-package org.buscaminas;
-
-import java.util.ArrayList;
-import java.util.Iterator;
+package packModelo;
 
 public class Tablero {
+
 	private int nivel;
 	private int columnas;
 	private int filas;
 	private Casilla[][] matriz;
-	
+
 	public Tablero(int pNivel){
 		nivel = pNivel;
 		switch (pNivel){
@@ -20,7 +18,6 @@ public class Tablero {
 		break;
 		default:	//falla
 		break;
-		
 		}
 		
 		String pTipo;
@@ -52,168 +49,11 @@ public class Tablero {
 				
 				minasIntroducidas++;
 		}
-		fil=0;
-		col=0;
-		while(fil<=filas){
-			while(col<=columnas){
-				this.obtenerVecinosCasillaX(matriz[fil][col]);
-			}
-		}
+		this.obtenerVecinos();
+
 	}
 	
-	public Casilla crearCasilla (String pTipo){
-		Casilla miCasilla = FabricaCasilla.getFabricaCasilla().crearCasilla(pTipo);	
-		return miCasilla;
-	}
-	
-	public boolean descubrirCasilla(int pFila, int pColumna){
-		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
-		boolean finaliza=false;
-		if(!pCasilla.equals(null)){
-			if(pCasilla instanceof Vacia){
-				((Vacia)pCasilla).setAbierta();
-				return finaliza;
-			}
-			else if(pCasilla instanceof Mina){
-				return ((Mina)pCasilla).finalizarJuego();
-				
-			}
-			else if(pCasilla instanceof Numero){
-				((Numero)pCasilla).setAbierta();
-				return finaliza;
-			}
-			else{
-				return finaliza;
-			}
-		}
-		else{
-			return finaliza;
-		}
-	}
-	public Casilla obtenerCasilla(int pFila, int pColumna){
-		Casilla c=matriz[pFila][pColumna];
-		return c;
-	}
-	public void obtenerVecinos(){
-		int fil=0;
-		int col=0;
-		Casilla c=null;
-		while(fil<=filas){
-			while(col<=columnas){
-				c=matriz[fil][col];
-				this.obtenerVecinosCasillaX(c);
-				col++;
-			}
-			fil++;
-			col=0;
-		}
-	}
-	public void obtenerVecinosCasillaX(Casilla pCasilla){
-		ListaCasillas vecinos=null;
-		vecinos.borrar();
-		int col=getColumna(pCasilla);
-		int fil=getFila(pCasilla);
-		if(fil-1<0&&col-1<0){
-			Casilla c1=matriz[fil][col+1];
-			Casilla c2=matriz[fil+1][col+1];
-			Casilla c3=matriz[fil+1][col+1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-		}
-		else if(fil-1<0&&(col-1>=0&&col+1<=columnas)){			
-			Casilla c1=matriz[fil][col-1];
-			Casilla c2=matriz[fil][col+1];
-			Casilla c3=matriz[fil+1][col-1];
-			Casilla c4=matriz[fil+1][col];
-			Casilla c5=matriz[fil+1][col+1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-			vecinos.añadir(c4);
-			vecinos.añadir(c5);
-		}
-		else if(fil-1<0&&col+1>columnas){
-			Casilla c1=matriz[fil][col-1];
-			Casilla c2=matriz[fil+1][col-1];
-			Casilla c3=matriz[fil+1][col];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-		}
-		else if((fil-1>=0&&fil+1<=filas)&&col-1<0){
-			Casilla c1=matriz[fil-1][col];
-			Casilla c2=matriz[fil-1][col+1];
-			Casilla c3=matriz[fil][col+1];
-			Casilla c4=matriz[fil+1][col];
-			Casilla c5=matriz[fil+1][col+1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-			vecinos.añadir(c4);
-			vecinos.añadir(c5);
-		}
-		else if((fil-1>=0&&fil+1<=filas)&&(col-1>=0&&col+1<=columnas)){
-			Casilla c1=matriz[fil-1][col-1];
-			Casilla c2=matriz[fil-1][col];
-			Casilla c3=matriz[fil-1][col+1];
-			Casilla c4=matriz[fil][col-1];
-			Casilla c5=matriz[fil][col+1];
-			Casilla c6=matriz[fil+1][col-1];
-			Casilla c7=matriz[fil+1][col];
-			Casilla c8=matriz[fil+1][col+1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-			vecinos.añadir(c4);
-			vecinos.añadir(c5);
-			vecinos.añadir(c6);
-			vecinos.añadir(c7);
-			vecinos.añadir(c8);
-		}
-		else if((fil-1>=0&&fil+1<=filas)&&col+1>columnas){
-			Casilla c1=matriz[fil-1][col];
-			Casilla c2=matriz[fil-1][col-1];
-			Casilla c3=matriz[fil][col-1];
-			Casilla c4=matriz[fil+1][col-1];
-			Casilla c5=matriz[fil+1][col];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-			vecinos.añadir(c4);
-			vecinos.añadir(c5);
-		}
-		else if(fil+1>filas&&col-1<0){
-			Casilla c1=matriz[fil-1][col];
-			Casilla c2=matriz[fil-1][col+1];
-			Casilla c3=matriz[fil][col+1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-		}
-		else if(fil+1>filas&&(col-1>=0&&col+1<=columnas)){
-			Casilla c1=matriz[fil][col-1];
-			Casilla c2=matriz[fil-1][col-1];
-			Casilla c3=matriz[fil-1][col];
-			Casilla c4=matriz[fil-1][col+1];
-			Casilla c5=matriz[fil][col+1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-			vecinos.añadir(c4);
-			vecinos.añadir(c5);
-		}
-		else if(fil+1>filas&&col+1>columnas){
-			Casilla c1=matriz[fil-1][col];
-			Casilla c2=matriz[fil-1][col-1];
-			Casilla c3=matriz[fil][col-1];
-			vecinos.añadir(c1);
-			vecinos.añadir(c2);
-			vecinos.añadir(c3);
-		}
-		pCasilla.setVecinos(vecinos);
-	}
-	public int getColumna(Casilla pCasilla){
+	public int getColumnaXCasilla(Casilla pCasilla){
 		int col=0;
 		boolean salir=false;
 		int fil=0;
@@ -229,7 +69,8 @@ public class Tablero {
 		}
 		return col;
 	}
-	public int getFila(Casilla pCasilla){
+	
+	public int getFilaXCasilla(Casilla pCasilla){
 		int col=0;
 		boolean salir=false;
 		int fil=0;
@@ -245,4 +86,156 @@ public class Tablero {
 		}
 		return fil;
 	}
+	
+	public Casilla crearCasilla (String pTipo){
+		Casilla miCasilla = FabricaCasilla.getFabricaCasilla().crearCasilla(pTipo);	
+		return miCasilla;
+	}
+
+	public boolean descubrirCasilla(int pFila, int pColumna){
+		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
+		boolean finaliza=false;
+		if(!pCasilla.equals(null)){
+			if(pCasilla instanceof SinMina){
+				((SinMina)pCasilla).setAbierta();
+				return finaliza;
+			} else {
+				return ((Mina)pCasilla).finalizarJuego();				
+			}
+		}
+		else{
+			return finaliza;
+		}
+	}
+	
+	public Casilla obtenerCasilla(int pFila, int pColumna){
+		Casilla c=matriz[pFila][pColumna];
+		return c;
+	}
+	
+	public void obtenerVecinos(){
+		int fil=0;
+		int col=0;
+		Casilla c=null;
+		while(fil<=filas){
+			while(col<=columnas){
+				c=matriz[fil][col];
+				this.obtenerVecinosCasillaX(c);
+				if (c instanceof SinMina){
+					((SinMina) c).setNumVecinosMina(((SinMina)c).obtenerNumVecinosMina());
+				}
+				col++;
+			}
+			fil++;
+			col=0;
+		}
+	}
+	
+	private void obtenerVecinosCasillaX(Casilla pCasilla){
+		ListaCasillas vecinos = new ListaCasillas();
+		vecinos.borrar();
+		int col=getColumnaXCasilla(pCasilla);
+		int fil=getFilaXCasilla(pCasilla);
+		if(fil-1<0&&col-1<0){
+			Casilla c1=matriz[fil][col+1];
+			Casilla c2=matriz[fil+1][col+1];
+			Casilla c3=matriz[fil+1][col+1];
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+		}
+		else if(fil-1<0&&(col-1>=0&&col+1<=columnas)){			
+			Casilla c1=matriz[fil][col-1];
+			Casilla c2=matriz[fil][col+1];
+			Casilla c3=matriz[fil+1][col-1];
+			Casilla c4=matriz[fil+1][col];
+			Casilla c5=matriz[fil+1][col+1];
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+			vecinos.anadir(c4);
+			vecinos.anadir(c5);
+		}
+		else if(fil-1<0&&col+1>columnas){
+			Casilla c1=matriz[fil][col-1];
+			Casilla c2=matriz[fil+1][col-1];
+			Casilla c3=matriz[fil+1][col];
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+		}
+		else if((fil-1>=0&&fil+1<=filas)&&col-1<0){
+			Casilla c1=matriz[fil-1][col];
+			Casilla c2=matriz[fil-1][col+1];
+			Casilla c3=matriz[fil][col+1];
+			Casilla c4=matriz[fil+1][col];
+			Casilla c5=matriz[fil+1][col+1];
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+			vecinos.anadir(c4);
+			vecinos.anadir(c5);
+		}
+		else if((fil-1>=0&&fil+1<=filas)&&(col-1>=0&&col+1<=columnas)){
+			Casilla c1=matriz[fil-1][col-1];
+			Casilla c2=matriz[fil-1][col];
+			Casilla c3=matriz[fil-1][col+1];
+			Casilla c4=matriz[fil][col-1];
+			Casilla c5=matriz[fil][col+1];
+			Casilla c6=matriz[fil+1][col-1];
+			Casilla c7=matriz[fil+1][col];
+			Casilla c8=matriz[fil+1][col+1];
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+			vecinos.anadir(c4);
+			vecinos.anadir(c5);
+			vecinos.anadir(c6);
+			vecinos.anadir(c7);
+			vecinos.anadir(c8);
+		}
+		else if((fil-1>=0&&fil+1<=filas)&&col+1>columnas){
+			Casilla c1=matriz[fil-1][col];
+			Casilla c2=matriz[fil-1][col-1];
+			Casilla c3=matriz[fil][col-1];
+			Casilla c4=matriz[fil+1][col-1];
+			Casilla c5=matriz[fil+1][col];
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+			vecinos.anadir(c4);
+			vecinos.anadir(c5);
+		}
+		else if(fil+1>filas&&col-1<0){
+			Casilla c1=matriz[fil-1][col];
+			Casilla c2=matriz[fil-1][col+1];
+			Casilla c3=matriz[fil][col+1];
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+		}
+		else if(fil+1>filas&&(col-1>=0&&col+1<=columnas)){
+			Casilla c1=matriz[fil][col-1];
+			Casilla c2=matriz[fil-1][col-1];
+			Casilla c3=matriz[fil-1][col];
+			Casilla c4=matriz[fil-1][col+1];
+			Casilla c5=matriz[fil][col+1];
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+			vecinos.anadir(c4);
+			vecinos.anadir(c5);
+		}
+		else if(fil+1>filas&&col+1>columnas){
+			Casilla c1=matriz[fil-1][col];
+			Casilla c2=matriz[fil-1][col-1];
+			Casilla c3=matriz[fil][col-1];
+			vecinos.anadir(c1);
+			vecinos.anadir(c2);
+			vecinos.anadir(c3);
+		}
+		pCasilla.setVecinos(vecinos);
+	}
+	
+	
 }
