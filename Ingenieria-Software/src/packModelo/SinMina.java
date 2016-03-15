@@ -5,7 +5,7 @@ public class SinMina extends Casilla {
 	
 	public SinMina(){
 		
-	} 
+	}
 	
 	public int getNumVecinosMina(){
 		return numVecinosMina;
@@ -17,8 +17,14 @@ public class SinMina extends Casilla {
 	
 	public void setAbierta(){
 		super.setAbierta();
-		if(getNumVecinosMina()==0){
-			this.abrirVecinos();
+	}
+	
+	public void abrirCasilla(){
+		this.setAbierta();
+		if(!this.getVecinos().getListaCasillas().isEmpty()){
+			if(getNumVecinosMina()==0){
+				this.abrirVecinos();
+			}
 		}
 	}
 	

@@ -50,7 +50,6 @@ public class Tablero {
 				minasIntroducidas++;
 		}
 		this.obtenerVecinos();
-
 	}
 	
 	public int getColumnaXCasilla(Casilla pCasilla){
@@ -115,6 +114,7 @@ public class Tablero {
 	
 	public void obtenerVecinos(){
 		int fil=0;
+		int numVecinosMina;
 		int col=0;
 		Casilla c=null;
 		while(fil<=filas){
@@ -122,7 +122,8 @@ public class Tablero {
 				c=matriz[fil][col];
 				this.obtenerVecinosCasillaX(c);
 				if (c instanceof SinMina){
-					((SinMina) c).setNumVecinosMina(((SinMina)c).obtenerNumVecinosMina());
+					numVecinosMina=((SinMina)c).obtenerNumVecinosMina();
+					((SinMina) c).setNumVecinosMina(numVecinosMina);
 				}
 				col++;
 			}
@@ -133,7 +134,6 @@ public class Tablero {
 	
 	private void obtenerVecinosCasillaX(Casilla pCasilla){
 		ListaCasillas vecinos = new ListaCasillas();
-		
 		vecinos.borrar();
 		int col=getColumnaXCasilla(pCasilla);
 		int fil=getFilaXCasilla(pCasilla);
