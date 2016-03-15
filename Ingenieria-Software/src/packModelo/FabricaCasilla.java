@@ -12,8 +12,12 @@ public class FabricaCasilla {
 	}
 	public Casilla crearCasilla(String tipo){
 		Casilla miCasilla = null;
-		
-		
+		if(tipo.equals("sinMina")){
+			miCasilla=new SinMina();
+		}
+		else{
+			miCasilla=new Mina();
+		}
 		return miCasilla;
 	}
 }
