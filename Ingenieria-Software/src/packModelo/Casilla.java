@@ -10,7 +10,7 @@ public abstract class Casilla {
 	public Casilla(){
 		flag=false;
 		abierta=false;
-		vecinos=null;
+		vecinos=new ListaCasillas();
 	}
 	
 	public void setAbierta(){
@@ -33,8 +33,5 @@ public abstract class Casilla {
 	}
 	public void setVecinos(ListaCasillas pVecinos){
 		vecinos=pVecinos;
-	}
-	public void eliminarVecinosAbiertos(){
-		vecinos.eliminarCasillasAbiertas();
 	}
 }

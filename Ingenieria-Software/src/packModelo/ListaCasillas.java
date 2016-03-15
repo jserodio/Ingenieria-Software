@@ -11,13 +11,17 @@ public class ListaCasillas {
 		listaCasillas=new ArrayList<Casilla>();
 	}
 	
+	public ArrayList<Casilla> getListaCasillas(){
+		return listaCasillas;
+	}
+	
 	public void abrirCasillas(){
 		Iterator<Casilla> it=listaCasillas.iterator();
 		Casilla c;
 		while(it.hasNext()){
 			c=it.next();
 			if(c instanceof SinMina && c.getAbierta()==false && c.getFlag()==false){
-				((SinMina)c).setAbierta();
+				((SinMina)c).abrirCasilla();
 			}
 		}
 	}
@@ -25,24 +29,14 @@ public class ListaCasillas {
 	public int vecinosConMina(){
 		Iterator<Casilla> it=listaCasillas.iterator();
 		int num=0;
-		while(it.hasNext()){
-			if(it instanceof Mina){
-				num++;
-			}
-			it.next();
-		}
-		return num;
-	}
-	
-	public void eliminarCasillasAbiertas(){
-		Iterator<Casilla> it=listaCasillas.iterator();
-		Casilla c=null;
+		Casilla c;
 		while(it.hasNext()){
 			c=it.next();
-			if(c.getAbierta()){
-				this.eliminarCasilla(c);
+			if(c instanceof Mina){
+				num++;
 			}
 		}
+		return num;
 	}
 	
 	public void borrar(){
