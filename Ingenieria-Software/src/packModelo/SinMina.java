@@ -5,7 +5,7 @@ public class SinMina extends Casilla {
 	
 	public SinMina(){
 		
-	}
+	} 
 	
 	public int getNumVecinosMina(){
 		return numVecinosMina;
