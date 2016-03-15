@@ -8,8 +8,7 @@ public class Mina extends Casilla{
 	
 	public boolean finalizarJuego(){
 		super.setAbierta();
-		boolean finaliza = true;
+		boolean finaliza=true;
 		return finaliza;
 	}
-	
 }
