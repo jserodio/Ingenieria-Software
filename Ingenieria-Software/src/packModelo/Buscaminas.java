@@ -6,11 +6,21 @@ public class Buscaminas {
 		tableroBuilder = tb;
 	}
 	public Tablero getTablero(){
-		construirTablero();
 		return tableroBuilder.getTablero();
 	}
-	public void construirTablero(){
-		tableroBuilder.construirTablero();
+	public void iniciar(int pNivel){
+		if(pNivel == 1){
+			TableroBuilder builderN1 = new BuilderN1();
+			this.setTableroBuilder(builderN1);
+		}
+		else if(pNivel == 2){
+			TableroBuilder builderN2 = new BuilderN2();
+			this.setTableroBuilder(builderN2);
+		}
+		else{
+			TableroBuilder builderN3 = new BuilderN3();
+			this.setTableroBuilder(builderN3);
+		}
 	}
 	
 	

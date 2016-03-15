@@ -117,8 +117,8 @@ public class Tablero {
 		int numVecinosMina;
 		int col=0;
 		Casilla c=null;
-		while(fil<=filas){
-			while(col<=columnas){
+		while(fil<=filas-1){
+			while(col<=columnas-1){
 				c=matriz[fil][col];
 				this.obtenerVecinosCasillaX(c);
 				if (c instanceof SinMina){
