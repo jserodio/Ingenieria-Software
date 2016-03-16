@@ -1,18 +1,17 @@
 package packInterfaz;
 
 import java.awt.EventQueue;
+import java.awt.FocusTraversalPolicy;
 
 import javax.swing.JFrame;
-import net.miginfocom.swing.MigLayout;
 import packModelo.Buscaminas;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JRadioButton;
+import net.miginfocom.swing.MigLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.Color;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -48,7 +47,7 @@ public class vElegirNivel {
 		frame.getContentPane().add(getRdbtnMedio(), "cell 1 1,alignx center,aligny center");
 		frame.getContentPane().add(getRdbtnDificil(), "cell 2 1,alignx center,aligny center");
 		frame.getContentPane().add(getBtnJugar(), "cell 0 2 3 1,grow");
-		frame.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{getRdbtnFacil(), getRdbtnMedio(), getRdbtnDificil(), getBtnJugar(), getLblEligeElNivel()}));
+		//frame.getContentPane().setFocusTraversalPolicy(new FocusTraversalPolicy(new Component[]{getRdbtnFacil(), getRdbtnMedio(), getRdbtnDificil(), getBtnJugar(), getLblEligeElNivel()}));
 		// Visualizar la ventana
 		frame.setVisible(true);
 	}
