@@ -1,5 +1,7 @@
 package packModelo;
 
+import java.util.Random;
+
 public class Tablero {
 
 	private int nivel;
@@ -19,7 +21,10 @@ public class Tablero {
 		default:	//falla
 		break;
 		}
+		//inicializar la matriz
 		matriz= new Casilla[filas][columnas];
+		//Llenar la matriz de casillas sinMinas
+		System.out.println("a");
 		String pTipo;
 		int fil=0;
 		int col=0;
@@ -32,24 +37,36 @@ public class Tablero {
 			fil++;
 			col=0;
 		}
-		
-		int filRandom;
-		int colRandom;
+		//Meter casillas con minas aleatoriamente en la matriz
+		int filRandom=0;
+		int colRandom=0;
 		int numMinas = columnas*nivel;
-		int minasIntroducidas=0;
+		int minasIntroducidas=1;
+		Random rnd=new Random();		
 		while(minasIntroducidas <= numMinas){
-				filRandom = (int) Math.random()*(filas);
-				colRandom = (int) Math.random()*(columnas);	
-				while (matriz[filRandom][colRandom] instanceof Mina){
-					filRandom = (int) Math.random()*(filas);
-					colRandom = (int) Math.random()*(columnas);	
+				filRandom = (int)(rnd.nextDouble() * filas);
+				colRandom = (int)(rnd.nextDouble() * columnas);
+				while(matriz[filRandom][colRandom] instanceof Mina){
+					filRandom = (int)(rnd.nextDouble() * filas);
+					colRandom = (int)(rnd.nextDouble() * columnas);
 				}
 				matriz[filRandom][colRandom]= this.crearCasilla("mina");
-								
-				
 				minasIntroducidas++;
 		}
+		this.imprimirMatriz();
+		//Obtener los vecinos de cada casilla
 		this.obtenerVecinos();
+	}
+	
+	public void imprimirMatriz(){
+		for (int x=0; x < matriz.length; x++) {
+			  System.out.print("|");
+			  for (int y=0; y < matriz[x].length; y++) {
+			    System.out.print (matriz[x][y]);
+			    if (y!=matriz[x].length-1) System.out.print("\t");
+			  }
+			  System.out.println("|");
+			}
 	}
 	
 	public int getColumnas(){
@@ -64,8 +81,8 @@ public class Tablero {
 		int col=0;
 		boolean salir=false;
 		int fil=0;
-		while(fil<=filas&&salir==false){
-			while(col<=columnas&&salir==false){
+		while(fil<=filas-1&&salir==false){
+			while(col<=columnas-1&&salir==false){
 				if(matriz[fil][col].equals(pCasilla)){
 					salir=true;
 				}
@@ -81,8 +98,8 @@ public class Tablero {
 		int col=0;
 		boolean salir=false;
 		int fil=0;
-		while(fil<=filas&&salir==false){
-			while(col<=columnas&&salir==false){
+		while(fil<=filas-1&&salir==false){
+			while(col<=columnas-1&&salir==false){
 				if(matriz[fil][col].equals(pCasilla)){
 					salir=true;
 				}
@@ -125,8 +142,8 @@ public class Tablero {
 		int numVecinosMina;
 		int col=0;
 		Casilla c=null;
-		while(fil<=filas){
-			while(col<=columnas){
+		while(fil<=filas-1){
+			while(col<=columnas-1){
 				c=matriz[fil][col];
 				this.obtenerVecinosCasillaX(c);
 				if (c instanceof SinMina){
@@ -146,6 +163,7 @@ public class Tablero {
 		int col=getColumnaXCasilla(pCasilla);
 		int fil=getFilaXCasilla(pCasilla);
 		if(fil-1<0&&col-1<0){
+			System.out.println("a");
 			Casilla c1=matriz[fil][col+1];
 			Casilla c2=matriz[fil+1][col+1];
 			Casilla c3=matriz[fil+1][col+1];
@@ -153,7 +171,8 @@ public class Tablero {
 			vecinos.anadir(c2);
 			vecinos.anadir(c3);
 		}
-		else if(fil-1<0&&(col-1>=0&&col+1<=columnas)){			
+		else if(fil-1<0&&(col-1>=0&&col+1<=columnas-1)){
+			System.out.println("a");
 			Casilla c1=matriz[fil][col-1];
 			Casilla c2=matriz[fil][col+1];
 			Casilla c3=matriz[fil+1][col-1];
@@ -165,7 +184,8 @@ public class Tablero {
 			vecinos.anadir(c4);
 			vecinos.anadir(c5);
 		}
-		else if(fil-1<0&&col+1>columnas){
+		else if(fil-1<0&&col+1>columnas-1){
+			System.out.println("a");
 			Casilla c1=matriz[fil][col-1];
 			Casilla c2=matriz[fil+1][col-1];
 			Casilla c3=matriz[fil+1][col];
@@ -173,7 +193,8 @@ public class Tablero {
 			vecinos.anadir(c2);
 			vecinos.anadir(c3);
 		}
-		else if((fil-1>=0&&fil+1<=filas)&&col-1<0){
+		else if((fil-1>=0&&fil+1<=filas-1)&&col-1<0){
+			System.out.println("a");
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col+1];
 			Casilla c3=matriz[fil][col+1];
@@ -185,7 +206,8 @@ public class Tablero {
 			vecinos.anadir(c4);
 			vecinos.anadir(c5);
 		}
-		else if((fil-1>=0&&fil+1<=filas)&&(col-1>=0&&col+1<=columnas)){
+		else if((fil-1>=0&&fil+1<=filas-1)&&(col-1>=0&&col+1<=columnas-1)){
+			System.out.println("a");
 			Casilla c1=matriz[fil-1][col-1];
 			Casilla c2=matriz[fil-1][col];
 			Casilla c3=matriz[fil-1][col+1];
@@ -203,7 +225,8 @@ public class Tablero {
 			vecinos.anadir(c7);
 			vecinos.anadir(c8);
 		}
-		else if((fil-1>=0&&fil+1<=filas)&&col+1>columnas){
+		else if((fil-1>=0&&fil+1<=filas-1)&&col+1>columnas-1){
+			System.out.println("a");
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col-1];
 			Casilla c3=matriz[fil][col-1];
@@ -215,7 +238,8 @@ public class Tablero {
 			vecinos.anadir(c4);
 			vecinos.anadir(c5);
 		}
-		else if(fil+1>filas&&col-1<0){
+		else if(fil+1>filas-1&&col-1<0){
+			System.out.println("a");
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col+1];
 			Casilla c3=matriz[fil][col+1];
@@ -223,7 +247,8 @@ public class Tablero {
 			vecinos.anadir(c2);
 			vecinos.anadir(c3);
 		}
-		else if(fil+1>filas&&(col-1>=0&&col+1<=columnas)){
+		else if(fil+1>filas-1&&(col-1>=0&&col+1<=columnas-1)){
+			System.out.println("a");
 			Casilla c1=matriz[fil][col-1];
 			Casilla c2=matriz[fil-1][col-1];
 			Casilla c3=matriz[fil-1][col];
@@ -235,7 +260,8 @@ public class Tablero {
 			vecinos.anadir(c4);
 			vecinos.anadir(c5);
 		}
-		else if(fil+1>filas&&col+1>columnas){
+		else if(fil+1>filas-1&&col+1>columnas-1){
+			System.out.println("a");
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col-1];
 			Casilla c3=matriz[fil][col-1];
