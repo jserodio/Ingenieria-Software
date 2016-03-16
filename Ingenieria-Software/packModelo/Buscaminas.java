@@ -39,16 +39,16 @@ public class Buscaminas {
 			this.setTableroBuilder(builderN3);
 		}
 	}
-	public static void main(String[] args){
-		Buscaminas buscaminas = new Buscaminas();
-		TableroBuilder builderN1 = new BuilderN1();
-		TableroBuilder builderN2 = new BuilderN2();
-		TableroBuilder builderN3 = new BuilderN3();
-		
-		buscaminas.setTableroBuilder(builderN1);
-		buscaminas.setTableroBuilder(builderN2);
-		buscaminas.setTableroBuilder(builderN3);
-	}
+//	public static void main(String[] args){
+//		Buscaminas buscaminas = new Buscaminas();
+//		TableroBuilder builderN1 = new BuilderN1();
+//		TableroBuilder builderN2 = new BuilderN2();
+//		TableroBuilder builderN3 = new BuilderN3();
+//		
+//		buscaminas.setTableroBuilder(builderN1);
+//		buscaminas.setTableroBuilder(builderN2);
+//		buscaminas.setTableroBuilder(builderN3);
+//	}
 	
 	
 }

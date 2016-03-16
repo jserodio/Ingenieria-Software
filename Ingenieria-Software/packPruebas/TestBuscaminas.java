@@ -24,17 +24,22 @@ public class TestBuscaminas {
 
 	@Test
 	public void testSetTableroBuilder() {
-		fail("Not yet implemented");
+		TableroBuilder builderN1=new BuilderN1();
+		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
+		assertEquals(Buscaminas.getBuscaminas().getTablero(),builderN1.getTablero());
 	}
 
 	@Test
 	public void testGetBuscaminas() {
-		fail("Not yet implemented");
+		assertNotNull(Buscaminas.getBuscaminas());
 	}
 
 	@Test
 	public void testGetTablero() {
-		fail("Not yet implemented");
+		TableroBuilder builderN1=new BuilderN1();
+		builderN1.construirTablero();
+		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
+		assertEquals(Buscaminas.getBuscaminas().getTablero(),builderN1.getTablero());
 	}
 
 	@Test
@@ -50,13 +55,13 @@ public class TestBuscaminas {
 		builderN2.construirTablero();
 		Buscaminas.getBuscaminas().iniciar(2);
 		assertEquals(Buscaminas.getBuscaminas().getTablero().getColumnas(),builderN2.getTablero().getColumnas());
-		assertEquals(Buscaminas.getBuscaminas().getTablero().getFilas(),builderN1.getTablero().getFilas());
+		assertEquals(Buscaminas.getBuscaminas().getTablero().getFilas(),builderN2.getTablero().getFilas());
 		//Iniciar buscaminas nivel 3
 		TableroBuilder builderN3=new BuilderN3();
 		builderN3.construirTablero();
 		Buscaminas.getBuscaminas().iniciar(3);
 		assertEquals(Buscaminas.getBuscaminas().getTablero().getColumnas(),builderN3.getTablero().getColumnas());
-		assertEquals(Buscaminas.getBuscaminas().getTablero().getFilas(),builderN1.getTablero().getFilas());
+		assertEquals(Buscaminas.getBuscaminas().getTablero().getFilas(),builderN3.getTablero().getFilas());
 		
 	}
 

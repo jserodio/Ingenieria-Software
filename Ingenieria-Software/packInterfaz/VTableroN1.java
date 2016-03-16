@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 import packModelo.Buscaminas;
 import packModelo.Casilla;
+import packModelo.SinMina;
 import packModelo.Tablero;
 
 import javax.swing.JButton;
@@ -27,7 +28,7 @@ public class VTableroN1 {
 		frame.getContentPane().setLayout(new MigLayout("", "[10%][10%][10%][10%][10%][10%][10%][10%][10%][10%]", "[14.28%][14.28%][14.28%][14.28%][14.28%][14.28%][14.28%]"));
 		frame.setVisible(true);
 
-		Tablero tablero = Buscaminas.getBuscaminas().getTablero();
+		
 		
 		for (int row = 0; row<7; row++) {
 			for (int col = 0; col<10; col++) {
@@ -41,9 +42,12 @@ public class VTableroN1 {
 		    	frame.getContentPane().addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent arg0) {
+						Tablero tablero = Buscaminas.getBuscaminas().getTablero();
 						if (tablero.descubrirCasilla(fila, columna)){
-							Casilla casilla = tablero.obtenerCasilla(fila, columna);
-							
+							SinMina casilla = (SinMina) tablero.obtenerCasilla(fila, columna);
+							if (casilla.getNumVecinosMina() != 0){
+								frame.remove(b);
+							}
 							// casilla. metodo que devuelva numero de bombas
 							// si es cero, lo dejo vacio
 							// si no es cero, pongo su numero
