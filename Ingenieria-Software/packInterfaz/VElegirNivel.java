@@ -10,8 +10,6 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.Component;
 
 public class VElegirNivel {
 
@@ -44,7 +42,6 @@ public class VElegirNivel {
 		frame.getContentPane().add(getRdbtnMedio(), "cell 1 1,alignx center,aligny center");
 		frame.getContentPane().add(getRdbtnDificil(), "cell 2 1,alignx center,aligny center");
 		frame.getContentPane().add(getBtnJugar(), "cell 0 2 3 1,grow");
-		frame.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{getRdbtnFacil(), getRdbtnMedio(), getRdbtnDificil(), getBtnJugar()}));
 		// Visualizar la ventana
 		frame.setVisible(true);
 	}

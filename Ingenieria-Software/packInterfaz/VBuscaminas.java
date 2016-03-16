@@ -3,35 +3,18 @@ package packInterfaz;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JRadioButton;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.Component;
-import java.awt.Panel;
-import javax.swing.JPanel;
-import javax.swing.JInternalFrame;
 
 public class VBuscaminas {
 
 	private JFrame frame;
 	private JLabel lblTablero;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
 
-	/**
-	 * Create the application.
-	 */
 	public VBuscaminas() {	
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
