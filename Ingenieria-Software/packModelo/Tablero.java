@@ -24,7 +24,6 @@ public class Tablero {
 		//inicializar la matriz
 		matriz= new Casilla[filas][columnas];
 		//Llenar la matriz de casillas sinMinas
-		System.out.println("a");
 		String pTipo;
 		int fil=0;
 		int col=0;
@@ -119,6 +118,8 @@ public class Tablero {
 	public boolean descubrirCasilla(int pFila, int pColumna){
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
 		boolean finaliza=false;
+		// imprimo la casilla para ver que he pulsado
+		System.out.println(pCasilla);
 		if(!pCasilla.equals(null)){
 			if(pCasilla instanceof SinMina){
 				((SinMina)pCasilla).abrirCasilla();
@@ -133,13 +134,8 @@ public class Tablero {
 	}
 	
 	public Casilla obtenerCasilla(int pFila, int pColumna){
-		if(pFila<=filas-1&&pColumna<=columnas-1&&pFila<=0&&pColumna<=0){
-			Casilla c=matriz[pFila][pColumna];
-			return c;
-		}
-		else{
-			return null;
-		}
+		Casilla c=matriz[pFila][pColumna];
+		return c;
 		
 	}
 	
@@ -169,7 +165,6 @@ public class Tablero {
 		int col=pCol;
 		int fil=pFil;
 		if(fil-1<0&&col-1<0){
-			System.out.println("a");
 			Casilla c1=matriz[fil][col+1];
 			Casilla c2=matriz[fil+1][col];
 			Casilla c3=matriz[fil+1][col+1];
@@ -178,7 +173,6 @@ public class Tablero {
 			vecinos.anadir(c3);
 		}
 		else if(fil-1<0&&(col-1>=0&&col+1<=columnas-1)){
-			System.out.println("a");
 			Casilla c1=matriz[fil][col-1];
 			Casilla c2=matriz[fil][col+1];
 			Casilla c3=matriz[fil+1][col-1];
@@ -191,7 +185,6 @@ public class Tablero {
 			vecinos.anadir(c5);
 		}
 		else if(fil-1<0&&col+1>columnas-1){
-			System.out.println("a");
 			Casilla c1=matriz[fil][col-1];
 			Casilla c2=matriz[fil+1][col-1];
 			Casilla c3=matriz[fil+1][col];
@@ -200,7 +193,6 @@ public class Tablero {
 			vecinos.anadir(c3);
 		}
 		else if((fil-1>=0&&fil+1<=filas-1)&&col-1<0){
-			System.out.println("a");
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col+1];
 			Casilla c3=matriz[fil][col+1];
@@ -213,7 +205,6 @@ public class Tablero {
 			vecinos.anadir(c5);
 		}
 		else if((fil-1>=0&&fil+1<=filas-1)&&(col-1>=0&&col+1<=columnas-1)){
-			System.out.println("a");
 			Casilla c1=matriz[fil-1][col-1];
 			Casilla c2=matriz[fil-1][col];
 			Casilla c3=matriz[fil-1][col+1];
@@ -232,7 +223,6 @@ public class Tablero {
 			vecinos.anadir(c8);
 		}
 		else if((fil-1>=0&&fil+1<=filas-1)&&col+1>columnas-1){
-			System.out.println("a");
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col-1];
 			Casilla c3=matriz[fil][col-1];
@@ -245,7 +235,6 @@ public class Tablero {
 			vecinos.anadir(c5);
 		}
 		else if(fil+1>filas-1&&col-1<0){
-			System.out.println("a");
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col+1];
 			Casilla c3=matriz[fil][col+1];
@@ -254,7 +243,6 @@ public class Tablero {
 			vecinos.anadir(c3);
 		}
 		else if(fil+1>filas-1&&(col-1>=0&&col+1<=columnas-1)){
-			System.out.println("a");
 			Casilla c1=matriz[fil][col-1];
 			Casilla c2=matriz[fil-1][col-1];
 			Casilla c3=matriz[fil-1][col];
@@ -267,7 +255,6 @@ public class Tablero {
 			vecinos.anadir(c5);
 		}
 		else if(fil+1>filas-1&&col+1>columnas-1){
-			System.out.println("a");
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col-1];
 			Casilla c3=matriz[fil][col-1];
