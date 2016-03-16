@@ -3,6 +3,8 @@ package packInterfaz;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 import packModelo.Buscaminas;
+import packModelo.Casilla;
+import packModelo.Tablero;
 
 import javax.swing.JButton;
 import java.awt.Color;
@@ -25,6 +27,8 @@ public class VTableroN1 {
 		frame.getContentPane().setLayout(new MigLayout("", "[10%][10%][10%][10%][10%][10%][10%][10%][10%][10%]", "[14.28%][14.28%][14.28%][14.28%][14.28%][14.28%][14.28%]"));
 		frame.setVisible(true);
 
+		Tablero tablero = Buscaminas.getBuscaminas().getTablero();
+		
 		for (int row = 0; row<7; row++) {
 			for (int col = 0; col<10; col++) {
 				JButton b = new JButton();
@@ -37,8 +41,14 @@ public class VTableroN1 {
 		    	frame.getContentPane().addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent arg0) {
-						if (Buscaminas.getBuscaminas().getTablero().descubrirCasilla(fila, columna)){
-						
+						if (tablero.descubrirCasilla(fila, columna)){
+							Casilla casilla = tablero.obtenerCasilla(fila, columna);
+							
+							// casilla. metodo que devuelva numero de bombas
+							// si es cero, lo dejo vacio
+							// si no es cero, pongo su numero
+						} else {
+							System.out.println("game over");
 						}
 					}
 				});
