@@ -133,8 +133,14 @@ public class Tablero {
 	}
 	
 	public Casilla obtenerCasilla(int pFila, int pColumna){
-		Casilla c=matriz[pFila][pColumna];
-		return c;
+		if(pFila<=filas-1&&pColumna<=columnas-1&&pFila<=0&&pColumna<=0){
+			Casilla c=matriz[pFila][pColumna];
+			return c;
+		}
+		else{
+			return null;
+		}
+		
 	}
 	
 	public void obtenerVecinos(){
@@ -145,7 +151,7 @@ public class Tablero {
 		while(fil<=filas-1){
 			while(col<=columnas-1){
 				c=matriz[fil][col];
-				this.obtenerVecinosCasillaX(c);
+				this.obtenerVecinosCasillaX(c,fil,col);
 				if (c instanceof SinMina){
 					numVecinosMina=((SinMina)c).obtenerNumVecinosMina();
 					((SinMina) c).setNumVecinosMina(numVecinosMina);
@@ -157,15 +163,15 @@ public class Tablero {
 		}
 	}
 	
-	private void obtenerVecinosCasillaX(Casilla pCasilla){
+	private void obtenerVecinosCasillaX(Casilla pCasilla,int pFil,int pCol){
 		ListaCasillas vecinos = new ListaCasillas();
 		vecinos.borrar();
-		int col=getColumnaXCasilla(pCasilla);
-		int fil=getFilaXCasilla(pCasilla);
+		int col=pCol;
+		int fil=pFil;
 		if(fil-1<0&&col-1<0){
 			System.out.println("a");
 			Casilla c1=matriz[fil][col+1];
-			Casilla c2=matriz[fil+1][col+1];
+			Casilla c2=matriz[fil+1][col];
 			Casilla c3=matriz[fil+1][col+1];
 			vecinos.anadir(c1);
 			vecinos.anadir(c2);
