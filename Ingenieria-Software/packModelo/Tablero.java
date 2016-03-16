@@ -57,7 +57,7 @@ public class Tablero {
 		this.obtenerVecinos();
 	}
 	
-	public void imprimirMatriz(){
+	private void imprimirMatriz(){
 		for (int x=0; x < matriz.length; x++) {
 			  System.out.print("|");
 			  for (int y=0; y < matriz[x].length; y++) {
