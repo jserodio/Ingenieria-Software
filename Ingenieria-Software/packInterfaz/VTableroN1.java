@@ -39,19 +39,20 @@ public class VTableroN1 {
 		    	final int fila = new Integer(row);
 		    	final int columna = new Integer(col);
 		    	
-		    	frame.getContentPane().addMouseListener(new MouseAdapter() {
+		    	b.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent arg0) {
+						System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);
 						Tablero tablero = Buscaminas.getBuscaminas().getTablero();
 						if (tablero.descubrirCasilla(fila, columna)){
+							// devuelve true si no es game over.
 							SinMina casilla = (SinMina) tablero.obtenerCasilla(fila, columna);
 							if (casilla.getNumVecinosMina() != 0){
 								frame.remove(b);
+								System.out.println(casilla.getNumVecinosMina());
 							}
-							// casilla. metodo que devuelva numero de bombas
-							// si es cero, lo dejo vacio
-							// si no es cero, pongo su numero
 						} else {
+							// devuelve false entonces game over
 							System.out.println("game over");
 						}
 					}

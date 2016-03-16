@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import net.miginfocom.swing.MigLayout;
+import packModelo.Buscaminas;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -89,12 +91,14 @@ public class VElegirNivel {
 					// Comprobar el nivel elegido
 					
 					if (rdbtnFacil.isSelected()){
-						VTableroN1 window = new VTableroN1();
+						Buscaminas.getBuscaminas().iniciar(1);
+						new VTableroN1();
 					} else if (rdbtnMedio.isSelected()){
-						//Buscaminas bm = new Buscaminas();
-						//bm.iniciar(1);
+						//Buscaminas.getBuscaminas().iniciar(2);
+						//new VTableroN2();
 					} else if (rdbtnDificil.isSelected()){
-						
+						//Buscaminas.getBuscaminas().iniciar(3);
+						//new VTableroN3();						
 					} else {
 						
 					}
