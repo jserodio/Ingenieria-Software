@@ -121,7 +121,7 @@ public class Tablero {
 		boolean finaliza=false;
 		if(!pCasilla.equals(null)){
 			if(pCasilla instanceof SinMina){
-				((SinMina)pCasilla).setAbierta();
+				((SinMina)pCasilla).abrirCasilla();
 				return finaliza;
 			} else {
 				return ((Mina)pCasilla).finalizarJuego();				
