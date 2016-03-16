@@ -1,6 +1,7 @@
 package packModelo;
 
 public class Buscaminas {
+
 	private static Buscaminas miBuscaminas=null;
 	private TableroBuilder tableroBuilder;
 	public void setTableroBuilder(TableroBuilder tb){
@@ -18,7 +19,11 @@ public class Buscaminas {
 	public Tablero getTablero(){
 		return tableroBuilder.getTablero();
 	}
+	public void construirTablero(){
+		tableroBuilder.construirTablero();
+	}
 	public void iniciar(int pNivel){
+		Buscaminas buscaminas = new Buscaminas();
 		if(pNivel==1){
 			TableroBuilder builderN1 = new BuilderN1();
 			builderN1.construirTablero();
@@ -35,16 +40,16 @@ public class Buscaminas {
 			this.setTableroBuilder(builderN3);
 		}
 	}
-	public static void main(String[] args){
-		Buscaminas buscaminas = new Buscaminas();
-		TableroBuilder builderN1 = new BuilderN1();
-		TableroBuilder builderN2 = new BuilderN2();
-		TableroBuilder builderN3 = new BuilderN3();
-		
-		buscaminas.setTableroBuilder(builderN1);
-		buscaminas.setTableroBuilder(builderN2);
-		buscaminas.setTableroBuilder(builderN3);
-	}
+//	public static void main(String[] args){
+//		Buscaminas buscaminas = new Buscaminas();
+//		TableroBuilder builderN1 = new BuilderN1();
+//		TableroBuilder builderN2 = new BuilderN2();
+//		TableroBuilder builderN3 = new BuilderN3();
+//		
+//		buscaminas.setTableroBuilder(builderN1);
+//		buscaminas.setTableroBuilder(builderN2);
+//		buscaminas.setTableroBuilder(builderN3);
+//	}
 	
 	
 }

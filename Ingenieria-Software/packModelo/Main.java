@@ -1,11 +1,11 @@
 package packModelo;
 
-import packInterfaz.vElegirNivel;
+import packInterfaz.VElegirNivel;
 
 public class Main {
 
 	public static void main(String[] args) {
-		vElegirNivel window = new vElegirNivel();
+		new VElegirNivel();
 	}
 
 }

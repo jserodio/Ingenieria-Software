@@ -1,23 +1,19 @@
 package packInterfaz;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import net.miginfocom.swing.MigLayout;
-import packModelo.Buscaminas;
-
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JRadioButton;
+import net.miginfocom.swing.MigLayout;
+import packModelo.Buscaminas;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.Color;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class vElegirNivel {
+public class VElegirNivel {
 
 	private JFrame frame;
 	private JLabel lblEligeElNivel;
@@ -30,7 +26,7 @@ public class vElegirNivel {
 	/**
 	 * Create the application.
 	 */
-	public vElegirNivel() {	
+	public VElegirNivel() {	
 		initialize();
 	}
 
@@ -40,7 +36,7 @@ public class vElegirNivel {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 692, 480);
+		frame.setBounds(100, 100, 640, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new MigLayout("", "[33%][33%][33%]", "[33%][33%][33%]"));
 		frame.getContentPane().add(getLblEligeElNivel(), "cell 0 0 3 1,alignx center,aligny center");
@@ -48,7 +44,6 @@ public class vElegirNivel {
 		frame.getContentPane().add(getRdbtnMedio(), "cell 1 1,alignx center,aligny center");
 		frame.getContentPane().add(getRdbtnDificil(), "cell 2 1,alignx center,aligny center");
 		frame.getContentPane().add(getBtnJugar(), "cell 0 2 3 1,grow");
-		frame.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{getRdbtnFacil(), getRdbtnMedio(), getRdbtnDificil(), getBtnJugar(), getLblEligeElNivel()}));
 		// Visualizar la ventana
 		frame.setVisible(true);
 	}
@@ -96,12 +91,14 @@ public class vElegirNivel {
 					// Comprobar el nivel elegido
 					
 					if (rdbtnFacil.isSelected()){
-						
+						Buscaminas.getBuscaminas().iniciar(1);
+						new VTableroN1();
 					} else if (rdbtnMedio.isSelected()){
-						//Buscaminas bm = new Buscaminas();
-						//bm.iniciar(1);
+						//Buscaminas.getBuscaminas().iniciar(2);
+						//new VTableroN2();
 					} else if (rdbtnDificil.isSelected()){
-						
+						//Buscaminas.getBuscaminas().iniciar(3);
+						//new VTableroN3();						
 					} else {
 						
 					}

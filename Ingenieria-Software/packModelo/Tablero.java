@@ -1,12 +1,6 @@
-package src.packModelo;
+package packModelo;
 
 import java.util.Random;
-
-import packModelo.Casilla;
-import packModelo.FabricaCasilla;
-import packModelo.ListaCasillas;
-import packModelo.Mina;
-import packModelo.SinMina;
 
 public class Tablero {
 
