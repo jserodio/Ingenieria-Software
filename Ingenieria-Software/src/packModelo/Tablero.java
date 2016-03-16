@@ -19,7 +19,7 @@ public class Tablero {
 		default:	//falla
 		break;
 		}
-		
+		matriz= new Casilla[filas][columnas];
 		String pTipo;
 		int fil=0;
 		int col=0;
@@ -40,7 +40,7 @@ public class Tablero {
 		while(minasIntroducidas <= numMinas){
 				filRandom = (int) Math.random()*(filas);
 				colRandom = (int) Math.random()*(columnas);	
-				while (matriz[fil][col] instanceof Mina){
+				while (matriz[filRandom][colRandom] instanceof Mina){
 					filRandom = (int) Math.random()*(filas);
 					colRandom = (int) Math.random()*(columnas);	
 				}
@@ -50,6 +50,14 @@ public class Tablero {
 				minasIntroducidas++;
 		}
 		this.obtenerVecinos();
+	}
+	
+	public int getColumnas(){
+		return this.columnas;
+	}
+	
+	public int getFilas(){
+		return this.filas;
 	}
 	
 	public int getColumnaXCasilla(Casilla pCasilla){

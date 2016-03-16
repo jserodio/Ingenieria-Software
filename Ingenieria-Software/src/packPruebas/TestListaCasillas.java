@@ -43,6 +43,21 @@ public class TestListaCasillas {
 		l.abrirCasillas();
 		assertFalse(c3.getAbierta());
 		assertTrue(c4.getAbierta());
+		
+		l.borrar();
+		l.anadir(c1);
+		l.anadir(c2);
+		l.anadir(c3);
+		l.anadir(c4);
+		l.anadir(c5);
+		l.anadir(c6);
+		l.abrirCasillas();
+		assertTrue(c1.getAbierta());
+		assertTrue(c2.getAbierta());
+		assertFalse(c3.getAbierta());
+		assertTrue(c4.getAbierta());
+		assertTrue(c5.getAbierta());
+		assertTrue(c6.getAbierta());
 	}
 
 	@Test
@@ -95,7 +110,7 @@ public class TestListaCasillas {
 		l.anadir(c1);
 		l.anadir(c2);
 		l.anadir(c3);
-		assertFalse(l.getListaCasillas().isEmpty());
+		assertEquals(l.getListaCasillas().size(),3);
 
 	}
 
@@ -108,12 +123,19 @@ public class TestListaCasillas {
 		l.eliminarCasilla(c1);
 		assertEquals(l.getListaCasillas().size(),0);
 		
-		//Eliminar una casillas de las casillas que hay en ListaCasillas
+		//Eliminar una casilla de las casillas que hay en ListaCasillas
 		SinMina c2=new SinMina();
 		l.anadir(c1);
 		l.anadir(c2);
 		l.eliminarCasilla(c2);
 		assertEquals(l.getListaCasillas().size(),1);
+		
+		//Eliminar una casilla no existente en ListaCasillas
+		SinMina c3=new SinMina();
+		l.anadir(c2);
+		l.eliminarCasilla(c3);
+		assertEquals(l.getListaCasillas().size(),2);
+		
 	}
 
 }
