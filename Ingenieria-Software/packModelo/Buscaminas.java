@@ -19,11 +19,8 @@ public class Buscaminas {
 	public Tablero getTablero(){
 		return tableroBuilder.getTablero();
 	}
-	public void construirTablero(){
-		tableroBuilder.construirTablero();
-	}
+
 	public void iniciar(int pNivel){
-		Buscaminas buscaminas = new Buscaminas();
 		if(pNivel==1){
 			TableroBuilder builderN1 = new BuilderN1();
 			builderN1.construirTablero();

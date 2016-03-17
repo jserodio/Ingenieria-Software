@@ -2,16 +2,12 @@ package packPruebas;
 
 import static org.junit.Assert.*;
 
-import java.util.Iterator;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import packModelo.BuilderN1;
 import packModelo.Buscaminas;
 import packModelo.Casilla;
-import packModelo.ListaCasillas;
 import packModelo.Mina;
 import packModelo.TableroBuilder;
 
@@ -70,7 +66,7 @@ public class TestTablero {
 		TableroBuilder builderN1=new BuilderN1();
 		builderN1.construirTablero();
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
-		Casilla c=Buscaminas.getBuscaminas().getBuscaminas().getTablero().obtenerCasilla(0, 0);
+		Casilla c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0, 0);
 		if(c instanceof Mina){
 			assertFalse(Buscaminas.getBuscaminas().getTablero().descubrirCasilla(0, 0));		
 		}

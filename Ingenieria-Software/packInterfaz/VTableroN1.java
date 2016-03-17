@@ -3,14 +3,14 @@ package packInterfaz;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 import packModelo.Buscaminas;
-import packModelo.Casilla;
+import packModelo.ListaCasillas;
 import packModelo.SinMina;
 import packModelo.Tablero;
-
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
 
 public class VTableroN1 {
 
@@ -44,20 +44,31 @@ public class VTableroN1 {
 					public void mouseReleased(MouseEvent arg0) {
 						System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);
 						Tablero tablero = Buscaminas.getBuscaminas().getTablero();
-						if (tablero.descubrirCasilla(fila, columna)){
-							// devuelve true si no es game over.
+						if (!tablero.descubrirCasilla(fila, columna)){
+							
+							b.setVisible(false); // vaciar casilla
 							SinMina casilla = (SinMina) tablero.obtenerCasilla(fila, columna);
+							recorrerVecinos(casilla, fila, columna);
+							
 							if (casilla.getNumVecinosMina() != 0){
-								frame.remove(b);
+								JLabel lbl = new JLabel(""+casilla.getNumVecinosMina());
+								frame.add(lbl, "cell "+ columna +" "+ fila +", alignx center,aligny center");
 								System.out.println(casilla.getNumVecinosMina());
 							}
 						} else {
 							// devuelve false entonces game over
 							System.out.println("game over");
+							//frame.setEnabled(false);
+							frame.removeAll();
 						}
 					}
 				});
 			}
 		}
+	}
+	
+	private void recorrerVecinos(SinMina casilla, int fila, int columna){
+		ListaCasillas vecinos = casilla.getVecinos();
+		//
 	}
 }
