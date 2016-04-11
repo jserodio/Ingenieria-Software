@@ -23,7 +23,7 @@ public abstract class TableroBuilder {
 	
 	public void construirTablero(int pNivel) {
 		setFilColxNivel(pNivel);
-		tablero = new Tablero(fil, col);
+		tablero = new Tablero(fil, col, pNivel);
 	}
 }
 

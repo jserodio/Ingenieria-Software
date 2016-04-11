@@ -9,7 +9,7 @@ public class Tablero {
 	private int filas;
 	private Casilla[][] matriz;
 
-	public Tablero(int pFilas, int pColumnas){
+	public Tablero(int pFilas, int pColumnas, int pNivel){
 		int filas = pFilas;
 		int columnas = pColumnas;
 		//inicializar la matriz
@@ -30,7 +30,7 @@ public class Tablero {
 		//Meter casillas con minas aleatoriamente en la matriz
 		int filRandom=0;
 		int colRandom=0;
-		int numMinas = columnas*nivel;
+		int numMinas = columnas*pNivel;
 		int minasIntroducidas=1;
 		Random rnd=new Random();		
 		while(minasIntroducidas <= numMinas){
