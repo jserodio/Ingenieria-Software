@@ -46,8 +46,9 @@ public class VTableroN1 {
 						Tablero tablero = Buscaminas.getBuscaminas().getTablero();
 						if (!tablero.descubrirCasilla(fila, columna)){
 							
-							b.setVisible(false); // vaciar casilla
+							b.setVisible(false); // poner en blanco el boton de la casilla
 							SinMina casilla = (SinMina) tablero.obtenerCasilla(fila, columna);
+							casilla.setAbierta();
 							recorrerVecinos(casilla, fila, columna);
 							
 							if (casilla.getNumVecinosMina() != 0){

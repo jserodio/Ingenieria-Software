@@ -1,8 +1,10 @@
 package packModelo;
 
 public class BuilderN3 extends TableroBuilder {
-
-	public void construirTablero(){
-		tablero=new Tablero(3);
+	
+	@Override
+	public void setFilColxNivel(int pNivel) {
+		this.setFila(12);
+		this.setColumna(25);
 	}
 }
