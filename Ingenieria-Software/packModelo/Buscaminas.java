@@ -23,17 +23,17 @@ public class Buscaminas {
 	public void iniciar(int pNivel){
 		if(pNivel==1){
 			TableroBuilder builderN1 = new BuilderN1();
-			builderN1.construirTablero();
+			builderN1.construirTablero(pNivel);
 			this.setTableroBuilder(builderN1);
 		}
 		else if(pNivel==2){
 			TableroBuilder builderN2 = new BuilderN2();
-			builderN2.construirTablero();
+			builderN2.construirTablero(pNivel);
 			this.setTableroBuilder(builderN2);
 		}
 		else{
 			TableroBuilder builderN3 = new BuilderN3();
-			builderN3.construirTablero();
+			builderN3.construirTablero(pNivel);
 			this.setTableroBuilder(builderN3);
 		}
 	}

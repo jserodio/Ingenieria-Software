@@ -9,18 +9,9 @@ public class Tablero {
 	private int filas;
 	private Casilla[][] matriz;
 
-	public Tablero(int pNivel){
-		nivel = pNivel;
-		switch (pNivel){
-		case 1:	filas=7; columnas=10;
-		break;
-		case 2: filas=10; columnas=15;
-		break;
-		case 3: filas=12; columnas=25;
-		break;
-		default:	//falla
-		break;
-		}
+	public Tablero(int pFilas, int pColumnas){
+		int filas = pFilas;
+		int columnas = pColumnas;
 		//inicializar la matriz
 		matriz= new Casilla[filas][columnas];
 		//Llenar la matriz de casillas sinMinas

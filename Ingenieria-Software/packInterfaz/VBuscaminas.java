@@ -5,11 +5,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Color;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
 
 public class VBuscaminas {
 
 	private JFrame frame;
 	private JLabel lblTablero;
+	private JPanel panel;
 
 	public VBuscaminas() {	
 		initialize();
@@ -22,6 +25,7 @@ public class VBuscaminas {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new MigLayout("", "[33%][33%,grow][33%]", "[33%][33%,grow][33%]"));
 		frame.getContentPane().add(getLblTablero(), "cell 0 0 3 1,alignx center,aligny center");
+		frame.getContentPane().add(getPanel(), "cell 1 1,grow");
 		// Visualizar la ventana
 		frame.setVisible(true);
 	}
@@ -32,5 +36,11 @@ public class VBuscaminas {
 			lblTablero.setFont(new Font("Tahoma", Font.PLAIN, 60));
 		}
 		return lblTablero;
+	}
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+		}
+		return panel;
 	}
 }
