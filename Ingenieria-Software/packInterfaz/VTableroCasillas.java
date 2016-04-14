@@ -1,37 +1,52 @@
 package packInterfaz;
 
-import javax.swing.JFrame;
-import net.miginfocom.swing.MigLayout;
+import javax.swing.JInternalFrame;
 import packModelo.Buscaminas;
 import packModelo.ListaCasillas;
 import packModelo.SinMina;
 import packModelo.Tablero;
 import javax.swing.JButton;
-import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 
-public class VTableroN1 {
+public class VTableroCasillas {
 
-	private JFrame frame;
+	private JInternalFrame frame;
+	private int nivel;
+	private static int ROWMAX;
+	private static int COLMAX;
 
-	public VTableroN1() {	
+	public VTableroCasillas(JInternalFrame internalFrame, int pNivel) {	
+		this.frame = internalFrame;
+		this.nivel = pNivel;
 		initialize();
+	}
+	
+	public JInternalFrame getFrame() {
+		return frame;
 	}
 
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 640, 480);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new MigLayout("", "[10%][10%][10%][10%][10%][10%][10%][10%][10%][10%]", "[14.28%][14.28%][14.28%][14.28%][14.28%][14.28%][14.28%]"));
-		frame.setVisible(true);
-
+		
+		switch(nivel) {
+		case 1:
+			ROWMAX = 7;
+			COLMAX = 10;
+			break;
+		case 2:
+			ROWMAX = 10;
+			COLMAX = 15;
+			break;
+		case 3:
+			ROWMAX = 12;
+			COLMAX = 25;
+			break;
+		}
 		
 		
-		for (int row = 0; row<7; row++) {
-			for (int col = 0; col<10; col++) {
+		for (int row = 0; row<ROWMAX; row++) {
+			for (int col = 0; col<COLMAX; col++) {
 				JButton b = new JButton();
 		    	frame.getContentPane().add(b, "cell "+ col +" "+ row +",grow");
 		    	
@@ -49,7 +64,8 @@ public class VTableroN1 {
 							b.setVisible(false); // poner en blanco el boton de la casilla
 							SinMina casilla = (SinMina) tablero.obtenerCasilla(fila, columna);
 							casilla.setAbierta();
-							recorrerVecinos(casilla, fila, columna);
+							// RECORRER LOS VECIONS DE ALGUNA FORMA PARA ABRIR CASILLAS
+							// DE FORMA AUTOMATICA
 							
 							if (casilla.getNumVecinosMina() != 0){
 								JLabel lbl = new JLabel(""+casilla.getNumVecinosMina());
@@ -68,8 +84,4 @@ public class VTableroN1 {
 		}
 	}
 	
-	private void recorrerVecinos(SinMina casilla, int fila, int columna){
-		ListaCasillas vecinos = casilla.getVecinos();
-		//
-	}
 }
