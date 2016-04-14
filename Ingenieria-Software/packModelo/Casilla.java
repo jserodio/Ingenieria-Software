@@ -1,7 +1,5 @@
 package packModelo;
 
-import java.util.ArrayList;
-
 public abstract class Casilla {
 	private boolean flag;
 	private boolean abierta;

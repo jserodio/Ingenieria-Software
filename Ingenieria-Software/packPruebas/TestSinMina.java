@@ -2,13 +2,9 @@ package packPruebas;
 
 import static org.junit.Assert.*;
 
-import java.util.Iterator;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import packModelo.Casilla;
 import packModelo.ListaCasillas;
 import packModelo.Mina;
 import packModelo.SinMina;
@@ -108,22 +104,22 @@ public class TestSinMina {
 		l1.anadir(new SinMina());
 		l1.anadir(new SinMina());
 		l1.anadir(new SinMina());
-		c1.setVecinos(l1);
-		c1.abrirVecinos();
-		assertTrue(c1.getVecinos().getListaCasillas().get(0).getAbierta());
-		assertTrue(c1.getVecinos().getListaCasillas().get(1).getAbierta());
-		assertTrue(c1.getVecinos().getListaCasillas().get(2).getAbierta());
+		c2.setVecinos(l1);
+		c2.abrirVecinos();
+		assertTrue(c2.getVecinos().getListaCasillas().get(0).getAbierta());
+		assertTrue(c2.getVecinos().getListaCasillas().get(1).getAbierta());
+		assertTrue(c2.getVecinos().getListaCasillas().get(2).getAbierta());
 		//Abrir vecinos habiendo un vecino con mina 
 		SinMina c3=new SinMina();
 		ListaCasillas l2= new ListaCasillas();
 		l2.anadir(new SinMina());
 		l2.anadir(new Mina());
 		l2.anadir(new SinMina());
-		c1.setVecinos(l2);
-		c1.abrirVecinos();
-		assertTrue(c1.getVecinos().getListaCasillas().get(0).getAbierta());
-		assertFalse(c1.getVecinos().getListaCasillas().get(1).getAbierta());
-		assertTrue(c1.getVecinos().getListaCasillas().get(2).getAbierta());
+		c3.setVecinos(l2);
+		c3.abrirVecinos();
+		assertTrue(c3.getVecinos().getListaCasillas().get(0).getAbierta());
+		assertFalse(c3.getVecinos().getListaCasillas().get(1).getAbierta());
+		assertTrue(c3.getVecinos().getListaCasillas().get(2).getAbierta());
 	}
 
 	@Test

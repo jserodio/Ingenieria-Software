@@ -9,22 +9,12 @@ public class Tablero {
 	private int filas;
 	private Casilla[][] matriz;
 
-	public Tablero(int pNivel){
-		nivel = pNivel;
-		switch (pNivel){
-		case 1:	filas=7; columnas=10;
-		break;
-		case 2: filas=10; columnas=15;
-		break;
-		case 3: filas=12; columnas=25;
-		break;
-		default:	//falla
-		break;
-		}
+	public Tablero(int pFilas, int pColumnas, int pNivel){
+		int filas = pFilas;
+		int columnas = pColumnas;
 		//inicializar la matriz
 		matriz= new Casilla[filas][columnas];
 		//Llenar la matriz de casillas sinMinas
-		System.out.println("a");
 		String pTipo;
 		int fil=0;
 		int col=0;
@@ -40,7 +30,7 @@ public class Tablero {
 		//Meter casillas con minas aleatoriamente en la matriz
 		int filRandom=0;
 		int colRandom=0;
-		int numMinas = columnas*nivel;
+		int numMinas = columnas*pNivel;
 		int minasIntroducidas=1;
 		Random rnd=new Random();		
 		while(minasIntroducidas <= numMinas){
@@ -58,7 +48,7 @@ public class Tablero {
 		this.obtenerVecinos();
 	}
 	
-	public void imprimirMatriz(){
+	private void imprimirMatriz(){
 		for (int x=0; x < matriz.length; x++) {
 			  System.out.print("|");
 			  for (int y=0; y < matriz[x].length; y++) {
@@ -119,6 +109,8 @@ public class Tablero {
 	public boolean descubrirCasilla(int pFila, int pColumna){
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
 		boolean finaliza=false;
+		// imprimo la casilla para ver que he pulsado
+		System.out.println(pCasilla);
 		if(!pCasilla.equals(null)){
 			if(pCasilla instanceof SinMina){
 				((SinMina)pCasilla).abrirCasilla();
@@ -133,13 +125,8 @@ public class Tablero {
 	}
 	
 	public Casilla obtenerCasilla(int pFila, int pColumna){
-		if(pFila<=filas-1&&pColumna<=columnas-1&&pFila<=0&&pColumna<=0){
-			Casilla c=matriz[pFila][pColumna];
-			return c;
-		}
-		else{
-			return null;
-		}
+		Casilla c=matriz[pFila][pColumna];
+		return c;
 		
 	}
 	
@@ -169,7 +156,6 @@ public class Tablero {
 		int col=pCol;
 		int fil=pFil;
 		if(fil-1<0&&col-1<0){
-			System.out.println("a");
 			Casilla c1=matriz[fil][col+1];
 			Casilla c2=matriz[fil+1][col];
 			Casilla c3=matriz[fil+1][col+1];
@@ -178,7 +164,6 @@ public class Tablero {
 			vecinos.anadir(c3);
 		}
 		else if(fil-1<0&&(col-1>=0&&col+1<=columnas-1)){
-			System.out.println("a");
 			Casilla c1=matriz[fil][col-1];
 			Casilla c2=matriz[fil][col+1];
 			Casilla c3=matriz[fil+1][col-1];
@@ -191,7 +176,6 @@ public class Tablero {
 			vecinos.anadir(c5);
 		}
 		else if(fil-1<0&&col+1>columnas-1){
-			System.out.println("a");
 			Casilla c1=matriz[fil][col-1];
 			Casilla c2=matriz[fil+1][col-1];
 			Casilla c3=matriz[fil+1][col];
@@ -200,7 +184,6 @@ public class Tablero {
 			vecinos.anadir(c3);
 		}
 		else if((fil-1>=0&&fil+1<=filas-1)&&col-1<0){
-			System.out.println("a");
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col+1];
 			Casilla c3=matriz[fil][col+1];
@@ -213,7 +196,6 @@ public class Tablero {
 			vecinos.anadir(c5);
 		}
 		else if((fil-1>=0&&fil+1<=filas-1)&&(col-1>=0&&col+1<=columnas-1)){
-			System.out.println("a");
 			Casilla c1=matriz[fil-1][col-1];
 			Casilla c2=matriz[fil-1][col];
 			Casilla c3=matriz[fil-1][col+1];
@@ -232,7 +214,6 @@ public class Tablero {
 			vecinos.anadir(c8);
 		}
 		else if((fil-1>=0&&fil+1<=filas-1)&&col+1>columnas-1){
-			System.out.println("a");
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col-1];
 			Casilla c3=matriz[fil][col-1];
@@ -245,7 +226,6 @@ public class Tablero {
 			vecinos.anadir(c5);
 		}
 		else if(fil+1>filas-1&&col-1<0){
-			System.out.println("a");
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col+1];
 			Casilla c3=matriz[fil][col+1];
@@ -254,7 +234,6 @@ public class Tablero {
 			vecinos.anadir(c3);
 		}
 		else if(fil+1>filas-1&&(col-1>=0&&col+1<=columnas-1)){
-			System.out.println("a");
 			Casilla c1=matriz[fil][col-1];
 			Casilla c2=matriz[fil-1][col-1];
 			Casilla c3=matriz[fil-1][col];
@@ -267,7 +246,6 @@ public class Tablero {
 			vecinos.anadir(c5);
 		}
 		else if(fil+1>filas-1&&col+1>columnas-1){
-			System.out.println("a");
 			Casilla c1=matriz[fil-1][col];
 			Casilla c2=matriz[fil-1][col-1];
 			Casilla c3=matriz[fil][col-1];
