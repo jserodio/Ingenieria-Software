@@ -28,7 +28,7 @@ public class TestTablero {
 	@Test
 	public void testGetColumnas() {
 		TableroBuilder builderN1=new BuilderN1();
-		builderN1.construirTablero();
+		builderN1.construirTablero(1);
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		assertEquals(Buscaminas.getBuscaminas().getTablero().getColumnas(),10);
 	}
@@ -36,7 +36,7 @@ public class TestTablero {
 	@Test
 	public void testGetFilas() {
 		TableroBuilder builderN1=new BuilderN1();
-		builderN1.construirTablero();
+		builderN1.construirTablero(1);
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		assertEquals(Buscaminas.getBuscaminas().getTablero().getFilas(),7);
 	}
@@ -44,7 +44,7 @@ public class TestTablero {
 	@Test
 	public void testGetColumnaXCasilla() {
 		TableroBuilder builderN1=new BuilderN1();
-		builderN1.construirTablero();
+		builderN1.construirTablero(1);
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		//Primera columna
 		Casilla c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0,0);
@@ -68,7 +68,7 @@ public class TestTablero {
 	@Test
 	public void testDescubrirCasilla() {
 		TableroBuilder builderN1=new BuilderN1();
-		builderN1.construirTablero();
+		builderN1.construirTablero(1);
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		Casilla c=Buscaminas.getBuscaminas().getBuscaminas().getTablero().obtenerCasilla(0, 0);
 		assertFalse(Buscaminas.getBuscaminas().getTablero().descubrirCasilla(0, 0));
@@ -78,7 +78,7 @@ public class TestTablero {
 	public void testObtenerCasilla() {
 		//Obtener una casilla existente
 		TableroBuilder builderN1=new BuilderN1();
-		builderN1.construirTablero();
+		builderN1.construirTablero(1);
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		Casilla c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0,0);
 		assertEquals(Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0, 0),c);
@@ -89,7 +89,7 @@ public class TestTablero {
 	@Test
 	public void testObtenerVecinos() {
 		TableroBuilder builderN1=new BuilderN1();
-		builderN1.construirTablero();
+		builderN1.construirTablero(1);
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		Buscaminas.getBuscaminas().getTablero().obtenerVecinos();
 		Casilla c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0,0);

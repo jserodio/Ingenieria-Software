@@ -2,7 +2,7 @@ package packModelo;
 
 public class SinMina extends Casilla {
 	private int numVecinosMina;
-	
+
 	public SinMina(){
 		
 	}

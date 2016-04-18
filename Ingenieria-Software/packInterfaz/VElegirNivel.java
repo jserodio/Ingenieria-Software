@@ -86,7 +86,7 @@ public class VElegirNivel {
 		if (btnJugar == null) {
 			btnJugar = new JButton("Jugar");
 			btnJugar.addMouseListener(new MouseAdapter() {
-				@Override
+				
 				public void mouseReleased(MouseEvent arg0) {
 					// Comprobar el nivel elegido
 					
