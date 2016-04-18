@@ -70,10 +70,10 @@ public class VTableroCasillas implements Observer {
 					public void mouseReleased(MouseEvent arg0) {
 						System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);
 						Tablero tablero = Buscaminas.getBuscaminas().getTablero();
-						if (!tablero.descubrirCasilla(fila, columna)){
+						if (!Buscaminas.getBuscaminas().descubrirCasilla(fila, columna)){
 							
 							b.setVisible(false); // poner en blanco el boton de la casilla
-							SinMina casilla = (SinMina) tablero.obtenerCasilla(fila, columna);
+							SinMina casilla = (SinMina) Buscaminas.getBuscaminas().obtenerCasilla(fila, columna);
 ;
 							casilla.abrirCasilla();
 							tablero.setCasillaActual(casilla);
