@@ -1,6 +1,8 @@
 package packModelo;
 
-public class SinMina extends Casilla {
+import java.util.Iterator;
+
+public class SinMina extends Casilla{
 	private int numVecinosMina;
 
 	public SinMina(){
@@ -19,6 +21,19 @@ public class SinMina extends Casilla {
 		super.setAbierta();
 	}
 	
+	public ListaCasillas getVecinosSinMina(){
+		ListaCasillas vecinosSinMina = new ListaCasillas();
+		Iterator<Casilla> it = vecinos.getListaCasillas().iterator();
+		Casilla c;
+		while(it.hasNext()){
+			c=it.next();
+			if(c.getAbierta()==true && c.getFlag()==false){
+				vecinosSinMina.anadir(c);
+			}
+		}
+		return vecinosSinMina;
+	}
+	
 	public void abrirCasilla(){
 		this.setAbierta();
 		if(!this.getVecinos().getListaCasillas().isEmpty()){
@@ -26,6 +41,9 @@ public class SinMina extends Casilla {
 				this.abrirVecinos();
 			}
 		}
+//		addObserver(this);
+		setChanged();
+	    notifyObservers();
 	}
 	
 	public void abrirVecinos(){

@@ -9,3 +9,4 @@ public class BuilderN1 extends TableroBuilder {
 	}
 
 }
+

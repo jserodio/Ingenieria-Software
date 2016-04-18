@@ -4,16 +4,17 @@ import java.util.Random;
 
 public class Tablero {
 
-	private int nivel;
 	private int columnas;
 	private int filas;
 	private Casilla[][] matriz;
+	private SinMina casillaActual;
 
 	public Tablero(int pFilas, int pColumnas, int pNivel){
 		int filas = pFilas;
 		int columnas = pColumnas;
 		//inicializar la matriz
 		matriz= new Casilla[filas][columnas];
+		
 		//Llenar la matriz de casillas sinMinas
 		String pTipo;
 		int fil=0;
@@ -254,6 +255,14 @@ public class Tablero {
 			vecinos.anadir(c3);
 		}
 		pCasilla.setVecinos(vecinos);
+	}
+
+	public SinMina getCasillaActual() {
+		return this.casillaActual;
+	}
+
+	public void setCasillaActual(SinMina pCasilla) {
+		this.casillaActual = pCasilla;
 	}
 	
 	
