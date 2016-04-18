@@ -4,6 +4,8 @@ public class Buscaminas {
 
 	private static Buscaminas miBuscaminas=null;
 	private TableroBuilder tableroBuilder;
+	private String usuario;
+	
 	public void setTableroBuilder(TableroBuilder tb){
 		tableroBuilder = tb;
 	}
@@ -19,8 +21,17 @@ public class Buscaminas {
 	public Tablero getTablero(){
 		return tableroBuilder.getTablero();
 	}
+	
+	public String getUsuario(){
+		return this.usuario;
+	}
+	
+	public void setUsuario(String pUsuario){
+		this.usuario = pUsuario;
+	}
 
 	public void iniciar(int pNivel){
+		//this.setUsuario(pUsuario);
 		if(pNivel==1){
 			TableroBuilder builderN1 = new BuilderN1();
 			builderN1.construirTablero(pNivel);
@@ -59,6 +70,14 @@ public class Buscaminas {
 	
 	public int getColumnaXCasilla(Casilla pCasilla){
 		return this.getTablero().getColumnaXCasilla(pCasilla);
+	}
+	
+	public int getNumMinas(){
+		return Buscaminas.getBuscaminas().getNumMinas();
+	}
+	
+	public void marcarYdesmarcarCasilla(int pFila, int pColumna){
+		Buscaminas.getBuscaminas().marcarYdesmarcarCasilla(pFila, pColumna);
 	}
 	
 //	public static void main(String[] args){

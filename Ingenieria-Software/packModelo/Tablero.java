@@ -6,8 +6,11 @@ public class Tablero {
 
 	private int columnas;
 	private int filas;
+	private int numMaxFlags;
+	private static int numMaxMinas;
 	private Casilla[][] matriz;
 	private SinMina casillaActual;
+
 
 	public Tablero(int pFilas, int pColumnas, int pNivel){
 		int filas = pFilas;
@@ -31,10 +34,11 @@ public class Tablero {
 		//Meter casillas con minas aleatoriamente en la matriz
 		int filRandom=0;
 		int colRandom=0;
-		int numMinas = columnas*pNivel;
+		this.numMaxFlags = columnas*pNivel;
+		this.numMaxMinas = columnas*pNivel;
 		int minasIntroducidas=1;
 		Random rnd=new Random();		
-		while(minasIntroducidas <= numMinas){
+		while(minasIntroducidas <= numMaxFlags){
 				filRandom = (int)(rnd.nextDouble() * filas);
 				colRandom = (int)(rnd.nextDouble() * columnas);
 				while(matriz[filRandom][colRandom] instanceof Mina){
@@ -263,6 +267,30 @@ public class Tablero {
 
 	public void setCasillaActual(SinMina pCasilla) {
 		this.casillaActual = pCasilla;
+	}
+	
+	public void marcarYdesmarcarCasilla(int pFila, int pColumna){
+		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
+			if(pCasilla.getFlag()){
+				if(this.getNumMaxFlags()>=0){
+					pCasilla.setFlag(false);
+					this.setNumMaxFlags(this.getNumMaxFlags()+1);
+				}
+			}
+			else{
+				if (this.getNumMaxFlags()>0){
+					pCasilla.setFlag(true);
+					this.setNumMaxFlags(this.getNumMaxFlags()-1);
+				}
+			}
+	}
+	
+	public int getNumMaxFlags() {
+		return this.numMaxFlags;
+	}
+	
+	public void setNumMaxFlags(int pNumMinas){
+		this.numMaxFlags = pNumMinas;
 	}
 	
 	

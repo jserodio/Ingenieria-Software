@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import packModelo.Buscaminas;
+
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -93,6 +96,9 @@ public class VLogin {
 			btnLogin.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
+					if(!txtUser.getText().equals("")){
+						Buscaminas.getBuscaminas().setUsuario(txtUser.getText());
+					}
 					new VElegirNivel();	// llamada a la ventana
 				}
 			});
