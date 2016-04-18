@@ -2,15 +2,22 @@ package packInterfaz;
 
 import javax.swing.JInternalFrame;
 import packModelo.Buscaminas;
+import packModelo.Casilla;
 import packModelo.ListaCasillas;
 import packModelo.SinMina;
 import packModelo.Tablero;
 import javax.swing.JButton;
+
+import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Iterator;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JLabel;
 
-public class VTableroCasillas {
+public class VTableroCasillas implements Observer {
 
 	private JInternalFrame frame;
 	private int nivel;
@@ -47,7 +54,10 @@ public class VTableroCasillas {
 		
 		for (int row = 0; row<ROWMAX; row++) {
 			for (int col = 0; col<COLMAX; col++) {
+				
 				JButton b = new JButton();
+				b.setName(""+col+row);
+				
 		    	frame.getContentPane().add(b, "cell "+ col +" "+ row +",grow");
 		    	
 		    	// Se necesita esto para pasarle el parámetro a descubrirCasilla.
@@ -63,9 +73,9 @@ public class VTableroCasillas {
 							
 							b.setVisible(false); // poner en blanco el boton de la casilla
 							SinMina casilla = (SinMina) tablero.obtenerCasilla(fila, columna);
-							casilla.setAbierta();
-							// RECORRER LOS VECIONS DE ALGUNA FORMA PARA ABRIR CASILLAS
-							// DE FORMA AUTOMATICA
+;
+							casilla.abrirCasilla();
+							tablero.setCasillaActual(casilla);
 							
 							if (casilla.getNumVecinosMina() != 0){
 								JLabel lbl = new JLabel(""+casilla.getNumVecinosMina());
@@ -80,6 +90,35 @@ public class VTableroCasillas {
 						}
 					}
 				});
+			}
+		}
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		System.out.println("hola higo de fruta");
+		Tablero tablero = Buscaminas.getBuscaminas().getTablero();
+		
+		SinMina casillaActual = tablero.getCasillaActual();
+		
+		ListaCasillas listaVecinosSinMina = new ListaCasillas();
+		
+		listaVecinosSinMina = casillaActual.getVecinosSinMina();
+		
+		Iterator<Casilla> it = listaVecinosSinMina.getListaCasillas().iterator();
+		Casilla c;
+		while(it.hasNext()){
+			c=it.next();
+			String posicion = ""+tablero.getFilaXCasilla(c)+tablero.getColumnaXCasilla(c);
+			Component[] components = frame.getContentPane().getComponents();
+			for (Component component : components)
+			{
+			    if (component instanceof JButton)
+			    {
+			        if (component.getName().equals(posicion)){
+			        	component.setVisible(false);
+			        }
+			    }
 			}
 		}
 	}

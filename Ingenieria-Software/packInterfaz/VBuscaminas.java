@@ -4,15 +4,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Toolkit;
-
 import net.miginfocom.swing.MigLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
-
 import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
-import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class VBuscaminas {
 
