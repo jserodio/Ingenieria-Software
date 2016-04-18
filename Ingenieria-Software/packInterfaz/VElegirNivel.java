@@ -92,13 +92,13 @@ public class VElegirNivel {
 					
 					if (rdbtnFacil.isSelected()){
 						Buscaminas.getBuscaminas().iniciar(1);
-						new VTableroN1();
+						new VBuscaminas(1);
 					} else if (rdbtnMedio.isSelected()){
-						//Buscaminas.getBuscaminas().iniciar(2);
-						//new VTableroN2();
+						Buscaminas.getBuscaminas().iniciar(2);
+						new VBuscaminas(2);
 					} else if (rdbtnDificil.isSelected()){
-						//Buscaminas.getBuscaminas().iniciar(3);
-						//new VTableroN3();						
+						Buscaminas.getBuscaminas().iniciar(3);
+						new VBuscaminas(3);						
 					} else {
 						
 					}
