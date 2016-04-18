@@ -37,6 +37,30 @@ public class Buscaminas {
 			this.setTableroBuilder(builderN3);
 		}
 	}
+	public boolean descubrirCasilla(int pFila, int pColumna){
+		return this.getTablero().descubrirCasilla(pFila, pColumna);
+	}
+	
+	public Casilla obtenerCasilla(int pFila, int pColumna){
+		return this.getTablero().obtenerCasilla(pFila, pColumna);
+	}
+	
+	public void setCasillaActual(SinMina pCasilla) {
+		this.getTablero().setCasillaActual(pCasilla);
+	}
+	
+	public SinMina getCasillaActual() {
+		return this.getTablero().getCasillaActual();
+	}
+	
+	public int getFilaXCasilla(Casilla pCasilla){
+		return this.getTablero().getFilaXCasilla(pCasilla);
+	}
+	
+	public int getColumnaXCasilla(Casilla pCasilla){
+		return this.getTablero().getColumnaXCasilla(pCasilla);
+	}
+	
 //	public static void main(String[] args){
 //		Buscaminas buscaminas = new Buscaminas();
 //		TableroBuilder builderN1 = new BuilderN1();
