@@ -1,6 +1,6 @@
 package packModelo;
 
-public class SinMina extends Casilla {
+public class SinMina extends Casilla{
 	private int numVecinosMina;
 	
 	public SinMina(){
@@ -21,6 +21,8 @@ public class SinMina extends Casilla {
 	
 	public void abrirCasilla(){
 		this.setAbierta();
+		setChanged();
+	    notifyObservers();
 		if(!this.getVecinos().getListaCasillas().isEmpty()){
 			if(getNumVecinosMina()==0){
 				this.abrirVecinos();
