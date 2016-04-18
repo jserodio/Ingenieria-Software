@@ -86,6 +86,8 @@ public class VBuscaminas {
 			new VTableroCasillas(internalFrame, nivel);
 
 			internalFrame.setVisible(true);
+			
+			
 		}
 		return internalFrame;
 	}

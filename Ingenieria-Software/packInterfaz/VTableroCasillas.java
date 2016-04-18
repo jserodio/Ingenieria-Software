@@ -28,6 +28,7 @@ public class VTableroCasillas implements Observer {
 		this.frame = internalFrame;
 		this.nivel = pNivel;
 		initialize();
+		// add observer bucle de casillas, llamada desde buscaminas
 	}
 	
 	public JInternalFrame getFrame() {
@@ -96,7 +97,6 @@ public class VTableroCasillas implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		System.out.println("hola higo de fruta");
 		Tablero tablero = Buscaminas.getBuscaminas().getTablero();
 		
 		SinMina casillaActual = tablero.getCasillaActual();

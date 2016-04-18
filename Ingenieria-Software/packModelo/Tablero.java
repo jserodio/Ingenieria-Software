@@ -14,6 +14,7 @@ public class Tablero {
 		int columnas = pColumnas;
 		//inicializar la matriz
 		matriz= new Casilla[filas][columnas];
+		
 		//Llenar la matriz de casillas sinMinas
 		String pTipo;
 		int fil=0;

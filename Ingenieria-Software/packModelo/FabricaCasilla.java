@@ -17,7 +17,7 @@ public class FabricaCasilla {
 		}
 		else{
 			miCasilla=new Mina();
-		}
+		}		
 		return miCasilla;
 	}
 }
