@@ -16,6 +16,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+
+import java.awt.Color;
 
 public class VTableroCasillas implements Observer {
 
@@ -23,6 +26,7 @@ public class VTableroCasillas implements Observer {
 	private int nivel;
 	private static int ROWMAX;
 	private static int COLMAX;
+	private int flags;
 
 	public VTableroCasillas(JInternalFrame internalFrame, int pNivel) {	
 		this.frame = internalFrame;
@@ -51,13 +55,14 @@ public class VTableroCasillas implements Observer {
 			COLMAX = 25;
 			break;
 		}
-		
+		this.flags=this.nivel*COLMAX;
 		
 		for (int row = 0; row<ROWMAX; row++) {
 			for (int col = 0; col<COLMAX; col++) {
 				
 				JButton b = new JButton();
 				b.setName(""+col+row);
+				b.setBackground(Color.BLUE);
 				
 		    	frame.getContentPane().add(b, "cell "+ col +" "+ row +",grow");
 		    	
@@ -68,30 +73,45 @@ public class VTableroCasillas implements Observer {
 		    	b.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent arg0) {
-						System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);
-						
-						Casilla casilla = Buscaminas.getBuscaminas().obtenerCasilla(fila, columna);
-						Buscaminas.getBuscaminas().setCasillaActual(casilla);
-						
-						boolean finaliza = Buscaminas.getBuscaminas().descubrirCasilla(fila, columna);
-						
-						if (!finaliza){							
-							b.setVisible(false); // poner en blanco el boton de la casilla
-							
-							if (((SinMina) casilla).getNumVecinosMina() != 0){
-								JLabel lbl = new JLabel(""+((SinMina) casilla).getNumVecinosMina());
-								frame.add(lbl, "cell "+ columna +" "+ fila +", alignx center,aligny center");
-								System.out.println(((SinMina) casilla).getNumVecinosMina());
-							}
-							
-						} else {
-							// devuelve false entonces game over
-							System.out.println("game over");
-							//frame.setEnabled(false);
-							frame.removeAll();
+						if(SwingUtilities.isRightMouseButton(arg0)){ //Si pulsas boton derecho
+							 Buscaminas.getBuscaminas().marcarYdesmarcarCasilla(fila, columna);
+								 if(b.getBackground().equals(Color.RED)){
+									 b.setBackground(Color.BLUE);
+									 VTableroCasillas.this.flags=VTableroCasillas.this.flags+1;
+								 
+								 }else{
+									 b.setBackground(Color.RED);
+									 VTableroCasillas.this.flags=VTableroCasillas.this.flags-1;
+								 }
 						}
+						else{
+							System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);
+							Tablero tablero = Buscaminas.getBuscaminas().getTablero();
+							if(!b.getBackground().equals(Color.RED)){
+								if (!Buscaminas.getBuscaminas().descubrirCasilla(fila, columna)){
+										b.setVisible(false); // poner en blanco el boton de la casilla
+										SinMina casilla = (SinMina) Buscaminas.getBuscaminas().obtenerCasilla(fila, columna);;
+									
+										casilla.abrirCasilla();
+										tablero.setCasillaActual(casilla);
+								
+										if (casilla.getNumVecinosMina() != 0){
+											JLabel lbl = new JLabel(""+casilla.getNumVecinosMina());
+											frame.add(lbl, "cell "+ columna +" "+ fila +", alignx center,aligny center");
+											System.out.println(casilla.getNumVecinosMina());
+										}
+								} else {
+									// devuelve false entonces game over
+									System.out.println("game over");
+									//frame.setEnabled(false);
+									frame.removeAll();
+								}
+							}
+						}
+						
 					}
 				});
+		    	
 			}
 		}
 	}

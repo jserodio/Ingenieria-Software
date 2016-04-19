@@ -27,8 +27,10 @@ public class SinMina extends Casilla{
 		Casilla c;
 		while(it.hasNext()){
 			c=it.next();
-			if(c.getAbierta()==true && c.getFlag()==false){
-				vecinosSinMina.anadir(c);
+			if(c instanceof SinMina){
+				if(c.getAbierta()==true && c.getFlag()==false ){
+					vecinosSinMina.anadir(c);
+				}
 			}
 		}
 		return vecinosSinMina;

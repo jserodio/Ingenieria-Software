@@ -1,13 +1,15 @@
 package packModelo;
 
-import packInterfaz.VTableroCasillas;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Buscaminas {
 
 	private static Buscaminas miBuscaminas=null;
 	private TableroBuilder tableroBuilder;
 	private String usuario;
-	
+
 	public void setTableroBuilder(TableroBuilder tb){
 		tableroBuilder = tb;
 	}
@@ -75,11 +77,34 @@ public class Buscaminas {
 	}
 	
 	public int getNumMinas(){
-		return Buscaminas.getBuscaminas().getNumMinas();
+		return Buscaminas.getBuscaminas().getTablero().getNumMaxFlags();
 	}
 	
 	public void marcarYdesmarcarCasilla(int pFila, int pColumna){
-		Buscaminas.getBuscaminas().marcarYdesmarcarCasilla(pFila, pColumna);
+		Buscaminas.getBuscaminas().getTablero().marcarYdesmarcarCasilla(pFila, pColumna);
+	}
+	
+	public void getUser(String pUser, String pPassword){
+		  Conexion.conectar();
+		  ResultSet rs = null;
+		  String cadena = "SELECT user, password FROM usuario WHERE user=" +pUser+" AND password="+ pPassword+"";
+		  Statement st = Conexion.conexion();
+		  rs = Conexion.consultaDatos(st, cadena);
+		  if(rs.equals(null)){
+			  String cadena1 = "INSERT INTO usuario VALUES(user=" +pUser+" AND password="+ pPassword+")";
+			  Statement st1 = Conexion.conexion();
+			  Conexion.consultaActualiza(st1, cadena1);
+		  }
+		  else{
+			  try {
+				while(rs.next()){
+					  this.setUsuario(rs.getString("user"));
+				  }
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		  }
 	}
 	
 	public void anadirObservador(VTableroCasillas pTablero){
