@@ -52,7 +52,6 @@ public class Tablero {
 		}
 		this.imprimirMatriz();
 		//Obtener los vecinos de cada casilla
-		System.out.println("se supone que hemos imprimido, y ahora obtenemos");
 		this.obtenerVecinos();
 	}
 	
@@ -76,37 +75,41 @@ public class Tablero {
 	}
 	
 	public int getColumnaXCasilla(Casilla pCasilla){
-		int col=0;
+		int columna=0;
+		
 		boolean salir=false;
 		int fil=0;
 		while(fil<=filas-1&&salir==false){
+			int col=0;
 			while(col<=columnas-1&&salir==false){
 				if(matriz[fil][col].equals(pCasilla)){
+					columna = col;
 					salir=true;
 				}
 				col++;
 			}
 			fil++;
-			col=0;
 		}
-		return col;
+		return columna;
 	}
 	
 	public int getFilaXCasilla(Casilla pCasilla){
-		int col=0;
+		int fila = 0;
+		
 		boolean salir=false;
 		int fil=0;
 		while(fil<=filas-1&&salir==false){
+			int col=0;
 			while(col<=columnas-1&&salir==false){
 				if(matriz[fil][col].equals(pCasilla)){
+					fila = fil;
 					salir=true;
 				}
 				col++;
 			}
 			fil++;
-			col=0;
 		}
-		return fil;
+		return fila;
 	}
 	
 	public Casilla crearCasilla (String pTipo){
@@ -115,11 +118,9 @@ public class Tablero {
 	}
 
 	public boolean descubrirCasilla(int pFila, int pColumna){
-		System.out.println("descubrir Casilla pcolumnas "+pColumna);
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
 		boolean finaliza=false;
-		// imprimo la casilla para ver que he pulsado
-		System.out.println(pCasilla);
+
 		if(!pCasilla.equals(null)){
 			if(pCasilla instanceof SinMina){
 				((SinMina)pCasilla).abrirCasilla();
@@ -134,19 +135,17 @@ public class Tablero {
 	}
 	
 	public Casilla obtenerCasilla(int pFila, int pColumna){
-		System.out.println("obtenerCasilla pcolumnas "+pColumna);
 		Casilla c=matriz[pFila][pColumna];
-		return c;
-		
+		return c;	
 	}
 	
 	public void obtenerVecinos(){
 		int fil=0;
-		int numVecinosMina;
 		int col=0;
+		int numVecinosMina;
 		Casilla c=null;
-		System.out.println("filas de obtener vecinos: "+filas);
 		while(fil<=filas-1){
+			col=0;
 			while(col<=columnas-1){
 				c=matriz[fil][col];
 				this.obtenerVecinosCasillaX(c,fil,col);
@@ -157,7 +156,6 @@ public class Tablero {
 				col++;
 			}
 			fil++;
-			col=0;
 		}
 	}
 	
@@ -268,12 +266,10 @@ public class Tablero {
 	}
 
 	public Casilla getCasillaActual() {
-		System.out.println("get: "+casillaActual);
 		return this.casillaActual;
 	}
 
 	public void setCasillaActual(Casilla casilla) {
-		System.out.println("set: "+casilla);
 		this.casillaActual = casilla;
 	}
 	

@@ -85,6 +85,7 @@ public class VTableroCasillas implements Observer {
 								 }
 						}
 						else{
+							System.out.println("");
 							System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);
 							if(!b.getBackground().equals(Color.RED)){
 								
@@ -94,8 +95,6 @@ public class VTableroCasillas implements Observer {
 								
 								if (!finaliza){	
 										b.setVisible(false); // poner en blanco el boton de la casilla
-									
-										((SinMina) casilla).abrirCasilla();
 								
 										if (((SinMina) casilla).getNumVecinosMina() != 0){
 											JLabel lbl = new JLabel(""+((SinMina) casilla).getNumVecinosMina());
@@ -120,9 +119,6 @@ public class VTableroCasillas implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		
-		System.out.println("ejecutando update");
-		
 		Casilla casillaActual = Buscaminas.getBuscaminas().getCasillaActual();
 		
 		ListaCasillas listaVecinosSinMina = new ListaCasillas();
@@ -131,10 +127,10 @@ public class VTableroCasillas implements Observer {
 		
 		Iterator<Casilla> it = listaVecinosSinMina.getListaCasillas().iterator();
 		Casilla c;
-		System.out.println("listaVecinosSinMina: ");
+		System.out.println("Lista de vecinos sin mina: ");
 		while(it.hasNext()){
 			c=it.next();
-			System.out.println(c);
+			System.out.println("-("+c+") "+Buscaminas.getBuscaminas().getFilaXCasilla(c)+Buscaminas.getBuscaminas().getColumnaXCasilla(c));
 			String posicion = ""+Buscaminas.getBuscaminas().getFilaXCasilla(c)+Buscaminas.getBuscaminas().getColumnaXCasilla(c);
 			Component[] components = frame.getContentPane().getComponents();
 			for (Component component : components)
