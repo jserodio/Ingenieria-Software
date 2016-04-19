@@ -268,10 +268,12 @@ public class Tablero {
 	}
 
 	public Casilla getCasillaActual() {
+		System.out.println("get: "+casillaActual);
 		return this.casillaActual;
 	}
 
 	public void setCasillaActual(Casilla casilla) {
+		System.out.println("set: "+casilla);
 		this.casillaActual = casilla;
 	}
 	

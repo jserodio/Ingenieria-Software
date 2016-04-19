@@ -43,7 +43,7 @@ public class SinMina extends Casilla{
 				this.abrirVecinos();
 			}
 		}
-//		addObserver(this);
+
 		setChanged();
 	    notifyObservers();
 	}
