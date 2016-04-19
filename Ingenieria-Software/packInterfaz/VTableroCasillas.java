@@ -28,7 +28,7 @@ public class VTableroCasillas implements Observer {
 		this.frame = internalFrame;
 		this.nivel = pNivel;
 		initialize();
-		// add observer bucle de casillas, llamada desde buscaminas
+		Buscaminas.getBuscaminas().anadirObservador(this);
 	}
 	
 	public JInternalFrame getFrame() {
@@ -69,20 +69,21 @@ public class VTableroCasillas implements Observer {
 					@Override
 					public void mouseReleased(MouseEvent arg0) {
 						System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);
-						Tablero tablero = Buscaminas.getBuscaminas().getTablero();
-						if (!Buscaminas.getBuscaminas().descubrirCasilla(fila, columna)){
-							
+						
+						Casilla casilla = Buscaminas.getBuscaminas().obtenerCasilla(fila, columna);
+						Buscaminas.getBuscaminas().setCasillaActual(casilla);
+						
+						boolean finaliza = Buscaminas.getBuscaminas().descubrirCasilla(fila, columna);
+						
+						if (!finaliza){							
 							b.setVisible(false); // poner en blanco el boton de la casilla
-							SinMina casilla = (SinMina) Buscaminas.getBuscaminas().obtenerCasilla(fila, columna);
-;
-							casilla.abrirCasilla();
-							tablero.setCasillaActual(casilla);
 							
-							if (casilla.getNumVecinosMina() != 0){
-								JLabel lbl = new JLabel(""+casilla.getNumVecinosMina());
+							if (((SinMina) casilla).getNumVecinosMina() != 0){
+								JLabel lbl = new JLabel(""+((SinMina) casilla).getNumVecinosMina());
 								frame.add(lbl, "cell "+ columna +" "+ fila +", alignx center,aligny center");
-								System.out.println(casilla.getNumVecinosMina());
+								System.out.println(((SinMina) casilla).getNumVecinosMina());
 							}
+							
 						} else {
 							// devuelve false entonces game over
 							System.out.println("game over");
@@ -97,19 +98,22 @@ public class VTableroCasillas implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		Tablero tablero = Buscaminas.getBuscaminas().getTablero();
 		
-		SinMina casillaActual = tablero.getCasillaActual();
+		System.out.println("ejecutando update");
+		
+		Casilla casillaActual = Buscaminas.getBuscaminas().getCasillaActual();
 		
 		ListaCasillas listaVecinosSinMina = new ListaCasillas();
 		
-		listaVecinosSinMina = casillaActual.getVecinosSinMina();
+		listaVecinosSinMina = ((SinMina) casillaActual).getVecinosSinMina();
 		
 		Iterator<Casilla> it = listaVecinosSinMina.getListaCasillas().iterator();
 		Casilla c;
+		System.out.println("listaVecinosSinMina: ");
 		while(it.hasNext()){
 			c=it.next();
-			String posicion = ""+tablero.getFilaXCasilla(c)+tablero.getColumnaXCasilla(c);
+			System.out.println(c);
+			String posicion = ""+Buscaminas.getBuscaminas().getFilaXCasilla(c)+Buscaminas.getBuscaminas().getColumnaXCasilla(c);
 			Component[] components = frame.getContentPane().getComponents();
 			for (Component component : components)
 			{

@@ -2,6 +2,8 @@ package packModelo;
 
 import java.util.Random;
 
+import packInterfaz.VTableroCasillas;
+
 public class Tablero {
 
 	private int columnas;
@@ -9,12 +11,13 @@ public class Tablero {
 	private int numMaxFlags;
 	private static int numMaxMinas;
 	private Casilla[][] matriz;
-	private SinMina casillaActual;
+	private Casilla casillaActual;
 
 
 	public Tablero(int pFilas, int pColumnas, int pNivel){
-		int filas = pFilas;
-		int columnas = pColumnas;
+		System.out.println("Tablero constructora pcolumnas "+pColumnas);
+		this.filas = pFilas;
+		this.columnas = pColumnas;
 		//inicializar la matriz
 		matriz= new Casilla[filas][columnas];
 		
@@ -50,6 +53,7 @@ public class Tablero {
 		}
 		this.imprimirMatriz();
 		//Obtener los vecinos de cada casilla
+		System.out.println("se supone que hemos imprimido, y ahora obtenemos");
 		this.obtenerVecinos();
 	}
 	
@@ -61,7 +65,7 @@ public class Tablero {
 			    if (y!=matriz[x].length-1) System.out.print("\t");
 			  }
 			  System.out.println("|");
-			}
+		}
 	}
 	
 	public int getColumnas(){
@@ -112,6 +116,7 @@ public class Tablero {
 	}
 
 	public boolean descubrirCasilla(int pFila, int pColumna){
+		System.out.println("descubrir Casilla pcolumnas "+pColumna);
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
 		boolean finaliza=false;
 		// imprimo la casilla para ver que he pulsado
@@ -130,6 +135,7 @@ public class Tablero {
 	}
 	
 	public Casilla obtenerCasilla(int pFila, int pColumna){
+		System.out.println("obtenerCasilla pcolumnas "+pColumna);
 		Casilla c=matriz[pFila][pColumna];
 		return c;
 		
@@ -140,6 +146,7 @@ public class Tablero {
 		int numVecinosMina;
 		int col=0;
 		Casilla c=null;
+		System.out.println("filas de obtener vecinos: "+filas);
 		while(fil<=filas-1){
 			while(col<=columnas-1){
 				c=matriz[fil][col];
@@ -261,12 +268,12 @@ public class Tablero {
 		pCasilla.setVecinos(vecinos);
 	}
 
-	public SinMina getCasillaActual() {
+	public Casilla getCasillaActual() {
 		return this.casillaActual;
 	}
 
-	public void setCasillaActual(SinMina pCasilla) {
-		this.casillaActual = pCasilla;
+	public void setCasillaActual(Casilla casilla) {
+		this.casillaActual = casilla;
 	}
 	
 	public void marcarYdesmarcarCasilla(int pFila, int pColumna){
@@ -291,6 +298,14 @@ public class Tablero {
 	
 	public void setNumMaxFlags(int pNumMinas){
 		this.numMaxFlags = pNumMinas;
+	}
+
+	public void anadirObservador(VTableroCasillas pTablero) {
+		for (int x=0; x < matriz.length; x++) {
+			  for (int y=0; y < matriz[x].length; y++) {
+			    matriz[x][y].addObserver(pTablero);
+			  }
+		}
 	}
 	
 	
