@@ -75,11 +75,11 @@ public class Buscaminas {
 	}
 	
 	public int getNumMinas(){
-		return Buscaminas.getBuscaminas().getNumMinas();
+		return this.getTablero().getNumMaxFlags();
 	}
 	
 	public void marcarYdesmarcarCasilla(int pFila, int pColumna){
-		Buscaminas.getBuscaminas().marcarYdesmarcarCasilla(pFila, pColumna);
+		this.getTablero().marcarYdesmarcarCasilla(pFila, pColumna);
 	}
 	
 	public void anadirObservador(VTableroCasillas pTablero){
