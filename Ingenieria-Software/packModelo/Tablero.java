@@ -13,8 +13,8 @@ public class Tablero {
 
 
 	public Tablero(int pFilas, int pColumnas, int pNivel){
-		int filas = pFilas;
-		int columnas = pColumnas;
+		this.filas = pFilas;
+		this.columnas = pColumnas;
 		//inicializar la matriz
 		matriz= new Casilla[filas][columnas];
 		
@@ -271,18 +271,26 @@ public class Tablero {
 	
 	public void marcarYdesmarcarCasilla(int pFila, int pColumna){
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
+		if(!pCasilla.getAbierta()){
 			if(pCasilla.getFlag()){
-				if(this.getNumMaxFlags()>=0){
+				if(this.getNumMaxFlags()>=0&&this.getNumMaxMinas()>this.getNumMaxFlags()){
 					pCasilla.setFlag(false);
-					this.setNumMaxFlags(this.getNumMaxFlags()+1);
+					int numMxFlag=this.getNumMaxFlags()+1;
+					this.setNumMaxFlags(numMxFlag);
 				}
 			}
 			else{
-				if (this.getNumMaxFlags()>0){
+				if (this.getNumMaxFlags()>0&&this.getNumMaxMinas()<=this.getNumMaxFlags()){
 					pCasilla.setFlag(true);
-					this.setNumMaxFlags(this.getNumMaxFlags()-1);
+					int numMxFlag=this.getNumMaxFlags()-1;
+					this.setNumMaxFlags(numMxFlag);
 				}
 			}
+		}
+	}
+	
+	public int getNumMaxMinas(){
+		return Tablero.numMaxMinas;
 	}
 	
 	public int getNumMaxFlags() {

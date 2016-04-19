@@ -57,6 +57,8 @@ public class VLogin {
 		frame.getContentPane().add(getLblPassword());
 		frame.getContentPane().add(getTxtPassword());
 		frame.getContentPane().add(getBtnLogin());
+		// Visualizar la ventana
+		frame.setVisible(true);
 	}
 	private JLabel getLblUser() {
 		if (lblUser == null) {
@@ -96,10 +98,11 @@ public class VLogin {
 			btnLogin.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					if(!txtUser.getText().equals("")){
+					if(!txtUser.getText().equals("")&&!txtPassword.getText().equals("")||!txtUser.getText().equals("User")&&!txtPassword.getText().equals("Password")){
+						//Buscaminas.getBuscaminas().getUser(txtUser.getText(),txtPassword.getText());
 						Buscaminas.getBuscaminas().setUsuario(txtUser.getText());
+						new VElegirNivel();	// llamada a la ventana
 					}
-					new VElegirNivel();	// llamada a la ventana
 				}
 			});
 			btnLogin.setBounds(126, 158, 116, 42);
