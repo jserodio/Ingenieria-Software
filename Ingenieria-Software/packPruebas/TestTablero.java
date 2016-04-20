@@ -107,8 +107,9 @@ public class TestTablero {
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		Buscaminas.getBuscaminas().getTablero().marcarYdesmarcarCasilla(0,0);
 		Casilla c = Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0,0);
+		System.out.println(c.getFlag());
 		assertTrue(c.getFlag());
-		assertEquals(Buscaminas.getBuscaminas().getTablero().getNumMaxFlags(), 9);
+		assertEquals(Buscaminas.getBuscaminas().getTablero().getNumFlags(), 1);
 	}
 
 }

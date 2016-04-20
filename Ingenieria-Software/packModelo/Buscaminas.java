@@ -78,7 +78,7 @@ public class Buscaminas {
 	}
 	
 	public int getNumMinas(){
-		return Buscaminas.getBuscaminas().getTablero().getNumMaxFlags();
+		return Buscaminas.getBuscaminas().getTablero().getNumMaxMinas();
 	}
 	
 	public void marcarYdesmarcarCasilla(int pFila, int pColumna){
@@ -102,7 +102,6 @@ public class Buscaminas {
 					  this.setUsuario(rs.getString("user"));
 				  }
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		  }
