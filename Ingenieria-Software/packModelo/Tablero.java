@@ -8,8 +8,8 @@ public class Tablero {
 
 	private int columnas;
 	private int filas;
-	private int numMaxFlags;
-	private static int numMaxMinas;
+	private int numFlags;
+	private int numMaxMinas;
 	private Casilla[][] matriz;
 	private Casilla casillaActual;
 
@@ -38,11 +38,11 @@ public class Tablero {
 		//Meter casillas con minas aleatoriamente en la matriz
 		int filRandom=0;
 		int colRandom=0;
-		this.numMaxFlags = columnas*pNivel;
+		this.numFlags = 0;
 		this.numMaxMinas = columnas*pNivel;
 		int minasIntroducidas=1;
 		Random rnd=new Random();		
-		while(minasIntroducidas <= numMaxFlags){
+		while(minasIntroducidas <= numMaxMinas){
 				filRandom = (int)(rnd.nextDouble() * filas);
 				colRandom = (int)(rnd.nextDouble() * columnas);
 				while(matriz[filRandom][colRandom] instanceof Mina){
@@ -277,34 +277,26 @@ public class Tablero {
 	
 	public void marcarYdesmarcarCasilla(int pFila, int pColumna){
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
-		if(!pCasilla.getAbierta()){
-			if(pCasilla.getFlag()){
-				if(this.getNumMaxFlags()>=0&&this.getNumMaxMinas()>this.getNumMaxFlags()){
-					pCasilla.setFlag(false);
-					int numMxFlag=this.getNumMaxFlags()+1;
-					this.setNumMaxFlags(numMxFlag);
-				}
-			}
-			else{
-				if (this.getNumMaxFlags()>0&&this.getNumMaxMinas()<=this.getNumMaxFlags()){
-					pCasilla.setFlag(true);
-					int numMxFlag=this.getNumMaxFlags()-1;
-					this.setNumMaxFlags(numMxFlag);
-				}
-			}
+		if(pCasilla.getFlag()){ // si esta marcadada
+			pCasilla.setFlag(false);
+			this.numFlags=this.numFlags-1;
+		}
+		else{ // si no estaba marcada
+			pCasilla.setFlag(true);
+			this.numFlags=this.numFlags+1;
 		}
 	}
 	
 	public int getNumMaxMinas(){
-		return Tablero.numMaxMinas;
+		return this.numMaxMinas;
 	}
 	
-	public int getNumMaxFlags() {
-		return this.numMaxFlags;
+	public int getNumFlags() {
+		return this.numFlags;
 	}
 	
-	public void setNumMaxFlags(int pNumMinas){
-		this.numMaxFlags = pNumMinas;
+	public void setNumFlags(int pNumMinas){
+		this.numFlags = pNumMinas;
 	}
 
 	public void anadirObservador(VTableroCasillas pTablero) {
