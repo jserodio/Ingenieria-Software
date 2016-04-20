@@ -23,10 +23,6 @@ public class VTableroCasillas implements Observer {
 	private int flags;
 	private int numFlags;
 
-
-	/**
-	 * @wbp.parser.entryPoint
-	 */
 	public VTableroCasillas(JInternalFrame internalFrame, int pNivel) {	
 		this.frame = internalFrame;
 		this.nivel = pNivel;

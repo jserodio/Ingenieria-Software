@@ -13,15 +13,22 @@ import packModelo.Buscaminas;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import net.miginfocom.swing.MigLayout;
+import java.awt.Font;
+import java.awt.Window.Type;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class VLogin {
 
-	private JFrame frame;
+	private JFrame frmIdentificarse;
 	private JLabel lblUser;
 	private JTextField txtUser;
 	private JLabel lblPassword;
 	private JTextField txtPassword;
 	private JButton btnLogin;
+	private JLabel lblIdentifcate;
 
 	/**
 	 * Launch the application.
@@ -31,7 +38,7 @@ public class VLogin {
 			public void run() {
 				try {
 					VLogin window = new VLogin();
-					window.frame.setVisible(true);
+					window.frmIdentificarse.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,12 +57,15 @@ public class VLogin {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmIdentificarse = new JFrame();
+		frmIdentificarse.setIconImage(Toolkit.getDefaultToolkit().getImage(VLogin.class.getResource("/assets/icono.png")));
+		frmIdentificarse.getContentPane().setBackground(Color.WHITE);
+		frmIdentificarse.setTitle("Identificarse");
+		frmIdentificarse.setBounds(100, 100, 500, 400);
+		frmIdentificarse.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frameSize = frame.getSize();
+		Dimension frameSize = frmIdentificarse.getSize();
 		//Tamaño del frame actual (ancho x alto)
 		if (frameSize.height > screenSize.height) {
 			frameSize.height = screenSize.height; 
@@ -63,29 +73,30 @@ public class VLogin {
 		if (frameSize.width > screenSize.width) {
 			frameSize.width = screenSize.width; 
 		}
-		frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
-		
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(getLblUser());
-		frame.getContentPane().add(getTxtUser());
-		frame.getContentPane().add(getLblPassword());
-		frame.getContentPane().add(getTxtPassword());
-		frame.getContentPane().add(getBtnLogin());
+		frmIdentificarse.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+		frmIdentificarse.getContentPane().setLayout(new MigLayout("", "[20%][22.5%][15%][15%][22.5%]", "[25%][25%][25%][25%]"));
+		frmIdentificarse.getContentPane().add(getLblIdentifcate(), "cell 1 0 3 1,alignx center");
+		frmIdentificarse.getContentPane().add(getLblUser(), "cell 1 1,alignx center,aligny center");
+		frmIdentificarse.getContentPane().add(getTxtUser(), "cell 2 1 2 1,growx,aligny center");
+		frmIdentificarse.getContentPane().add(getLblPassword(), "cell 1 2,alignx center,aligny center");
+		frmIdentificarse.getContentPane().add(getTxtPassword(), "cell 2 2 2 1,growx,aligny center");
+		frmIdentificarse.getContentPane().add(getBtnLogin(), "cell 0 3 5 1,grow");
 		// Visualizar la ventana
-		frame.setVisible(true);
+		frmIdentificarse.setVisible(true);
 	}
 	private JLabel getLblUser() {
 		if (lblUser == null) {
 			lblUser = new JLabel("User");
-			lblUser.setBounds(94, 85, 46, 14);
+			lblUser.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return lblUser;
 	}
 	private JTextField getTxtUser() {
 		if (txtUser == null) {
 			txtUser = new JTextField();
+			txtUser.setHorizontalAlignment(SwingConstants.CENTER);
+			txtUser.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtUser.setText("User");
-			txtUser.setBounds(171, 82, 86, 20);
 			txtUser.setColumns(10);
 		}
 		return txtUser;
@@ -93,15 +104,16 @@ public class VLogin {
 	private JLabel getLblPassword() {
 		if (lblPassword == null) {
 			lblPassword = new JLabel("Password");
-			lblPassword.setBounds(94, 116, 46, 14);
+			lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return lblPassword;
 	}
 	private JTextField getTxtPassword() {
 		if (txtPassword == null) {
 			txtPassword = new JTextField();
+			txtPassword.setHorizontalAlignment(SwingConstants.CENTER);
+			txtPassword.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			txtPassword.setText("Password");
-			txtPassword.setBounds(171, 113, 86, 20);
 			txtPassword.setColumns(10);
 		}
 		return txtPassword;
@@ -109,6 +121,9 @@ public class VLogin {
 	private JButton getBtnLogin() {
 		if (btnLogin == null) {
 			btnLogin = new JButton("Login");
+			btnLogin.setIcon(new ImageIcon(VLogin.class.getResource("/assets/icono.png")));
+			btnLogin.setBackground(Color.WHITE);
+			btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			btnLogin.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
@@ -119,9 +134,15 @@ public class VLogin {
 					}
 				}
 			});
-			btnLogin.setBounds(126, 158, 116, 42);
 		}
 		return btnLogin;
 	}
 	
+	private JLabel getLblIdentifcate() {
+		if (lblIdentifcate == null) {
+			lblIdentifcate = new JLabel("Identif\u00EDcate");
+			lblIdentifcate.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		}
+		return lblIdentifcate;
+	}
 }

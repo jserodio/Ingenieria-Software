@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 
 public class VBuscaminas {
 
-	private JFrame frame;
+	private JFrame frmBuscaminas;
 	private JLabel lblTablero;
 	private JInternalFrame internalFrame;
 	private int nivel;
@@ -24,8 +24,11 @@ public class VBuscaminas {
 	}
 
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.WHITE);
+		frmBuscaminas = new JFrame();
+		frmBuscaminas.setIconImage(Toolkit.getDefaultToolkit().getImage(VBuscaminas.class.getResource("/assets/icono.png")));
+		frmBuscaminas.setAlwaysOnTop(true);
+		frmBuscaminas.setTitle("Buscaminas!");
+		frmBuscaminas.getContentPane().setBackground(Color.WHITE);
 		
 		switch(nivel) {
 		case 1:
@@ -37,15 +40,15 @@ public class VBuscaminas {
 			ALTOMAX = 600;
 			break;
 		case 3:
-			ANCHOMAX = 1200;
-			ALTOMAX = 800;
+			ANCHOMAX = 1000;
+			ALTOMAX = 600;
 			break;
 		}
 		
-		frame.setBounds(0, 0, ANCHOMAX, ALTOMAX);
+		frmBuscaminas.setBounds(0, 0, ANCHOMAX, ALTOMAX);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frameSize = frame.getSize();
+		Dimension frameSize = frmBuscaminas.getSize();
 		//Tamaño del frame actual (ancho x alto)
 		if (frameSize.height > screenSize.height) {
 			frameSize.height = screenSize.height; 
@@ -53,20 +56,20 @@ public class VBuscaminas {
 		if (frameSize.width > screenSize.width) {
 			frameSize.width = screenSize.width; 
 		}
-		frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+		frmBuscaminas.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
 		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new MigLayout("", "[100px][800px][100px]", "[50px][700px][50px]"));
-		frame.getContentPane().add(getLblTablero(), "cell 0 0 3 1,alignx center,aligny center");
-		frame.getContentPane().add(getInternalFrame(), "cell 1 1,grow");
+		frmBuscaminas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmBuscaminas.getContentPane().setLayout(new MigLayout("", "[1%][98%][1%]", "[50px][700px][50px]"));
+		frmBuscaminas.getContentPane().add(getLblTablero(), "cell 0 0 3 1,alignx center,aligny center");
+		frmBuscaminas.getContentPane().add(getInternalFrame(), "cell 1 1,grow");
 		// Visualizar la ventana
-		frame.setVisible(true);
+		frmBuscaminas.setVisible(true);
 	}
 
 	private JLabel getLblTablero() {
 		if (lblTablero == null) {
 			lblTablero = new JLabel("Buscaminas");
-			lblTablero.setFont(new Font("Tahoma", Font.PLAIN, 60));
+			lblTablero.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		}
 		return lblTablero;
 	}

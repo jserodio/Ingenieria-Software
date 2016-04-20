@@ -15,10 +15,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Window.Type;
 
 public class VElegirNivel {
 
-	private JFrame frame;
+	private JFrame frmBuscaminasElige;
 	private JLabel lblEligeElNivel;
 	private JRadioButton rdbtnFacil;
 	private JRadioButton rdbtnMedio;
@@ -37,13 +38,15 @@ public class VElegirNivel {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 640, 480);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmBuscaminasElige = new JFrame();
+		frmBuscaminasElige.setIconImage(Toolkit.getDefaultToolkit().getImage(VElegirNivel.class.getResource("/assets/icono.png")));
+		frmBuscaminasElige.setTitle("Elegir el nivel");
+		frmBuscaminasElige.getContentPane().setBackground(Color.WHITE);
+		frmBuscaminasElige.setBounds(100, 100, 500, 400);
+		frmBuscaminasElige.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frameSize = frame.getSize();
+		Dimension frameSize = frmBuscaminasElige.getSize();
 		//Tamaño del frame actual (ancho x alto)
 		if (frameSize.height > screenSize.height) {
 			frameSize.height = screenSize.height; 
@@ -51,22 +54,22 @@ public class VElegirNivel {
 		if (frameSize.width > screenSize.width) {
 			frameSize.width = screenSize.width; 
 		}
-		frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+		frmBuscaminasElige.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
 		
-		frame.getContentPane().setLayout(new MigLayout("", "[33%][33%][33%]", "[33%][33%][33%]"));
-		frame.getContentPane().add(getLblEligeElNivel(), "cell 0 0 3 1,alignx center,aligny center");
-		frame.getContentPane().add(getRdbtnFacil(), "cell 0 1,alignx center,aligny center");
-		frame.getContentPane().add(getRdbtnMedio(), "cell 1 1,alignx center,aligny center");
-		frame.getContentPane().add(getRdbtnDificil(), "cell 2 1,alignx center,aligny center");
-		frame.getContentPane().add(getBtnJugar(), "cell 0 2 3 1,grow");
+		frmBuscaminasElige.getContentPane().setLayout(new MigLayout("", "[33%][33%][33%]", "[33%][33%][33%]"));
+		frmBuscaminasElige.getContentPane().add(getLblEligeElNivel(), "cell 0 0 3 1,alignx center,aligny center");
+		frmBuscaminasElige.getContentPane().add(getRdbtnFacil(), "cell 0 1,alignx center,aligny center");
+		frmBuscaminasElige.getContentPane().add(getRdbtnMedio(), "cell 1 1,alignx center,aligny center");
+		frmBuscaminasElige.getContentPane().add(getRdbtnDificil(), "cell 2 1,alignx center,aligny center");
+		frmBuscaminasElige.getContentPane().add(getBtnJugar(), "cell 0 2 3 1,grow");
 		// Visualizar la ventana
-		frame.setVisible(true);
+		frmBuscaminasElige.setVisible(true);
 	}
 
 	private JLabel getLblEligeElNivel() {
 		if (lblEligeElNivel == null) {
-			lblEligeElNivel = new JLabel("Elige el nivel");
-			lblEligeElNivel.setFont(new Font("Tahoma", Font.PLAIN, 60));
+			lblEligeElNivel = new JLabel("Elegir nivel");
+			lblEligeElNivel.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		}
 		return lblEligeElNivel;
 	}
@@ -75,7 +78,7 @@ public class VElegirNivel {
 			rdbtnFacil = new JRadioButton("Facil");
 			rdbtnFacil.setBackground(Color.WHITE);
 			buttonGroup.add(rdbtnFacil);
-			rdbtnFacil.setFont(new Font("Tahoma", Font.PLAIN, 40));
+			rdbtnFacil.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return rdbtnFacil;
 	}
@@ -84,7 +87,7 @@ public class VElegirNivel {
 			rdbtnMedio = new JRadioButton("Medio");
 			rdbtnMedio.setBackground(Color.WHITE);
 			buttonGroup.add(rdbtnMedio);
-			rdbtnMedio.setFont(new Font("Tahoma", Font.PLAIN, 40));
+			rdbtnMedio.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return rdbtnMedio;
 	}
@@ -93,7 +96,7 @@ public class VElegirNivel {
 			rdbtnDificil = new JRadioButton("Dificil");
 			rdbtnDificil.setBackground(Color.WHITE);
 			buttonGroup.add(rdbtnDificil);
-			rdbtnDificil.setFont(new Font("Tahoma", Font.PLAIN, 40));
+			rdbtnDificil.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return rdbtnDificil;
 	}
@@ -121,8 +124,8 @@ public class VElegirNivel {
 					
 				}
 			});
-			btnJugar.setBackground(new Color(240, 248, 255));
-			btnJugar.setFont(new Font("Tahoma", Font.PLAIN, 40));
+			btnJugar.setBackground(Color.WHITE);
+			btnJugar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		}
 		return btnJugar;
 	}
