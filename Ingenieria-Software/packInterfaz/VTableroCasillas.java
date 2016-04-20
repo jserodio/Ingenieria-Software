@@ -33,7 +33,7 @@ public class VTableroCasillas implements Observer {
 		this.frame = internalFrame;
 		this.nivel = pNivel;
 		initialize();
-		// add observer bucle de casillas, llamada desde buscaminas
+		Buscaminas.getBuscaminas().anadirObservador(this);
 	}
 	
 	public JInternalFrame getFrame() {
@@ -131,19 +131,19 @@ public class VTableroCasillas implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		Tablero tablero = Buscaminas.getBuscaminas().getTablero();
-		
-		SinMina casillaActual = tablero.getCasillaActual();
+		Casilla casillaActual = Buscaminas.getBuscaminas().getCasillaActual();
 		
 		ListaCasillas listaVecinosSinMina = new ListaCasillas();
 		
-		listaVecinosSinMina = casillaActual.getVecinosSinMina();
+		listaVecinosSinMina = ((SinMina) casillaActual).getVecinosSinMina();
 		
 		Iterator<Casilla> it = listaVecinosSinMina.getListaCasillas().iterator();
 		Casilla c;
+		System.out.println("Lista de vecinos sin mina: ");
 		while(it.hasNext()){
 			c=it.next();
-			String posicion = ""+tablero.getFilaXCasilla(c)+tablero.getColumnaXCasilla(c);
+			System.out.println("-("+c+") "+Buscaminas.getBuscaminas().getFilaXCasilla(c)+Buscaminas.getBuscaminas().getColumnaXCasilla(c));
+			String posicion = ""+Buscaminas.getBuscaminas().getFilaXCasilla(c)+Buscaminas.getBuscaminas().getColumnaXCasilla(c);
 			Component[] components = frame.getContentPane().getComponents();
 			for (Component component : components)
 			{

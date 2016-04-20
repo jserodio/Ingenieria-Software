@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import packInterfaz.VTableroCasillas;
+
 public class Buscaminas {
 
 	private static Buscaminas miBuscaminas=null;
@@ -60,11 +62,11 @@ public class Buscaminas {
 		return this.getTablero().obtenerCasilla(pFila, pColumna);
 	}
 	
-	public void setCasillaActual(SinMina pCasilla) {
-		this.getTablero().setCasillaActual(pCasilla);
+	public void setCasillaActual(Casilla casilla) {
+		this.getTablero().setCasillaActual(casilla);
 	}
 	
-	public SinMina getCasillaActual() {
+	public Casilla getCasillaActual() {
 		return this.getTablero().getCasillaActual();
 	}
 	
@@ -107,16 +109,8 @@ public class Buscaminas {
 		  }
 	}
 	
-//	public static void main(String[] args){
-//		Buscaminas buscaminas = new Buscaminas();
-//		TableroBuilder builderN1 = new BuilderN1();
-//		TableroBuilder builderN2 = new BuilderN2();
-//		TableroBuilder builderN3 = new BuilderN3();
-//		
-//		buscaminas.setTableroBuilder(builderN1);
-//		buscaminas.setTableroBuilder(builderN2);
-//		buscaminas.setTableroBuilder(builderN3);
-//	}
-	
+	public void anadirObservador(VTableroCasillas pTablero){
+		this.getTablero().anadirObservador(pTablero);
+	}
 	
 }
