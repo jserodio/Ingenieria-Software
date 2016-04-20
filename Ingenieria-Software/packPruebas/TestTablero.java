@@ -53,7 +53,16 @@ public class TestTablero {
 
 	@Test
 	public void testGetFilaXCasilla() {
-		assertTrue("Not yet implemented", true);
+		TableroBuilder builderN1=new BuilderN1();
+		builderN1.construirTablero(1);
+		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
+		//Primera fila
+		Casilla c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0,0);
+		assertEquals(Buscaminas.getBuscaminas().getTablero().getFilaXCasilla(c),0);
+		//Ultima fila
+		c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(6,6);
+		assertEquals(Buscaminas.getBuscaminas().getTablero().getFilaXCasilla(c),6);
+		
 	}
 
 	@Test
