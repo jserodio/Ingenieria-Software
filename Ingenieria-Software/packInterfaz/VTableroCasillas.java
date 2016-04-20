@@ -123,45 +123,7 @@ public class VTableroCasillas implements Observer {
 									frame.removeAll();
 								}
 							}
-
-					public void mouseReleased(MouseEvent arg0) {
-						if(SwingUtilities.isRightMouseButton(arg0)){ //Si pulsas boton derecho
-							 Buscaminas.getBuscaminas().marcarYdesmarcarCasilla(fila, columna);
-								 if(b.getBackground().equals(Color.RED)){
-									 b.setBackground(Color.BLUE);
-									 VTableroCasillas.this.flags=VTableroCasillas.this.flags+1;
-								 
-								 }else{
-									 b.setBackground(Color.RED);
-									 VTableroCasillas.this.flags=VTableroCasillas.this.flags-1;
-								 }
-
 						}
-						else{
-							System.out.println("");
-							System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);
-							if(!b.getBackground().equals(Color.RED)){
-								
-								Casilla casilla = Buscaminas.getBuscaminas().obtenerCasilla(fila, columna);
-								Buscaminas.getBuscaminas().setCasillaActual(casilla);
-								boolean finaliza = Buscaminas.getBuscaminas().descubrirCasilla(fila, columna);
-								
-								if (!finaliza){	
-										b.setVisible(false); // poner en blanco el boton de la casilla
-								
-										if (((SinMina) casilla).getNumVecinosMina() != 0){
-											JLabel lbl = new JLabel(""+((SinMina) casilla).getNumVecinosMina());
-											frame.add(lbl, "cell "+ columna +" "+ fila +", alignx center,aligny center");
-											System.out.println(((SinMina) casilla).getNumVecinosMina());
-										}
-								} else {
-									// devuelve false entonces game over
-									System.out.println("game over");
-									//frame.setEnabled(false);
-									frame.removeAll();
-								}
-							}
-						}				
 					}
 				});
 		    	
