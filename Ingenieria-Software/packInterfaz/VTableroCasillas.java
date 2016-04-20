@@ -65,7 +65,7 @@ public class VTableroCasillas implements Observer {
 			for (int col = 0; col<COLMAX; col++) {
 				
 				JButton b = new JButton();
-				b.setName(""+col+row);
+				b.setName(""+row+col);
 				b.setBackground(Color.BLUE);
 				
 		    	frame.getContentPane().add(b, "cell "+ col +" "+ row +",grow");
