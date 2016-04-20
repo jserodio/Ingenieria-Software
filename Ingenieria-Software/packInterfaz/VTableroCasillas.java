@@ -65,7 +65,7 @@ public class VTableroCasillas implements Observer {
 			for (int col = 0; col<COLMAX; col++) {
 				
 				JButton b = new JButton();
-				b.setName(""+col+row);
+				b.setName(""+row+col);
 				b.setBackground(Color.BLUE);
 				
 		    	frame.getContentPane().add(b, "cell "+ col +" "+ row +",grow");
@@ -131,6 +131,7 @@ public class VTableroCasillas implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		Casilla casillaActual = Buscaminas.getBuscaminas().getCasillaActual();
+		this.actualizar(casillaActual);
 		
 		ListaCasillas listaVecinosSinMina = new ListaCasillas();
 		
@@ -141,6 +142,36 @@ public class VTableroCasillas implements Observer {
 		System.out.println("Lista de vecinos sin mina: ");
 		while(it.hasNext()){
 			c=it.next();
+			this.actualizar(c);
+//			Buscaminas.getBuscaminas().setCasillaActual(c);
+//			System.out.println("-("+c+") "+Buscaminas.getBuscaminas().getFilaXCasilla(c)+Buscaminas.getBuscaminas().getColumnaXCasilla(c));
+//			String posicion = ""+Buscaminas.getBuscaminas().getFilaXCasilla(c)+Buscaminas.getBuscaminas().getColumnaXCasilla(c);
+//			Component[] components = frame.getContentPane().getComponents();
+//			for (Component component : components)
+//			{
+//			    if (component instanceof JButton)
+//			    {
+//			        if (component.getName().equals(posicion)){
+//			        	if(component.getBackground().equals(Color.BLUE)){
+//			        		component.setVisible(false);
+//			        	}
+//			        }
+//			    }
+//			}
+		}
+	}
+	public void actualizar(Casilla pCasilla){
+		Buscaminas.getBuscaminas().setCasillaActual(pCasilla);
+		ListaCasillas listaVecinosSinMina = new ListaCasillas();
+		
+		listaVecinosSinMina = ((SinMina) pCasilla).getVecinosSinMina();
+		
+		Iterator<Casilla> it = listaVecinosSinMina.getListaCasillas().iterator();
+		Casilla c;
+		System.out.println("Lista de vecinos sin mina: ");
+		while(it.hasNext()){
+			c=it.next();
+			Buscaminas.getBuscaminas().setCasillaActual(c);
 			System.out.println("-("+c+") "+Buscaminas.getBuscaminas().getFilaXCasilla(c)+Buscaminas.getBuscaminas().getColumnaXCasilla(c));
 			String posicion = ""+Buscaminas.getBuscaminas().getFilaXCasilla(c)+Buscaminas.getBuscaminas().getColumnaXCasilla(c);
 			Component[] components = frame.getContentPane().getComponents();
@@ -149,11 +180,20 @@ public class VTableroCasillas implements Observer {
 			    if (component instanceof JButton)
 			    {
 			        if (component.getName().equals(posicion)){
-			        	component.setVisible(false);
+			        	if(component.getBackground().equals(Color.BLUE)){
+			        		component.setVisible(false);
+//			        		if (((SinMina) c).getNumVecinosMina() != 0){
+//								JLabel lbl = new JLabel(""+((SinMina) c).getNumVecinosMina());
+//								frame.add(lbl, "cell "+ Buscaminas.getBuscaminas().getColumnaXCasilla(c) +" "+ Buscaminas.getBuscaminas().getFilaXCasilla(c) +", alignx center,aligny center");
+//								System.out.println(((SinMina) c).getNumVecinosMina());
+//							}
+			        		
+			        	}
 			        }
 			    }
 			}
 		}
+		
 	}
 	
 }
