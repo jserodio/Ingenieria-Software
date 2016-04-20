@@ -1,6 +1,8 @@
 package packInterfaz;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -51,6 +53,18 @@ public class VLogin {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension frameSize = frame.getSize();
+		//Tamaño del frame actual (ancho x alto)
+		if (frameSize.height > screenSize.height) {
+			frameSize.height = screenSize.height; 
+		}
+		if (frameSize.width > screenSize.width) {
+			frameSize.width = screenSize.width; 
+		}
+		frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getLblUser());
 		frame.getContentPane().add(getTxtUser());

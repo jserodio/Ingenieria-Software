@@ -43,6 +43,7 @@ public class SinMina extends Casilla{
 				this.abrirVecinos();
 			}
 		}
+		Buscaminas.getBuscaminas().setCasillaActual(this);
 		System.out.println("Abierta casilla "+Buscaminas.getBuscaminas().getFilaXCasilla(this)+Buscaminas.getBuscaminas().getColumnaXCasilla(this));
 		System.out.println("Notificando observadores.");
 		setChanged();
