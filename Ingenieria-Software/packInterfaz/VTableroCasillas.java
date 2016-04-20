@@ -3,21 +3,15 @@ package packInterfaz;
 import javax.swing.JInternalFrame;
 import packModelo.Buscaminas;
 import packModelo.Casilla;
-import packModelo.ListaCasillas;
 import packModelo.SinMina;
-import packModelo.Tablero;
 import javax.swing.JButton;
-
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
-
 import java.awt.Color;
 
 public class VTableroCasillas implements Observer {
@@ -76,7 +70,6 @@ public class VTableroCasillas implements Observer {
 		    	
 		    	b.addMouseListener(new MouseAdapter() {
 					@Override
-
 					public void mouseReleased(MouseEvent arg0) {
 						if(SwingUtilities.isRightMouseButton(arg0)){ //Si pulsas boton derecho
 							Buscaminas.getBuscaminas().marcarYdesmarcarCasilla(fila, columna);
@@ -101,21 +94,8 @@ public class VTableroCasillas implements Observer {
 							System.out.println("");
 							System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);
 							if(!b.getBackground().equals(Color.RED)){
-								
-								Casilla casilla = Buscaminas.getBuscaminas().obtenerCasilla(fila, columna);
-								Buscaminas.getBuscaminas().setCasillaActual(casilla);
 								boolean finaliza = Buscaminas.getBuscaminas().descubrirCasilla(fila, columna);
-								
-								// arregla null pointer
-								if (!finaliza){
-										b.setVisible(false); // poner en blanco el boton de la casilla
-																										
-										if (((SinMina) casilla).getNumVecinosMina() != 0){
-											JLabel lbl = new JLabel(""+((SinMina) casilla).getNumVecinosMina());
-											frame.add(lbl, "cell "+ columna +" "+ fila +", alignx center,aligny center");
-											System.out.println(((SinMina) casilla).getNumVecinosMina());
-										}
-								} else {
+								if (finaliza){
 									System.out.println("game over");
 									frame.removeAll();
 								}
@@ -131,28 +111,23 @@ public class VTableroCasillas implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		Casilla casillaActual = Buscaminas.getBuscaminas().getCasillaActual();
-		
-		ListaCasillas listaVecinosSinMina = new ListaCasillas();
-		
-		listaVecinosSinMina = ((SinMina) casillaActual).getVecinosSinMina();
-		
-		Iterator<Casilla> it = listaVecinosSinMina.getListaCasillas().iterator();
-		Casilla c;
-		System.out.println("Lista de vecinos sin mina: ");
-		while(it.hasNext()){
-			c=it.next();
-			System.out.println("-("+c+") "+Buscaminas.getBuscaminas().getFilaXCasilla(c)+Buscaminas.getBuscaminas().getColumnaXCasilla(c));
-			String posicion = ""+Buscaminas.getBuscaminas().getFilaXCasilla(c)+Buscaminas.getBuscaminas().getColumnaXCasilla(c);
-			Component[] components = frame.getContentPane().getComponents();
-			for (Component component : components)
-			{
-			    if (component instanceof JButton)
-			    {
-			        if (component.getName().equals(posicion)){
-			        	component.setVisible(false);
-			        }
-			    }
-			}
+		int fila = Buscaminas.getBuscaminas().getFilaXCasilla(casillaActual);
+		int columna = Buscaminas.getBuscaminas().getColumnaXCasilla(casillaActual);
+		String posicion = ""+fila+columna;
+			
+		Component[] components = frame.getContentPane().getComponents();
+		for (Component component : components)
+		{
+		    if (component instanceof JButton)
+		    {
+		        if (component.getName().equals(posicion)){
+		        	component.setVisible(false); // poner en blanco el boton de la casilla
+					if (((SinMina) casillaActual).getNumVecinosMina() != 0){
+						JLabel lbl = new JLabel(""+((SinMina) casillaActual).getNumVecinosMina());
+						frame.add(lbl, "cell "+ columna +" "+ fila +", alignx center,aligny center");
+					}
+		        }
+		    }
 		}
 	}
 	

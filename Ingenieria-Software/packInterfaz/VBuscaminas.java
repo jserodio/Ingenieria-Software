@@ -1,24 +1,13 @@
 package packInterfaz;
 
-
-
 import net.miginfocom.swing.MigLayout;
-import packModelo.Conexion;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-
-
-
-
-
-
 
 public class VBuscaminas {
 

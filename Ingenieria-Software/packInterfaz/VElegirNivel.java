@@ -3,6 +3,8 @@ package packInterfaz;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JRadioButton;
 import net.miginfocom.swing.MigLayout;
 import packModelo.Buscaminas;
@@ -10,6 +12,7 @@ import packModelo.Buscaminas;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -38,6 +41,18 @@ public class VElegirNivel {
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 640, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension frameSize = frame.getSize();
+		//Tamaño del frame actual (ancho x alto)
+		if (frameSize.height > screenSize.height) {
+			frameSize.height = screenSize.height; 
+		}
+		if (frameSize.width > screenSize.width) {
+			frameSize.width = screenSize.width; 
+		}
+		frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+		
 		frame.getContentPane().setLayout(new MigLayout("", "[33%][33%][33%]", "[33%][33%][33%]"));
 		frame.getContentPane().add(getLblEligeElNivel(), "cell 0 0 3 1,alignx center,aligny center");
 		frame.getContentPane().add(getRdbtnFacil(), "cell 0 1,alignx center,aligny center");
