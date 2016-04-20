@@ -6,6 +6,12 @@ import java.sql.Statement;
 
 import packInterfaz.VTableroCasillas;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import packInterfaz.VTableroCasillas;
+
 public class Buscaminas {
 
 	private static Buscaminas miBuscaminas=null;

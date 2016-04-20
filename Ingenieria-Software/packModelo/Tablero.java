@@ -14,6 +14,9 @@ public class Tablero {
 	private Casilla casillaActual;
 
 
+
+	public Tablero(int pFilas, int pColumnas, int pNivel){
+
 	public Tablero(int pFilas, int pColumnas, int pNivel){
 		this.filas = pFilas;
 		this.columnas = pColumnas;
