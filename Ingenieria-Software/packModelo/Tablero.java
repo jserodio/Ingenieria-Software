@@ -9,7 +9,7 @@ public class Tablero {
 	private int columnas;
 	private int filas;
 	private int numMaxFlags;
-	private static int numMaxMinas;
+	private int numMaxMinas;
 	private Casilla[][] matriz;
 	private Casilla casillaActual;
 
@@ -38,11 +38,11 @@ public class Tablero {
 		//Meter casillas con minas aleatoriamente en la matriz
 		int filRandom=0;
 		int colRandom=0;
-		this.numMaxFlags = columnas*pNivel;
+		this.numMaxFlags = 0;
 		this.numMaxMinas = columnas*pNivel;
 		int minasIntroducidas=1;
 		Random rnd=new Random();		
-		while(minasIntroducidas <= numMaxFlags){
+		while(minasIntroducidas <= numMaxMinas){
 				filRandom = (int)(rnd.nextDouble() * filas);
 				colRandom = (int)(rnd.nextDouble() * columnas);
 				while(matriz[filRandom][colRandom] instanceof Mina){
@@ -296,7 +296,7 @@ public class Tablero {
 	}
 	
 	public int getNumMaxMinas(){
-		return Tablero.numMaxMinas;
+		return this.numMaxMinas;
 	}
 	
 	public int getNumMaxFlags() {
