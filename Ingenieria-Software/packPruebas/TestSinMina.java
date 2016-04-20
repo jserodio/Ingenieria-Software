@@ -5,9 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import packModelo.BuilderN1;
+import packModelo.Buscaminas;
 import packModelo.ListaCasillas;
 import packModelo.Mina;
 import packModelo.SinMina;
+import packModelo.TableroBuilder;
 
 public class TestSinMina {
 
@@ -61,6 +65,9 @@ public class TestSinMina {
 
 	@Test
 	public void testAbrirCasilla() {
+		TableroBuilder builderN1=new BuilderN1();
+		builderN1.construirTablero(1);
+		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		//Abrir casilla con ningún vecino
 		SinMina c1=new SinMina();
 		c1.abrirCasilla();
@@ -94,6 +101,7 @@ public class TestSinMina {
 
 	@Test
 	public void testAbrirVecinos() {
+		Buscaminas.getBuscaminas();
 		//Abrir vecinos siendo la lista de vecinos vacía
 		SinMina c1=new SinMina();
 		c1.abrirCasilla();
