@@ -24,6 +24,9 @@ public class VTableroCasillas implements Observer {
 	private int numFlags;
 
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public VTableroCasillas(JInternalFrame internalFrame, int pNivel) {	
 		this.frame = internalFrame;
 		this.nivel = pNivel;
@@ -124,7 +127,8 @@ public class VTableroCasillas implements Observer {
 		        	component.setVisible(false); // poner en blanco el boton de la casilla
 					if (((SinMina) casillaActual).getNumVecinosMina() != 0){
 						JLabel lbl = new JLabel(""+((SinMina) casillaActual).getNumVecinosMina());
-						frame.add(lbl, "cell "+ columna +" "+ fila +", alignx center,aligny center");
+						// http://www.miglayout.com/whitepaper.html COMPONENT CONSTRAINTS
+						frame.getContentPane().add(lbl, "cell "+ columna +" "+ fila +"");
 					}
 		        }
 		    }
