@@ -4,6 +4,8 @@ import javax.swing.JInternalFrame;
 import packModelo.Buscaminas;
 import packModelo.Casilla;
 import packModelo.SinMina;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -59,7 +61,7 @@ public class VTableroCasillas implements Observer {
 				
 				JButton b = new JButton();
 				b.setName(""+row+col);
-				b.setBackground(Color.BLUE);
+				b.setBackground(Color.white);
 				
 		    	frame.getContentPane().add(b, "cell "+ col +" "+ row +",grow");
 		    	
@@ -121,11 +123,14 @@ public class VTableroCasillas implements Observer {
 		    if (component instanceof JButton)
 		    {
 		        if (component.getName().equals(posicion)){
-		        	component.setVisible(false); // poner en blanco el boton de la casilla
+		        	
 					if (((SinMina) casillaActual).getNumVecinosMina() != 0){
-						JLabel lbl = new JLabel(""+((SinMina) casillaActual).getNumVecinosMina());
-						// http://www.miglayout.com/whitepaper.html COMPONENT CONSTRAINTS
-						frame.getContentPane().add(lbl, "cell "+ columna +" "+ fila +"");
+//						JLabel lbl = new JLabel(""+((SinMina) casillaActual).getNumVecinosMina());
+//						// http://www.miglayout.com/whitepaper.html COMPONENT CONSTRAINTS
+//						frame.getContentPane().add(lbl, "cell "+ columna +" "+ fila +"");
+						((JButton) component).setIcon(new ImageIcon(VBuscaminas.class.getResource("/assets/"+((SinMina) casillaActual).getNumVecinosMina()+".png")));
+					} else {
+						component.setVisible(false); // poner en blanco el boton de la casilla
 					}
 		        }
 		    }

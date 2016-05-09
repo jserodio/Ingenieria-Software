@@ -52,20 +52,20 @@ public class VBuscaminas {
 		
 		switch(nivel) {
 		case 1:
-			ANCHOMAX = 550;
-			ALTOMAX = 550;
+			ANCHOMAX = 800;
+			ALTOMAX = 640;
 			break;
 		case 2:
-			ANCHOMAX = 800;
+			ANCHOMAX = 850;
 			ALTOMAX = 600;
 			break;
 		case 3:
-			ANCHOMAX = 1000;
-			ALTOMAX = 600;
+			ANCHOMAX = 1440;
+			ALTOMAX = 800;
 			break;
 		}
 		
-		frmBuscaminas.setBounds(0, 0, 800, 750);
+		frmBuscaminas.setBounds(0, 0, ANCHOMAX, ALTOMAX);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize = frmBuscaminas.getSize();
