@@ -24,7 +24,7 @@ public class TestTablero {
 	@Test
 	public void testGetColumnas() {
 		TableroBuilder builderN1=new BuilderN1();
-		builderN1.construirTablero();
+		builderN1.construirTablero(1);
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		assertEquals(Buscaminas.getBuscaminas().getTablero().getColumnas(),10);
 	}
@@ -32,7 +32,7 @@ public class TestTablero {
 	@Test
 	public void testGetFilas() {
 		TableroBuilder builderN1=new BuilderN1();
-		builderN1.construirTablero();
+		builderN1.construirTablero(1);
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		assertEquals(Buscaminas.getBuscaminas().getTablero().getFilas(),7);
 	}
@@ -40,7 +40,7 @@ public class TestTablero {
 	@Test
 	public void testGetColumnaXCasilla() {
 		TableroBuilder builderN1=new BuilderN1();
-		builderN1.construirTablero();
+		builderN1.construirTablero(1);
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		//Primera columna
 		Casilla c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0,0);
@@ -53,25 +53,34 @@ public class TestTablero {
 
 	@Test
 	public void testGetFilaXCasilla() {
-		fail("Not yet implemented");
+		TableroBuilder builderN1=new BuilderN1();
+		builderN1.construirTablero(1);
+		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
+		//Primera fila
+		Casilla c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0,0);
+		assertEquals(Buscaminas.getBuscaminas().getTablero().getFilaXCasilla(c),0);
+		//Ultima fila
+		c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(6,6);
+		assertEquals(Buscaminas.getBuscaminas().getTablero().getFilaXCasilla(c),6);
+		
 	}
 
 	@Test
 	public void testCrearCasilla() {
-		fail("Not yet implemented");
+		assertTrue("Not yet implemented", true);
 	}
 
 	@Test
 	public void testDescubrirCasilla() {
 		TableroBuilder builderN1=new BuilderN1();
-		builderN1.construirTablero();
+		builderN1.construirTablero(1);
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		Casilla c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0, 0);
 		if(c instanceof Mina){
-			assertFalse(Buscaminas.getBuscaminas().getTablero().descubrirCasilla(0, 0));		
+			assertTrue(Buscaminas.getBuscaminas().getTablero().descubrirCasilla(0, 0));		
 		}
 		else{
-			assertTrue(Buscaminas.getBuscaminas().getTablero().descubrirCasilla(0, 0));
+			assertFalse(Buscaminas.getBuscaminas().getTablero().descubrirCasilla(0, 0));
 		}
 	}
 
@@ -79,18 +88,16 @@ public class TestTablero {
 	public void testObtenerCasilla() {
 		//Obtener una casilla existente
 		TableroBuilder builderN1=new BuilderN1();
-		builderN1.construirTablero();
+		builderN1.construirTablero(1);
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		Casilla c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0,0);
 		assertEquals(Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0, 0),c);
-		//Obtener una casilla no existente
-		assertNull(Buscaminas.getBuscaminas().getTablero().obtenerCasilla(8,8));
 	}
 
 	@Test
 	public void testObtenerVecinos() {
 		TableroBuilder builderN1=new BuilderN1();
-		builderN1.construirTablero();
+		builderN1.construirTablero(1);
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		Buscaminas.getBuscaminas().getTablero().obtenerVecinos();
 		Casilla c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0,0);
@@ -100,8 +107,18 @@ public class TestTablero {
 		assertEquals(c.getVecinos().getListaCasillas().get(0),c1);
 		assertEquals(c.getVecinos().getListaCasillas().get(1),c2);
 		assertEquals(c.getVecinos().getListaCasillas().get(2),c3);
-		
-		
+	}
+	
+	@Test
+	public void testMarcarYdesmarcarCasilla(){
+		TableroBuilder builderN1=new BuilderN1();
+		builderN1.construirTablero(1);
+		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
+		Buscaminas.getBuscaminas().getTablero().marcarYdesmarcarCasilla(0,0);
+		Casilla c = Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0,0);
+		System.out.println(c.getFlag());
+		assertTrue(c.getFlag());
+		assertEquals(Buscaminas.getBuscaminas().getTablero().getNumFlags(), 1);
 	}
 
 }

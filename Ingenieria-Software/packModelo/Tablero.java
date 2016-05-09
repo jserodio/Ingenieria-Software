@@ -2,27 +2,26 @@ package packModelo;
 
 import java.util.Random;
 
+import packInterfaz.VTableroCasillas;
+
 public class Tablero {
 
-	private int nivel;
 	private int columnas;
 	private int filas;
+	private int numFlags;
+	private int numMaxMinas;
 	private Casilla[][] matriz;
+	private Casilla casillaActual;
 
-	public Tablero(int pNivel){
-		nivel = pNivel;
-		switch (pNivel){
-		case 1:	filas=7; columnas=10;
-		break;
-		case 2: filas=10; columnas=15;
-		break;
-		case 3: filas=12; columnas=25;
-		break;
-		default:	//falla
-		break;
-		}
+
+
+
+	public Tablero(int pFilas, int pColumnas, int pNivel){
+		this.filas = pFilas;
+		this.columnas = pColumnas;
 		//inicializar la matriz
 		matriz= new Casilla[filas][columnas];
+		
 		//Llenar la matriz de casillas sinMinas
 		String pTipo;
 		int fil=0;
@@ -39,10 +38,11 @@ public class Tablero {
 		//Meter casillas con minas aleatoriamente en la matriz
 		int filRandom=0;
 		int colRandom=0;
-		int numMinas = columnas*nivel;
+		this.numFlags = 0;
+		this.numMaxMinas = columnas*pNivel;
 		int minasIntroducidas=1;
 		Random rnd=new Random();		
-		while(minasIntroducidas <= numMinas){
+		while(minasIntroducidas <= numMaxMinas){
 				filRandom = (int)(rnd.nextDouble() * filas);
 				colRandom = (int)(rnd.nextDouble() * columnas);
 				while(matriz[filRandom][colRandom] instanceof Mina){
@@ -65,7 +65,7 @@ public class Tablero {
 			    if (y!=matriz[x].length-1) System.out.print("\t");
 			  }
 			  System.out.println("|");
-			}
+		}
 	}
 	
 	public int getColumnas(){
@@ -77,37 +77,41 @@ public class Tablero {
 	}
 	
 	public int getColumnaXCasilla(Casilla pCasilla){
-		int col=0;
+		int columna=0;
+		
 		boolean salir=false;
 		int fil=0;
 		while(fil<=filas-1&&salir==false){
+			int col=0;
 			while(col<=columnas-1&&salir==false){
 				if(matriz[fil][col].equals(pCasilla)){
+					columna = col;
 					salir=true;
 				}
 				col++;
 			}
 			fil++;
-			col=0;
 		}
-		return col;
+		return columna;
 	}
 	
 	public int getFilaXCasilla(Casilla pCasilla){
-		int col=0;
+		int fila = 0;
+		
 		boolean salir=false;
 		int fil=0;
 		while(fil<=filas-1&&salir==false){
+			int col=0;
 			while(col<=columnas-1&&salir==false){
 				if(matriz[fil][col].equals(pCasilla)){
+					fila = fil;
 					salir=true;
 				}
 				col++;
 			}
 			fil++;
-			col=0;
 		}
-		return fil;
+		return fila;
 	}
 	
 	public Casilla crearCasilla (String pTipo){
@@ -118,8 +122,7 @@ public class Tablero {
 	public boolean descubrirCasilla(int pFila, int pColumna){
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
 		boolean finaliza=false;
-		// imprimo la casilla para ver que he pulsado
-		System.out.println(pCasilla);
+
 		if(!pCasilla.equals(null)){
 			if(pCasilla instanceof SinMina){
 				((SinMina)pCasilla).abrirCasilla();
@@ -135,16 +138,16 @@ public class Tablero {
 	
 	public Casilla obtenerCasilla(int pFila, int pColumna){
 		Casilla c=matriz[pFila][pColumna];
-		return c;
-		
+		return c;	
 	}
 	
 	public void obtenerVecinos(){
 		int fil=0;
-		int numVecinosMina;
 		int col=0;
+		int numVecinosMina;
 		Casilla c=null;
 		while(fil<=filas-1){
+			col=0;
 			while(col<=columnas-1){
 				c=matriz[fil][col];
 				this.obtenerVecinosCasillaX(c,fil,col);
@@ -155,7 +158,6 @@ public class Tablero {
 				col++;
 			}
 			fil++;
-			col=0;
 		}
 	}
 	
@@ -263,6 +265,46 @@ public class Tablero {
 			vecinos.anadir(c3);
 		}
 		pCasilla.setVecinos(vecinos);
+	}
+
+	public Casilla getCasillaActual() {
+		return this.casillaActual;
+	}
+
+	public void setCasillaActual(Casilla casilla) {
+		this.casillaActual = casilla;
+	}
+	
+	public void marcarYdesmarcarCasilla(int pFila, int pColumna){
+		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
+		if(pCasilla.getFlag()){ // si esta marcadada
+			pCasilla.setFlag(false);
+			this.numFlags=this.numFlags-1;
+		}
+		else{ // si no estaba marcada
+			pCasilla.setFlag(true);
+			this.numFlags=this.numFlags+1;
+		}
+	}
+	
+	public int getNumMaxMinas(){
+		return this.numMaxMinas;
+	}
+	
+	public int getNumFlags() {
+		return this.numFlags;
+	}
+	
+	public void setNumFlags(int pNumMinas){
+		this.numFlags = pNumMinas;
+	}
+
+	public void anadirObservador(VTableroCasillas pTablero) {
+		for (int x=0; x < matriz.length; x++) {
+			  for (int y=0; y < matriz[x].length; y++) {
+			    matriz[x][y].addObserver(pTablero);
+			  }
+		}
 	}
 	
 	

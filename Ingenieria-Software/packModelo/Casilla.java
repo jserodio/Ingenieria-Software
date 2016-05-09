@@ -1,9 +1,11 @@
 package packModelo;
 
-public abstract class Casilla {
+import java.util.Observable;
+
+public abstract class Casilla extends Observable {
 	private boolean flag;
 	private boolean abierta;
-	private ListaCasillas vecinos;
+	protected ListaCasillas vecinos;
 	
 	public Casilla(){
 		flag=false;

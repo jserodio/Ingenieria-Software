@@ -6,9 +6,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import packModelo.BuilderN1;
+import packModelo.Buscaminas;
 import packModelo.ListaCasillas;
 import packModelo.Mina;
 import packModelo.SinMina;
+import packModelo.TableroBuilder;
 
 public class TestListaCasillas {
 
@@ -22,6 +25,9 @@ public class TestListaCasillas {
 
 	@Test
 	public void testAbrirCasillas() {
+		TableroBuilder builderN1=new BuilderN1();
+		builderN1.construirTablero(1);
+		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		//abrir casillas sin mina habiendo casillas sin mina en lista casillas
 		SinMina c1=new SinMina();
 		SinMina c2=new SinMina();
