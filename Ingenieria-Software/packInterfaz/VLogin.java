@@ -131,6 +131,7 @@ public class VLogin {
 						//Buscaminas.getBuscaminas().getUser(txtUser.getText(),txtPassword.getText());
 						Buscaminas.getBuscaminas().setUsuario(txtUser.getText());
 						new VElegirNivel();	// llamada a la ventana
+						frmIdentificarse.dispose();
 					}
 				}
 			});
