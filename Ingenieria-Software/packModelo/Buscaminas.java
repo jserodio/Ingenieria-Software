@@ -3,6 +3,8 @@ package packModelo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import packInterfaz.VTableroCasillas;
 
 public class Buscaminas {
@@ -95,6 +97,7 @@ public class Buscaminas {
 			  String cadena1 = "INSERT INTO usuario VALUES(user=" +pUser+" AND password="+ pPassword+")";
 			  Statement st1 = Conexion.conexion();
 			  Conexion.consultaActualiza(st1, cadena1);
+			  Conexion.cerrar(st1);
 		  }
 		  else{
 			  try {
@@ -105,6 +108,41 @@ public class Buscaminas {
 				e.printStackTrace();
 			}
 		  }
+		  Conexion.cerrar(st);
+	}
+	
+	public ArrayList<Partida> getRanking(){
+		  ArrayList<Partida> rank=new ArrayList<Partida>();
+		  Conexion.conectar();
+		  ResultSet rs = null;
+		  String cadena = "SELECT * FROM ranking ORDER BY points DESC";
+		  Statement st = Conexion.conexion();
+		  rs = Conexion.consultaDatos(st, cadena);
+		  if(rs.equals(null)){
+			  return null;
+		  }
+		  else{
+			  String nombre;
+			  int puntos;
+			  try {
+				while(rs.next()){
+					  nombre=rs.getString("user");
+					  puntos=rs.getInt("points");
+					  rank.add(new Partida(nombre,puntos));
+				  }
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			  return rank;  
+		  }
+	}
+	
+	public void insertarPartida(String pUser, int pPoints){
+		  String cadena = "INSERT INTO ranking VALUES(user=" +pUser+" AND points="+ pPoints+")";
+		  Statement st = Conexion.conexion();
+		  Conexion.consultaActualiza(st, cadena);
+		  Conexion.cerrar(st);
 	}
 	
 	public void anadirObservador(VTableroCasillas pTablero){
