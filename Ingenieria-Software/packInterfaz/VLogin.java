@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import packModelo.Buscaminas;
+import packModelo.Sesion;
 
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -128,8 +129,9 @@ public class VLogin {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					if(!txtUser.getText().equals("")&&!txtPassword.getText().equals("")||!txtUser.getText().equals("User")&&!txtPassword.getText().equals("Password")){
-						//Buscaminas.getBuscaminas().getUser(txtUser.getText(),txtPassword.getText());
-						Buscaminas.getBuscaminas().setUsuario(txtUser.getText());
+						Sesion.getSesion().setUsuario(txtUser.getText());
+						Sesion.getSesion().setPass(txtPassword.getText());
+						Sesion.getSesion().iniciar();
 						new VElegirNivel();	// llamada a la ventana
 						frmIdentificarse.dispose();
 					}

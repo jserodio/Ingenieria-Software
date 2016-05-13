@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import javax.swing.JRadioButton;
 import net.miginfocom.swing.MigLayout;
 import packModelo.Buscaminas;
+import packModelo.Sesion;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -116,6 +117,8 @@ public class VElegirNivel {
 				public void mouseReleased(MouseEvent arg0) {
 					// Comprobar el nivel elegido
 					
+					Sesion.getSesion().reiniciarCrono();
+					
 					if (rdbtnFacil.isSelected()){
 						Buscaminas.getBuscaminas().iniciar(1);
 						new VBuscaminas(1);
@@ -128,7 +131,7 @@ public class VElegirNivel {
 					} else {
 						
 					}
-						
+					
 					
 				}
 			});
