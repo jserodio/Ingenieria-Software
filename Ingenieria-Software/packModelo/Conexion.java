@@ -14,8 +14,8 @@ public class Conexion {
 	
 	private static Connection conexion = null; 
 	private static Statement statement;
-	private static String  usuario = "root";
-	private static String password = "3W2ziKoP";
+	private static String  usuario = "usuario";
+	private static String password = "usuario";
 	private static String bd = "usuariosBuscaminas";
 	private static String server = "jdbc:mysql://dbserver1994.cloudapp.net:3306/usuariosBuscaminas";
 	

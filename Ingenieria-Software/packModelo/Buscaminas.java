@@ -4,7 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import packInterfaz.VTableroCasillas;
 
 public class Buscaminas {
@@ -12,6 +13,7 @@ public class Buscaminas {
 	private static Buscaminas miBuscaminas=null;
 	private TableroBuilder tableroBuilder;
 	private String usuario;
+	private int tiempoTrans = 0;
 
 	public void setTableroBuilder(TableroBuilder tb){
 		tableroBuilder = tb;
@@ -144,6 +146,33 @@ public class Buscaminas {
 		  Conexion.consultaActualiza(st, cadena);
 		  Conexion.cerrar(st);
 	}
+	
+	private void crono(){
+		
+        TimerTask  timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                String texto;
+                
+				tiempoTrans++;
+                int segundos =(int)tiempoTrans;
+                int minutos =0;
+                while(segundos>59){
+                    minutos++;
+                    segundos = segundos-60;
+                }
+                if(segundos<10){
+                    texto=(""+minutos+":0" + segundos);
+                }else{
+                texto=(""+minutos+":" + segundos);
+                }
+                //setChanged();
+                //notifyObservers(texto+","+nAyudas);
+            }
+        };
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(timerTask, 0, 1000);
+    }
 	
 	public void anadirObservador(VTableroCasillas pTablero){
 		this.getTablero().anadirObservador(pTablero);
