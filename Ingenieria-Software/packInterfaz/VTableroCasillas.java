@@ -95,8 +95,8 @@ public class VTableroCasillas implements Observer {
 							System.out.println("");
 							System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);
 							if(!b.getBackground().equals(Color.RED)){
-								boolean finaliza = Buscaminas.getBuscaminas().descubrirCasilla(fila, columna);
-								if (finaliza){
+								int estado = Buscaminas.getBuscaminas().descubrirCasilla(fila, columna);
+								if (estado==0){
 									System.out.println("game over");
 									frame.removeAll();
 								}

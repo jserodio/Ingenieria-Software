@@ -77,10 +77,10 @@ public class TestTablero {
 		Buscaminas.getBuscaminas().setTableroBuilder(builderN1);
 		Casilla c=Buscaminas.getBuscaminas().getTablero().obtenerCasilla(0, 0);
 		if(c instanceof Mina){
-			assertTrue(Buscaminas.getBuscaminas().getTablero().descubrirCasilla(0, 0));		
+			assertEquals(Buscaminas.getBuscaminas().getTablero().descubrirCasilla(0, 0),2);		
 		}
 		else{
-			assertFalse(Buscaminas.getBuscaminas().getTablero().descubrirCasilla(0, 0));
+			assertEquals(Buscaminas.getBuscaminas().getTablero().descubrirCasilla(0, 0),1);
 		}
 	}
 

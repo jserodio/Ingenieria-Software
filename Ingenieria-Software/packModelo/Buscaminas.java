@@ -47,7 +47,7 @@ public class Buscaminas {
 			this.setTableroBuilder(builderN3);
 		}
 	}
-	public boolean descubrirCasilla(int pFila, int pColumna){
+	public int descubrirCasilla(int pFila, int pColumna){
 		return this.getTablero().descubrirCasilla(pFila, pColumna);
 	}
 	

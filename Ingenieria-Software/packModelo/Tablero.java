@@ -119,20 +119,30 @@ public class Tablero {
 		return miCasilla;
 	}
 
-	public boolean descubrirCasilla(int pFila, int pColumna){
+	public int descubrirCasilla(int pFila, int pColumna){
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
-		boolean finaliza=false;
+		int result=1;
+		boolean finaliza=false;//Si es false estamos ganando y si es true perdemos
 
 		if(!pCasilla.equals(null)){
 			if(pCasilla instanceof SinMina){
 				((SinMina)pCasilla).abrirCasilla();
-				return finaliza;
+				if(comprobarVictoria()){
+					finaliza=true;
+					result=2;//Ganar
+					return result;
+				}
+				else{
+					return result;//Continuar
+				}
 			} else {
-				return ((Mina)pCasilla).finalizarJuego();				
+				((Mina)pCasilla).finalizarJuego();
+				result=0;
+				return result;//Perder				
 			}
 		}
 		else{
-			return finaliza;
+			return result;
 		}
 	}
 	
@@ -305,6 +315,32 @@ public class Tablero {
 			    matriz[x][y].addObserver(pTablero);
 			  }
 		}
+	}
+	
+	public boolean comprobarVictoria(){
+		boolean salir=false;
+		boolean ganado=false;
+		int col=0;
+		int fil=0;
+		Casilla c;
+		while(fil<=filas-1){
+			col=0;
+			while(col<=columnas-1){
+				c=matriz[fil][col];
+				if (c instanceof SinMina && !c.getAbierta()){
+					salir=true;
+				}
+				else if(c instanceof Mina && !c.getFlag()){
+					salir=true;
+				}
+				col++;
+			}
+			fil++;
+		}
+		if(!salir){
+			ganado=true;
+		}
+		return ganado;
 	}
 	
 	
