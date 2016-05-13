@@ -71,6 +71,7 @@ public class VElegirNivel {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				new VLogin();
+				frmBuscaminasElige.dispose();
 			}
 		});
 	}
@@ -128,10 +129,12 @@ public class VElegirNivel {
 					} else if (rdbtnDificil.isSelected()){
 						Buscaminas.getBuscaminas().iniciar(3);
 						new VBuscaminas(3);						
-					} else {
-						
 					}
-					
+
+					if(rdbtnFacil.isSelected() || rdbtnMedio.isSelected() || rdbtnDificil.isSelected()) {
+						frmBuscaminasElige.dispose();
+					}
+
 					
 				}
 			});
