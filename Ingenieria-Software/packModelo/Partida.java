@@ -9,4 +9,13 @@ public class Partida {
 		puntuacion=pPuntuacion;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public int getPuntuacion() {
+		return puntuacion;
+	}
+
+	
 }

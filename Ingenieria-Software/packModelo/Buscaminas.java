@@ -12,8 +12,6 @@ public class Buscaminas {
 
 	private static Buscaminas miBuscaminas=null;
 	private TableroBuilder tableroBuilder;
-	private String usuario;
-	private int tiempoTrans = 0;
 
 	public void setTableroBuilder(TableroBuilder tb){
 		tableroBuilder = tb;
@@ -29,14 +27,6 @@ public class Buscaminas {
 	}
 	public Tablero getTablero(){
 		return tableroBuilder.getTablero();
-	}
-	
-	public String getUsuario(){
-		return this.usuario;
-	}
-	
-	public void setUsuario(String pUsuario){
-		this.usuario = pUsuario;
 	}
 
 	public void iniciar(int pNivel){
@@ -89,35 +79,11 @@ public class Buscaminas {
 		Buscaminas.getBuscaminas().getTablero().marcarYdesmarcarCasilla(pFila, pColumna);
 	}
 	
-	public void getUser(String pUser, String pPassword){
-		  Conexion.conectar();
-		  ResultSet rs = null;
-		  String cadena = "SELECT user, password FROM usuario WHERE user=" +pUser+" AND password="+ pPassword+"";
-		  Statement st = Conexion.conexion();
-		  rs = Conexion.consultaDatos(st, cadena);
-		  if(rs.equals(null)){
-			  String cadena1 = "INSERT INTO usuario VALUES(user=" +pUser+" AND password="+ pPassword+")";
-			  Statement st1 = Conexion.conexion();
-			  Conexion.consultaActualiza(st1, cadena1);
-			  Conexion.cerrar(st1);
-		  }
-		  else{
-			  try {
-				while(rs.next()){
-					  this.setUsuario(rs.getString("user"));
-				  }
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		  }
-		  Conexion.cerrar(st);
-	}
-	
 	public ArrayList<Partida> getRanking(){
 		  ArrayList<Partida> rank=new ArrayList<Partida>();
 		  Conexion.conectar();
 		  ResultSet rs = null;
-		  String cadena = "SELECT * FROM ranking ORDER BY points DESC";
+		  String cadena = "SELECT * FROM ranking ORDER BY puntuacion DESC";
 		  Statement st = Conexion.conexion();
 		  rs = Conexion.consultaDatos(st, cadena);
 		  if(rs.equals(null)){
@@ -129,7 +95,7 @@ public class Buscaminas {
 			  try {
 				while(rs.next()){
 					  nombre=rs.getString("user");
-					  puntos=rs.getInt("points");
+					  puntos=rs.getInt("puntuacion");
 					  rank.add(new Partida(nombre,puntos));
 				  }
 			} catch (SQLException e) {
@@ -140,39 +106,12 @@ public class Buscaminas {
 		  }
 	}
 	
-	public void insertarPartida(String pUser, int pPoints){
-		  String cadena = "INSERT INTO ranking VALUES(user=" +pUser+" AND points="+ pPoints+")";
+	public void insertarPartida(String pUser, int pPuntuacion){
+		  String cadena = "INSERT INTO ranking VALUES(user=" +pUser+" AND puntuacion="+ pPuntuacion+")";
 		  Statement st = Conexion.conexion();
 		  Conexion.consultaActualiza(st, cadena);
 		  Conexion.cerrar(st);
 	}
-	
-	private void crono(){
-		
-        TimerTask  timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                String texto;
-                
-				tiempoTrans++;
-                int segundos =(int)tiempoTrans;
-                int minutos =0;
-                while(segundos>59){
-                    minutos++;
-                    segundos = segundos-60;
-                }
-                if(segundos<10){
-                    texto=(""+minutos+":0" + segundos);
-                }else{
-                texto=(""+minutos+":" + segundos);
-                }
-                //setChanged();
-                //notifyObservers(texto+","+nAyudas);
-            }
-        };
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(timerTask, 0, 1000);
-    }
 	
 	public void anadirObservador(VTableroCasillas pTablero){
 		this.getTablero().anadirObservador(pTablero);

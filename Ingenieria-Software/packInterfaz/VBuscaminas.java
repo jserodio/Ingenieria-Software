@@ -1,12 +1,20 @@
 package packInterfaz;
 
 import net.miginfocom.swing.MigLayout;
+import packModelo.Sesion;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -15,7 +23,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
-public class VBuscaminas {
+public class VBuscaminas implements Observer{
 
 	private JFrame frmBuscaminas;
 	private JLabel lblTablero;
@@ -30,6 +38,7 @@ public class VBuscaminas {
 	public VBuscaminas(int pNivel) {
 		nivel = pNivel;
 		initialize();
+		Sesion.getSesion().addObserver(this);
 	}
 
 	private void initialize() {
@@ -130,10 +139,10 @@ public class VBuscaminas {
 	private JTextField getTextReloj() {
 		if (textReloj == null) {
 			textReloj = new JTextField();
+			textReloj.setText("0:01");
 			textReloj.setEditable(false);
 			textReloj.setHorizontalAlignment(SwingConstants.CENTER);
 			textReloj.setFont(new Font("Tahoma", Font.PLAIN, 30));
-			textReloj.setText("00:00");
 			textReloj.setColumns(10);
 		}
 		return textReloj;
@@ -144,8 +153,21 @@ public class VBuscaminas {
 			btnRanking.setBackground(new Color(255, 255, 255));
 			btnRanking.setForeground(new Color(255, 255, 255));
 			btnRanking.setIcon(new ImageIcon(VBuscaminas.class.getResource("/assets/ranking.png")));
+			btnRanking.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					//System.exit(0);
+					new VRanking();
+					frmBuscaminas.dispose();
+				}
+			});
 		}
 		return btnRanking;
+	}
+
+	@Override
+	public void update(Observable arg0, Object pReloj) {
+
+		textReloj.setText(pReloj.toString());
 	}
 }
 

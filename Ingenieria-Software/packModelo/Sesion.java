@@ -42,14 +42,14 @@ public class Sesion extends Observable{
 		this.pass = pPassword;
 	}
 	
-	public void iniciar(){
+	public void iniciar() throws SQLException{
 		  Conexion.conectar();
 		  ResultSet rs = null;
 		  String cadena = "SELECT user, password FROM usuario WHERE user='" +this.usuario+"' AND password='"+this.pass+"';";
 		  System.out.println(cadena);
 		  Statement st = Conexion.conexion();
 		  rs = Conexion.consultaDatos(st, cadena);
-		  if(rs.equals(null)){
+		  if(!rs.next()){
 			  String cadena1 = "INSERT INTO usuario VALUES('" + this.usuario + "', '" + this.pass + "');";
 			  System.out.println(cadena1);
 			  Statement st1 = Conexion.conexion();

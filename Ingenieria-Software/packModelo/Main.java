@@ -1,6 +1,5 @@
 package packModelo;
 
-import packInterfaz.VElegirNivel;
 import packInterfaz.VLogin;
 
 public class Main {
