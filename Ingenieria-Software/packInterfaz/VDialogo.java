@@ -78,6 +78,7 @@ public class VDialogo {
 			btnSi = new JButton("Si");
 			btnSi.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					new VElegirNivel();
 					frmDialogo.dispose();
 				}
 			});
@@ -90,7 +91,9 @@ public class VDialogo {
 			btnNo = new JButton("No");
 			btnNo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.exit(0);
+					//System.exit(0);
+					new VRanking();
+					frmDialogo.dispose();
 				}
 			});
 			btnNo.setBackground(Color.WHITE);

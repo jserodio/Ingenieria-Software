@@ -14,6 +14,8 @@ import packModelo.Sesion;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+
 import net.miginfocom.swing.MigLayout;
 import java.awt.Font;
 import java.awt.Window.Type;
@@ -131,7 +133,11 @@ public class VLogin {
 					if(!txtUser.getText().equals("")&&!txtPassword.getText().equals("")||!txtUser.getText().equals("User")&&!txtPassword.getText().equals("Password")){
 						Sesion.getSesion().setUsuario(txtUser.getText());
 						Sesion.getSesion().setPass(txtPassword.getText());
-						Sesion.getSesion().iniciar();
+						try {
+							Sesion.getSesion().iniciar();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
 						new VElegirNivel();	// llamada a la ventana
 						frmIdentificarse.dispose();
 					}

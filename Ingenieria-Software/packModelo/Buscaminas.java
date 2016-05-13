@@ -83,7 +83,7 @@ public class Buscaminas {
 		  ArrayList<Partida> rank=new ArrayList<Partida>();
 		  Conexion.conectar();
 		  ResultSet rs = null;
-		  String cadena = "SELECT * FROM ranking ORDER BY points DESC";
+		  String cadena = "SELECT * FROM ranking ORDER BY puntuacion DESC";
 		  Statement st = Conexion.conexion();
 		  rs = Conexion.consultaDatos(st, cadena);
 		  if(rs.equals(null)){
@@ -95,7 +95,7 @@ public class Buscaminas {
 			  try {
 				while(rs.next()){
 					  nombre=rs.getString("user");
-					  puntos=rs.getInt("points");
+					  puntos=rs.getInt("puntuacion");
 					  rank.add(new Partida(nombre,puntos));
 				  }
 			} catch (SQLException e) {
@@ -106,8 +106,8 @@ public class Buscaminas {
 		  }
 	}
 	
-	public void insertarPartida(String pUser, int pPoints){
-		  String cadena = "INSERT INTO ranking VALUES(user=" +pUser+" AND points="+ pPoints+")";
+	public void insertarPartida(String pUser, int pPuntuacion){
+		  String cadena = "INSERT INTO ranking VALUES(user=" +pUser+" AND puntuacion="+ pPuntuacion+")";
 		  Statement st = Conexion.conexion();
 		  Conexion.consultaActualiza(st, cadena);
 		  Conexion.cerrar(st);
