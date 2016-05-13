@@ -134,8 +134,6 @@ public class VElegirNivel {
 					if(rdbtnFacil.isSelected() || rdbtnMedio.isSelected() || rdbtnDificil.isSelected()) {
 						frmBuscaminasElige.dispose();
 					}
-
-					
 				}
 			});
 			btnJugar.setBackground(Color.WHITE);
