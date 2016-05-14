@@ -287,12 +287,11 @@ public class Tablero {
 	
 	public void marcarYdesmarcarCasilla(int pFila, int pColumna){
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
-		if(pCasilla.getFlag()){ // si esta marcadada
-			pCasilla.setFlag(false);
+		boolean marcada=pCasilla.marcarYdesmarcar();
+		if(marcada){ // si esta marcadada
 			this.numFlags=this.numFlags-1;
 		}
 		else{ // si no estaba marcada
-			pCasilla.setFlag(true);
 			this.numFlags=this.numFlags+1;
 		}
 	}
