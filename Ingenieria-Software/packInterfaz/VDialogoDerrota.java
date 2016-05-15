@@ -28,6 +28,7 @@ public class VDialogoDerrota {
 	 */
 	private void initialize() {
 		frmGameOver = new JFrame();
+		frmGameOver.setAlwaysOnTop(true);
 		frmGameOver.setIconImage(Toolkit.getDefaultToolkit().getImage(VDialogoDerrota.class.getResource("/assets/icono.png")));
 		frmGameOver.getContentPane().setBackground(Color.WHITE);
 		frmGameOver.setBounds(100, 100, 374, 241);

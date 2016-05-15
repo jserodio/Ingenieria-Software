@@ -28,6 +28,7 @@ public class VDialogoVictoria {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setAlwaysOnTop(true);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(VDialogoVictoria.class.getResource("/assets/icono.png")));
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 399, 230);
