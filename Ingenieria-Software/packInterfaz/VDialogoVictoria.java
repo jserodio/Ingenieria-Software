@@ -1,7 +1,5 @@
 package packInterfaz;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import java.awt.Font;
@@ -10,7 +8,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.JButton;
 
 public class VDialogoVictoria {
@@ -31,9 +28,10 @@ public class VDialogoVictoria {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(VDialogoVictoria.class.getResource("/assets/icono.png")));
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 399, 230);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getTxtrenhorabuenaHasGanado());
 		frame.getContentPane().add(getBtnContinuar());

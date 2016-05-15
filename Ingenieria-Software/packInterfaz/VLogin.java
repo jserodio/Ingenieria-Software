@@ -3,22 +3,16 @@ package packInterfaz;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
-import packModelo.Buscaminas;
 import packModelo.Sesion;
-
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-
 import net.miginfocom.swing.MigLayout;
 import java.awt.Font;
-import java.awt.Window.Type;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.ImageIcon;

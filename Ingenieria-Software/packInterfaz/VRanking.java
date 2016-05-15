@@ -1,23 +1,15 @@
 package packInterfaz;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
-
 import packModelo.Buscaminas;
 import packModelo.Partida;
-import packModelo.Sesion;
-
 import javax.swing.JScrollBar;
 import javax.swing.JLabel;
 import javax.swing.JButton;
