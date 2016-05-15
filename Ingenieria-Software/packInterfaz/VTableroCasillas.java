@@ -97,8 +97,17 @@ public class VTableroCasillas implements Observer {
 							if(!b.getBackground().equals(Color.RED)){
 								int estado = Buscaminas.getBuscaminas().descubrirCasilla(fila, columna);
 								if (estado==0){
-									System.out.println("game over");
+									System.out.println(estado);
+									new VDialogoDerrota();
 									frame.removeAll();
+								}
+								else if(estado==2){
+									System.out.println(estado);
+									new VDialogoVictoria();
+									frame.removeAll();
+								}
+								else{
+									System.out.println(estado);
 								}
 							}
 						}
