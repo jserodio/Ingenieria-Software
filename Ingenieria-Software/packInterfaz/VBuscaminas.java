@@ -51,10 +51,6 @@ public class VBuscaminas implements Observer{
 			public void windowClosing(WindowEvent e) {
 				new VDialogo();
 			}
-
-			public void windowClosed(WindowEvent e) {
-				
-			}
 		});
 		
 		switch(nivel) {
@@ -85,10 +81,10 @@ public class VBuscaminas implements Observer{
 		}
 		frmBuscaminas.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
 		frmBuscaminas.getContentPane().setLayout(new MigLayout("", "[:7.5%:7.5%][:7.5%:7.5%][:7.5%:7.5%][:7.5%:7.5%][40%][:7.5%:7.5%][:7.5%:7.5%][:7.5%:7.5%][:7.5%:7.5%]", "[5%][10%][60%][20%][5%]"));
-		frmBuscaminas.getContentPane().add(getTextMinas(), "cell 1 1 2 1,grow");
-		frmBuscaminas.getContentPane().add(getLblTablero(), "cell 4 1,alignx center,aligny center");
-		frmBuscaminas.getContentPane().add(getBtnRanking(), "cell 5 1,growy");
-		frmBuscaminas.getContentPane().add(getTextReloj(), "cell 6 1 2 1,grow");
+		frmBuscaminas.getContentPane().add(getBtnRanking(), "cell 0 1,grow");
+		frmBuscaminas.getContentPane().add(getTextMinas(), "cell 2 1 2 1,grow");
+		frmBuscaminas.getContentPane().add(getLblTablero(), "cell 4 1 2 1,alignx center,aligny center");
+		frmBuscaminas.getContentPane().add(getTextReloj(), "cell 6 1 3 1,grow");
 		frmBuscaminas.getContentPane().add(getInternalFrame(), "cell 0 2 9 3,grow");
 		// Visualizar la ventana
 		frmBuscaminas.setVisible(true);
