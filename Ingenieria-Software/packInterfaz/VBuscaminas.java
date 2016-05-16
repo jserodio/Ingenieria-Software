@@ -111,7 +111,7 @@ public class VBuscaminas implements Observer{
 			internalFrame.getContentPane().setLayout(new MigLayout("", "[10%][10%][10%][10%][10%][10%][10%][10%][10%][10%]", "[14.28%][14.28%][14.28%][14.28%][14.28%][14.28%][14.28%]"));
 			
 			
-			new VTableroCasillas(internalFrame, nivel);
+			new VTableroCasillas(internalFrame, nivel, frmBuscaminas);
 
 			internalFrame.setVisible(true);
 			

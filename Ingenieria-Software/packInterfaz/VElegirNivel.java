@@ -43,7 +43,7 @@ public class VElegirNivel {
 		frmBuscaminasElige.setTitle("Elegir el nivel");
 		frmBuscaminasElige.getContentPane().setBackground(Color.WHITE);
 		frmBuscaminasElige.setBounds(100, 100, 500, 400);
-		frmBuscaminasElige.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmBuscaminasElige.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize = frmBuscaminasElige.getSize();
@@ -64,13 +64,6 @@ public class VElegirNivel {
 		frmBuscaminasElige.getContentPane().add(getBtnJugar(), "cell 0 2 3 1,grow");
 		// Visualizar la ventana
 		frmBuscaminasElige.setVisible(true);
-		frmBuscaminasElige.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosed(WindowEvent e) {
-				new VLogin();
-				frmBuscaminasElige.dispose();
-			}
-		});
 	}
 
 	private JLabel getLblEligeElNivel() {

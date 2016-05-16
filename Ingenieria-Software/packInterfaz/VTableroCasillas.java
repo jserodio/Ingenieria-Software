@@ -7,6 +7,8 @@ import packModelo.Sesion;
 import packModelo.SinMina;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,12 +21,14 @@ public class VTableroCasillas implements Observer {
 
 	private JInternalFrame frame;
 	private int nivel;
+	private JFrame frmBuscaminas;
 	private static int ROWMAX;
 	private static int COLMAX;
 	
-	public VTableroCasillas(JInternalFrame internalFrame, int pNivel) {	
+	public VTableroCasillas(JInternalFrame internalFrame, int pNivel, JFrame frmBuscaminas) {	
 		this.frame = internalFrame;
 		this.nivel = pNivel;
+		this.frmBuscaminas = frmBuscaminas;
 		initialize();
 		Buscaminas.getBuscaminas().anadirObservador(this);
 	}
@@ -76,13 +80,13 @@ public class VTableroCasillas implements Observer {
 							}else if(rango.equals("Ganado")){
 								b.setBackground(Color.RED);
 								new VDialogoVictoria();
+								frmBuscaminas.dispose();
 							}
 							// comprobar si gana con click derecho
 							int estado = Buscaminas.getBuscaminas().descubrirCasilla(fila, columna);
 							if(estado==2){
-								System.out.println(estado);
 								new VDialogoVictoria();
-								frame.removeAll();
+								frmBuscaminas.dispose();
 							}
 						}else{
 							System.out.println("");
@@ -92,18 +96,11 @@ public class VTableroCasillas implements Observer {
 								if (estado==0){
 									System.out.println(estado);
 									new VDialogoDerrota();
-									//Sesion.getSesion().pararCrono();
-									// parar cronometro
-									frame.removeAll();
+									frmBuscaminas.dispose();
 								}
 								else if(estado==2){
-									System.out.println(estado);
 									new VDialogoVictoria();
-									//Sesion.getSesion().pararCrono();
-									frame.removeAll();
-								}
-								else{
-									System.out.println(estado);
+									frmBuscaminas.dispose();
 								}
 							}
 						}
