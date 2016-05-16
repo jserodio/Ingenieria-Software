@@ -86,13 +86,13 @@ public class Sesion extends Observable{
 		int filas=Buscaminas.getBuscaminas().getTablero().getFilas();
 		int punt;
 		if(filas==7){
-			punt=1/this.tiempoTransUlt;
+			punt=100*(1/this.tiempoTransUlt);
 		}
 		else if(filas==10){
-			punt=2/this.tiempoTransUlt;
+			punt=1000*(1/this.tiempoTransUlt);
 		}
 		else{
-			punt=3/this.tiempoTransUlt;
+			punt=10000*(1/this.tiempoTransUlt);
 		}
 		return 1;
 	}
