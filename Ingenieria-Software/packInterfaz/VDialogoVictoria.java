@@ -64,8 +64,7 @@ public class VDialogoVictoria {
 			txtrenhorabuenaHasGanado.setBackground(Color.WHITE);
 			txtrenhorabuenaHasGanado.setEditable(false);
 			txtrenhorabuenaHasGanado.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			int punt=Sesion.getSesion().calcularPuntuacion();
-			txtrenhorabuenaHasGanado.setText("\u00A1Enhorabuena! Has ganado. \r\n         Puntuaci\u00F3n: "+punt);
+			txtrenhorabuenaHasGanado.setText("\u00A1Enhorabuena! Has ganado. \r\n         Puntuaci\u00F3n: "+Sesion.getSesion().calcularPuntuacion());
 			txtrenhorabuenaHasGanado.setBounds(76, 56, 278, 64);
 		}
 		return txtrenhorabuenaHasGanado;

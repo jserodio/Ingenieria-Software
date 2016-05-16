@@ -15,6 +15,7 @@ public class Sesion extends Observable{
 	private int tiempoTrans = 0;
 	private int tiempoTransUlt;
 	private Timer timer;
+	private int puntuacion = 0;
 	
 	private Sesion(){
 		
@@ -43,6 +44,10 @@ public class Sesion extends Observable{
 		this.pass = pPassword;
 	}
 	
+	public int getPuntuacion() {
+		return this.puntuacion;
+	}
+	
 	public void iniciar() throws SQLException{
 		  Conexion.conectar();
 		  ResultSet rs = null;
@@ -69,6 +74,12 @@ public class Sesion extends Observable{
 		  Conexion.cerrar(st);
 	}
 	
+	public int calcularPuntuacion() {
+		this.puntuacion = (Buscaminas.getBuscaminas().getTablero().getFilas()*1000000)/this.tiempoTrans;
+		Buscaminas.getBuscaminas().insertarPartida(this.usuario, this.puntuacion);
+		return this.puntuacion;
+	}
+	
 	public void iniciarCrono() {
 		this.crono();
 	}
@@ -80,21 +91,6 @@ public class Sesion extends Observable{
 	public void pararCrono(){
 		this.tiempoTransUlt = this.tiempoTrans;
 		this.reiniciarCrono();
-	}
-	
-	public int calcularPuntuacion(){
-		int filas=Buscaminas.getBuscaminas().getTablero().getFilas();
-		int punt;
-		if(filas==7){
-			punt=100*(1/this.tiempoTransUlt);
-		}
-		else if(filas==10){
-			punt=1000*(1/this.tiempoTransUlt);
-		}
-		else{
-			punt=10000*(1/this.tiempoTransUlt);
-		}
-		return 1;
 	}
 	
 	private void crono(){
