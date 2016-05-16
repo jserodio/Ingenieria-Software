@@ -51,10 +51,6 @@ public class VBuscaminas implements Observer{
 			public void windowClosing(WindowEvent e) {
 				new VDialogo();
 			}
-
-			public void windowClosed(WindowEvent e) {
-				
-			}
 		});
 		
 		switch(nivel) {
@@ -164,7 +160,7 @@ public class VBuscaminas implements Observer{
 
 	@Override
 	public void update(Observable arg0, Object string) {
-		String[] array = ((String) string).split("-");
+		String[] array = ((String) string).split("#");
 		String reloj = array[0];
 		String ayudas = array[1];
 		System.out.println(reloj);

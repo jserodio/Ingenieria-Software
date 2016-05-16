@@ -69,22 +69,8 @@ public class VTableroCasillas implements Observer {
 							if(rango.equals("Se puede")){
 								if(b.getBackground().equals(Color.RED)){
 									b.setBackground(Color.white);
-//									if(VTableroCasillas.this.numFlags>0&&VTableroCasillas.this.numFlags<=VTableroCasillas.this.flags){
-//										 b.setBackground(Color.BLUE);
-//										 VTableroCasillas.this.numFlags=VTableroCasillas.this.numFlags-1;
-//										 System.out.println(VTableroCasillas.this.numFlags);
-//									}else{
-//										System.out.println("Fuera de rango");
-//									}
 								 }else{
 									 b.setBackground(Color.RED);
-//									 if(VTableroCasillas.this.numFlags<VTableroCasillas.this.flags&&VTableroCasillas.this.numFlags>=0){
-//											 b.setBackground(Color.RED);
-//											 VTableroCasillas.this.numFlags=VTableroCasillas.this.numFlags+1;
-//											 System.out.println(VTableroCasillas.this.numFlags);
-//									 }else{
-//											System.out.println("Fuera de rango");
-//										}
 								 }		
 							}
 
@@ -131,9 +117,6 @@ public class VTableroCasillas implements Observer {
 		        if (component.getName().equals(posicion)){
 		        	
 					if (((SinMina) casillaActual).getNumVecinosMina() != 0){
-//						JLabel lbl = new JLabel(""+((SinMina) casillaActual).getNumVecinosMina());
-//						// http://www.miglayout.com/whitepaper.html COMPONENT CONSTRAINTS
-//						frame.getContentPane().add(lbl, "cell "+ columna +" "+ fila +"");
 						((JButton) component).setIcon(new ImageIcon(VBuscaminas.class.getResource("/assets/"+((SinMina) casillaActual).getNumVecinosMina()+".png")));
 					} else {
 						component.setVisible(false); // poner en blanco el boton de la casilla
