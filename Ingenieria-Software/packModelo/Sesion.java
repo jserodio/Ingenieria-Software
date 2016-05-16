@@ -98,8 +98,9 @@ public class Sesion extends Observable{
                 
                 try {
                 	int numFlags = Buscaminas.getBuscaminas().getTablero().getNumFlags();
+                	int numMaxMinas = Buscaminas.getBuscaminas().getTablero().getNumMaxMinas();
                 	setChanged();
-                    notifyObservers(texto +"-"+ numFlags);
+                    notifyObservers(texto +"-"+ (numMaxMinas-numFlags));
                 } catch (NullPointerException e) {
                 	setChanged();
                     notifyObservers(texto +"-"+ 0);
