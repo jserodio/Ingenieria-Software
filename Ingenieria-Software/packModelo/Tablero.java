@@ -285,10 +285,15 @@ public class Tablero {
 		if(!marcada.equals("abierta")){ // si esta marcadada
 			if(marcada.equals("true")){
 				if(this.numFlags<this.numMaxMinas&&this.numFlags>=0){
-					this.numFlags=this.numFlags+1;
-					System.out.println(this.numFlags);
-					rango="Se puede";
-					return rango;
+					if(this.comprobarVictoria()){
+						return "Ganado";
+					}
+					else{
+						this.numFlags=this.numFlags+1;
+						System.out.println(this.numFlags);
+						rango="Se puede";
+						return rango;
+					}
 				}else{
 					System.out.println("Fuera de rango");
 					return "Fuera de rango";
