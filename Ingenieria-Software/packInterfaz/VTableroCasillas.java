@@ -77,7 +77,13 @@ public class VTableroCasillas implements Observer {
 								b.setBackground(Color.RED);
 								new VDialogoVictoria();
 							}
-
+							// comprobar si gana con click derecho
+							int estado = Buscaminas.getBuscaminas().descubrirCasilla(fila, columna);
+							if(estado==2){
+								System.out.println(estado);
+								new VDialogoVictoria();
+								frame.removeAll();
+							}
 						}else{
 							System.out.println("");
 							System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);

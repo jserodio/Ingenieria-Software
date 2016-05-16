@@ -163,8 +163,7 @@ public class VBuscaminas implements Observer{
 		String[] array = ((String) string).split("#");
 		String reloj = array[0];
 		String ayudas = array[1];
-		System.out.println(reloj);
-		System.out.println(ayudas);
+		
 		textReloj.setText(reloj);
 		textMinas.setText(ayudas);
 	}
