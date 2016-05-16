@@ -20,9 +20,7 @@ public class VTableroCasillas implements Observer {
 	private int nivel;
 	private static int ROWMAX;
 	private static int COLMAX;
-	private int flags;
-	private int numFlags;
-
+	
 	public VTableroCasillas(JInternalFrame internalFrame, int pNivel) {	
 		this.frame = internalFrame;
 		this.nivel = pNivel;
@@ -50,10 +48,6 @@ public class VTableroCasillas implements Observer {
 			COLMAX = 25;
 			break;
 		}
-		this.flags=this.nivel*COLMAX;
-
-		this.numFlags=0;
-		
 		for (int row = 0; row<ROWMAX; row++) {
 			for (int col = 0; col<COLMAX; col++) {
 				
@@ -71,24 +65,29 @@ public class VTableroCasillas implements Observer {
 					@Override
 					public void mouseReleased(MouseEvent arg0) {
 						if(SwingUtilities.isRightMouseButton(arg0)){ //Si pulsas boton derecho
-							Buscaminas.getBuscaminas().marcarYdesmarcarCasilla(fila, columna);
-									if(b.getBackground().equals(Color.RED)){
-										if(VTableroCasillas.this.numFlags>0&&VTableroCasillas.this.numFlags<=VTableroCasillas.this.flags){
-											 b.setBackground(Color.white);
-											 VTableroCasillas.this.numFlags=VTableroCasillas.this.numFlags-1;
-											 System.out.println(VTableroCasillas.this.numFlags);
-										}else{
-											System.out.println("Fuera de rango");
-										}
-									 }else{
-										 if(VTableroCasillas.this.numFlags<VTableroCasillas.this.flags&&VTableroCasillas.this.numFlags>=0){
-												 b.setBackground(Color.RED);
-												 VTableroCasillas.this.numFlags=VTableroCasillas.this.numFlags+1;
-												 System.out.println(VTableroCasillas.this.numFlags);
-										 }else{
-												System.out.println("Fuera de rango");
-											}
-									 }		
+							String rango=Buscaminas.getBuscaminas().marcarYdesmarcarCasilla(fila, columna);
+							if(rango.equals("Se puede")){
+								if(b.getBackground().equals(Color.RED)){
+									b.setBackground(Color.white);
+//									if(VTableroCasillas.this.numFlags>0&&VTableroCasillas.this.numFlags<=VTableroCasillas.this.flags){
+//										 b.setBackground(Color.BLUE);
+//										 VTableroCasillas.this.numFlags=VTableroCasillas.this.numFlags-1;
+//										 System.out.println(VTableroCasillas.this.numFlags);
+//									}else{
+//										System.out.println("Fuera de rango");
+//									}
+								 }else{
+									 b.setBackground(Color.RED);
+//									 if(VTableroCasillas.this.numFlags<VTableroCasillas.this.flags&&VTableroCasillas.this.numFlags>=0){
+//											 b.setBackground(Color.RED);
+//											 VTableroCasillas.this.numFlags=VTableroCasillas.this.numFlags+1;
+//											 System.out.println(VTableroCasillas.this.numFlags);
+//									 }else{
+//											System.out.println("Fuera de rango");
+//										}
+								 }		
+							}
+
 						}else{
 							System.out.println("");
 							System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);

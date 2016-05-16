@@ -73,8 +73,8 @@ public class Buscaminas {
 		return Buscaminas.getBuscaminas().getTablero().getNumMaxMinas();
 	}
 	
-	public void marcarYdesmarcarCasilla(int pFila, int pColumna){
-		Buscaminas.getBuscaminas().getTablero().marcarYdesmarcarCasilla(pFila, pColumna);
+	public String marcarYdesmarcarCasilla(int pFila, int pColumna){
+		return Buscaminas.getBuscaminas().getTablero().marcarYdesmarcarCasilla(pFila, pColumna);
 	}
 	
 	public ArrayList<Partida> getRanking(){

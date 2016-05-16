@@ -1,7 +1,6 @@
 package packModelo;
 
 import java.util.Random;
-
 import packInterfaz.VTableroCasillas;
 
 public class Tablero {
@@ -279,14 +278,32 @@ public class Tablero {
 		this.casillaActual = casilla;
 	}
 	
-	public void marcarYdesmarcarCasilla(int pFila, int pColumna){
+	public String marcarYdesmarcarCasilla(int pFila, int pColumna){
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
 		boolean marcada=pCasilla.marcarYdesmarcar();
+		String rango;
 		if(marcada){ // si esta marcadada
-			this.numFlags=this.numFlags-1;
+			if(this.numFlags<this.numMaxMinas&&this.numFlags>=0){
+				this.numFlags=this.numFlags+1;
+				System.out.println(this.numFlags);
+				rango="Se puede";
+				return rango;
+			}else{
+				System.out.println("Fuera de rango");
+				return "Fuera de rango";
+			}
 		}
 		else{ // si no estaba marcada
-			this.numFlags=this.numFlags+1;
+			if(this.numFlags>0&&this.numFlags<=this.numMaxMinas){
+				this.numFlags=this.numFlags-1;
+				System.out.println(this.numFlags);
+				rango="Se puede";
+				return rango;
+			}else{
+				System.out.println("Fuera de rango");
+				return "Fuera de rango";
+			}
+			
 		}
 	}
 	
