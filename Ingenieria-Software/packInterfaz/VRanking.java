@@ -12,6 +12,9 @@ import packModelo.Buscaminas;
 import packModelo.Partida;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class VRanking {
 
@@ -33,6 +36,10 @@ public class VRanking {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(VRanking.class.getResource("/assets/icono.png")));
+		frame.setBackground(Color.WHITE);
+		frame.setAlwaysOnTop(true);
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 500, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -75,14 +82,17 @@ public class VRanking {
 			txtArea = new JTextArea();
 			txtArea.setLineWrap(true);
 			txtArea.setEditable(false);
-			txtArea.setBounds(22, 39, 360, 229);
+			txtArea.setBounds(22, 47, 434, 230);
 		}
 		return txtArea;
 	}
 	private JLabel getLblRankingDeJugadores() {
 		if (lblRankingDeJugadores == null) {
 			lblRankingDeJugadores = new JLabel("Ranking de Jugadores");
-			lblRankingDeJugadores.setBounds(153, 11, 184, 14);
+			lblRankingDeJugadores.setHorizontalAlignment(SwingConstants.CENTER);
+			lblRankingDeJugadores.setBackground(Color.WHITE);
+			lblRankingDeJugadores.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			lblRankingDeJugadores.setBounds(138, 11, 223, 32);
 		}
 		return lblRankingDeJugadores;
 	}
