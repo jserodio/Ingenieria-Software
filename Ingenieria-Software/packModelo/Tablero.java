@@ -280,31 +280,33 @@ public class Tablero {
 	
 	public String marcarYdesmarcarCasilla(int pFila, int pColumna){
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
-		boolean marcada=pCasilla.marcarYdesmarcar();
+		String marcada=pCasilla.marcarYdesmarcar();
 		String rango;
-		if(marcada){ // si esta marcadada
-			if(this.numFlags<this.numMaxMinas&&this.numFlags>=0){
-				this.numFlags=this.numFlags+1;
-				System.out.println(this.numFlags);
-				rango="Se puede";
-				return rango;
-			}else{
-				System.out.println("Fuera de rango");
-				return "Fuera de rango";
+		if(!marcada.equals("abierta")){ // si esta marcadada
+			if(marcada.equals("true")){
+				if(this.numFlags<this.numMaxMinas&&this.numFlags>=0){
+					this.numFlags=this.numFlags+1;
+					System.out.println(this.numFlags);
+					rango="Se puede";
+					return rango;
+				}else{
+					System.out.println("Fuera de rango");
+					return "Fuera de rango";
+				}
+			}
+			else{
+				if(this.numFlags>0&&this.numFlags<=this.numMaxMinas){
+					this.numFlags=this.numFlags-1;
+					System.out.println(this.numFlags);
+					rango="Se puede";
+					return rango;
+				}else{
+					System.out.println("Fuera de rango");
+					return "Fuera de rango";
+				}
 			}
 		}
-		else{ // si no estaba marcada
-			if(this.numFlags>0&&this.numFlags<=this.numMaxMinas){
-				this.numFlags=this.numFlags-1;
-				System.out.println(this.numFlags);
-				rango="Se puede";
-				return rango;
-			}else{
-				System.out.println("Fuera de rango");
-				return "Fuera de rango";
-			}
-			
-		}
+		return "abierta";	
 	}
 	
 	public int getNumMaxMinas(){

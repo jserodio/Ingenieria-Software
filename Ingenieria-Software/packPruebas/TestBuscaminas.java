@@ -2,6 +2,8 @@ package packPruebas;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +12,7 @@ import packModelo.BuilderN1;
 import packModelo.BuilderN2;
 import packModelo.BuilderN3;
 import packModelo.Buscaminas;
+import packModelo.Partida;
 import packModelo.TableroBuilder;
 
 public class TestBuscaminas {
@@ -62,6 +65,19 @@ public class TestBuscaminas {
 		Buscaminas.getBuscaminas().iniciar(3);
 		assertEquals(Buscaminas.getBuscaminas().getTablero().getColumnas(),builderN3.getTablero().getColumnas());
 		assertEquals(Buscaminas.getBuscaminas().getTablero().getFilas(),builderN3.getTablero().getFilas());		
+	}
+	
+	@Test
+	public void testGetRanking(){
+		ArrayList<Partida> rank= new ArrayList<Partida>();
+		rank=Buscaminas.getBuscaminas().getRanking();
+		if(!rank.equals(null)){//Hay datos en la tabla ranking de la BD
+			assertNotNull(rank);
+		}
+		else{//No hay datos en la tabla ranking de la BD
+			assertNull(rank);
+		}
+		
 	}
 
 }
