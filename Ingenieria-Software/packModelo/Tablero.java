@@ -286,7 +286,7 @@ public class Tablero {
 			if(marcada.equals("true")){
 				if(this.numFlags<this.numMaxMinas&&this.numFlags>=0){
 					if(this.comprobarVictoria()){
-						//this.numFlags=this.numFlags+1;
+						this.numFlags=this.numFlags+1;
 						return "Ganado";
 					}
 					else{
@@ -300,7 +300,7 @@ public class Tablero {
 					return "Fuera de rango";
 				}
 			}
-			else{
+			else if(marcada.equals("false")){
 				if(this.numFlags>0&&this.numFlags<=this.numMaxMinas){
 					this.numFlags=this.numFlags-1;
 					System.out.println(this.numFlags);

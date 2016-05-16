@@ -75,16 +75,21 @@ public class VTableroCasillas implements Observer {
 								 }		
 							}else if(rango.equals("Ganado")){
 								b.setBackground(Color.RED);
+								frame.removeAll();
+								frame.hide();
+								frame.dispose();
 								new VDialogoVictoria();
 							}
 							// comprobar si gana con click derecho
-							int estado = Buscaminas.getBuscaminas().descubrirCasilla(fila, columna);
-							if(estado==2){
-								System.out.println(estado);
-								new VDialogoVictoria();
-								frame.removeAll();
-							}
-						}else{
+//							int estado = Buscaminas.getBuscaminas().descubrirCasilla(fila, columna);
+//							if(estado==2){
+//								System.out.println(estado);
+//								new VDialogoVictoria();
+//								frame.removeAll();
+//								frame.hide();
+//								frame.dispose();
+//							}
+						}else if(SwingUtilities.isLeftMouseButton(arg0)){
 							System.out.println("");
 							System.out.println("Click en el boton, fila = "+ fila +", columna = "+ columna);
 							if(!b.getBackground().equals(Color.RED)){
@@ -95,12 +100,16 @@ public class VTableroCasillas implements Observer {
 									//Sesion.getSesion().pararCrono();
 									// parar cronometro
 									frame.removeAll();
+									frame.hide();
+									frame.dispose();
 								}
 								else if(estado==2){
 									System.out.println(estado);
 									new VDialogoVictoria();
 									//Sesion.getSesion().pararCrono();
 									frame.removeAll();
+									frame.hide();
+									frame.dispose();
 								}
 								else{
 									System.out.println(estado);
