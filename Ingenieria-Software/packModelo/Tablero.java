@@ -14,9 +14,6 @@ public class Tablero {
 	private Casilla[][] matriz;
 	private Casilla casillaActual;
 
-
-
-
 	public Tablero(int pFilas, int pColumnas, int pNivel){
 		this.filas = pFilas;
 		this.columnas = pColumnas;
@@ -123,13 +120,10 @@ public class Tablero {
 	public int descubrirCasilla(int pFila, int pColumna){
 		Casilla pCasilla=obtenerCasilla(pFila,pColumna);
 		int result=1;
-		boolean finaliza=false;//Si es false estamos ganando y si es true perdemos
-
 		if(!pCasilla.equals(null)){
 			if(pCasilla instanceof SinMina){
 				((SinMina)pCasilla).abrirCasilla();
 				if(comprobarVictoria()){
-					finaliza=true;
 					result=2;//Ganar
 					return result;
 				}

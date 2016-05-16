@@ -4,7 +4,6 @@ import javax.swing.JInternalFrame;
 import packModelo.Buscaminas;
 import packModelo.Casilla;
 import packModelo.SinMina;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Component;
@@ -12,7 +11,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import java.awt.Color;
 

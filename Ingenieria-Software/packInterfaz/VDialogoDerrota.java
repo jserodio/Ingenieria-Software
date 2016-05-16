@@ -2,22 +2,17 @@ package packInterfaz;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
-
-import net.miginfocom.swing.MigLayout;
-
 import javax.swing.JButton;
 
 public class VDialogoDerrota {
 
-	private JFrame frame;
+	private JFrame frmGameOver;
 	private JTextArea txtrenhorabuenaHasGanado;
 	private JButton btnContinuar;
 
@@ -32,17 +27,19 @@ public class VDialogoDerrota {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(getTxtrenhorabuenaHasGanado());
-		frame.getContentPane().add(getBtnContinuar());
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmGameOver = new JFrame();
+		frmGameOver.setAlwaysOnTop(true);
+		frmGameOver.setIconImage(Toolkit.getDefaultToolkit().getImage(VDialogoDerrota.class.getResource("/assets/icono.png")));
+		frmGameOver.getContentPane().setBackground(Color.WHITE);
+		frmGameOver.setBounds(100, 100, 374, 241);
+		frmGameOver.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmGameOver.getContentPane().setLayout(null);
+		frmGameOver.getContentPane().add(getTxtrenhorabuenaHasGanado());
+		frmGameOver.getContentPane().add(getBtnContinuar());
+		frmGameOver.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension frameSize = frame.getSize();
+		Dimension frameSize = frmGameOver.getSize();
 		//Tamaño del frame actual (ancho x alto)
 		if (frameSize.height > screenSize.height) {
 			frameSize.height = screenSize.height; 
@@ -50,12 +47,12 @@ public class VDialogoDerrota {
 		if (frameSize.width > screenSize.width) {
 			frameSize.width = screenSize.width; 
 		}
-		frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(getTxtrenhorabuenaHasGanado());
-		frame.getContentPane().add(getBtnContinuar());
+		frmGameOver.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+		frmGameOver.getContentPane().setLayout(null);
+		frmGameOver.getContentPane().add(getTxtrenhorabuenaHasGanado());
+		frmGameOver.getContentPane().add(getBtnContinuar());
 		
-		frame.setVisible(true);
+		frmGameOver.setVisible(true);
 	}
 	private JTextArea getTxtrenhorabuenaHasGanado() {
 		if (txtrenhorabuenaHasGanado == null) {
@@ -64,7 +61,7 @@ public class VDialogoDerrota {
 			txtrenhorabuenaHasGanado.setEditable(false);
 			txtrenhorabuenaHasGanado.setFont(new Font("Tahoma", Font.PLAIN, 40));
 			txtrenhorabuenaHasGanado.setText("Game Over");
-			txtrenhorabuenaHasGanado.setBounds(76, 56, 214, 64);
+			txtrenhorabuenaHasGanado.setBounds(76, 64, 214, 64);
 		}
 		return txtrenhorabuenaHasGanado;
 	}
@@ -77,10 +74,11 @@ public class VDialogoDerrota {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				new VDialogo();
-				frame.dispose();
+				frmGameOver.dispose();
 			}
 		});
 		return btnContinuar;
 	}
 }
+
 
