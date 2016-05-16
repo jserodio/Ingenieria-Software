@@ -74,7 +74,7 @@ public class VTableroCasillas implements Observer {
 							Buscaminas.getBuscaminas().marcarYdesmarcarCasilla(fila, columna);
 									if(b.getBackground().equals(Color.RED)){
 										if(VTableroCasillas.this.numFlags>0&&VTableroCasillas.this.numFlags<=VTableroCasillas.this.flags){
-											 b.setBackground(Color.BLUE);
+											 b.setBackground(Color.white);
 											 VTableroCasillas.this.numFlags=VTableroCasillas.this.numFlags-1;
 											 System.out.println(VTableroCasillas.this.numFlags);
 										}else{

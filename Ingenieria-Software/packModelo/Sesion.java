@@ -95,8 +95,16 @@ public class Sesion extends Observable{
                 }else{
                 texto=(""+minutos+":" + segundos);
                 }
-                setChanged();
-                notifyObservers(texto); // falta pasar el nAyudas
+                
+                try {
+                	int numFlags = Buscaminas.getBuscaminas().getTablero().getNumFlags();
+                	setChanged();
+                    notifyObservers(texto +"-"+ numFlags);
+                } catch (NullPointerException e) {
+                	setChanged();
+                    notifyObservers(texto +"-"+ 0);
+                }
+                
             }
         };
         timer = new Timer();

@@ -125,7 +125,7 @@ public class VBuscaminas implements Observer{
 			textMinas.setEditable(false);
 			textMinas.setHorizontalAlignment(SwingConstants.CENTER);
 			textMinas.setFont(new Font("Tahoma", Font.PLAIN, 30));
-			textMinas.setText("5");
+			textMinas.setText("0");
 			textMinas.setColumns(10);
 		}
 		return textMinas;
@@ -159,9 +159,14 @@ public class VBuscaminas implements Observer{
 	}
 
 	@Override
-	public void update(Observable arg0, Object pReloj) {
-
-		textReloj.setText(pReloj.toString());
+	public void update(Observable arg0, Object string) {
+		String[] array = ((String) string).split("-");
+		String reloj = array[0];
+		String ayudas = array[1];
+		System.out.println(reloj);
+		System.out.println(ayudas);
+		textReloj.setText(reloj);
+		textMinas.setText(ayudas);
 	}
 }
 
