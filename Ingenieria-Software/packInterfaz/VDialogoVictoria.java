@@ -2,6 +2,9 @@ package packInterfaz;
 
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
+
+import packModelo.Sesion;
+
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -61,7 +64,7 @@ public class VDialogoVictoria {
 			txtrenhorabuenaHasGanado.setBackground(Color.WHITE);
 			txtrenhorabuenaHasGanado.setEditable(false);
 			txtrenhorabuenaHasGanado.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			txtrenhorabuenaHasGanado.setText("\u00A1Enhorabuena! Has ganado. \r\n         Puntuaci\u00F3n: ");
+			txtrenhorabuenaHasGanado.setText("\u00A1Enhorabuena! Has ganado. \r\n         Puntuaci\u00F3n: "+Sesion.getSesion().calcularPuntuacion());
 			txtrenhorabuenaHasGanado.setBounds(76, 56, 278, 64);
 		}
 		return txtrenhorabuenaHasGanado;

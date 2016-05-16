@@ -14,6 +14,7 @@ public class Sesion extends Observable{
 	private String pass;
 	private int tiempoTrans = 0;
 	private Timer timer;
+	private int puntuacion = 0;
 	
 	private Sesion(){
 		
@@ -42,6 +43,10 @@ public class Sesion extends Observable{
 		this.pass = pPassword;
 	}
 	
+	public int getPuntuacion() {
+		return this.puntuacion;
+	}
+	
 	public void iniciar() throws SQLException{
 		  Conexion.conectar();
 		  ResultSet rs = null;
@@ -66,6 +71,12 @@ public class Sesion extends Observable{
 			}
 		  }
 		  Conexion.cerrar(st);
+	}
+	
+	public int calcularPuntuacion() {
+		this.puntuacion = (Buscaminas.getBuscaminas().getTablero().getFilas()*1000000)/this.tiempoTrans;
+		Buscaminas.getBuscaminas().insertarPartida(this.usuario, this.puntuacion);
+		return this.puntuacion;
 	}
 	
 	public void iniciarCrono() {

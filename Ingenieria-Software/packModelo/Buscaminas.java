@@ -105,7 +105,7 @@ public class Buscaminas {
 	}
 	
 	public void insertarPartida(String pUser, int pPuntuacion){
-		  String cadena = "INSERT INTO ranking VALUES(user=" +pUser+" AND puntuacion="+ pPuntuacion+")";
+		  String cadena = "INSERT INTO ranking VALUES(user=" +pUser+", puntuacion="+ pPuntuacion+")";
 		  Statement st = Conexion.conexion();
 		  Conexion.consultaActualiza(st, cadena);
 		  Conexion.cerrar(st);
