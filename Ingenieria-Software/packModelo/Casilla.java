@@ -35,16 +35,20 @@ public abstract class Casilla extends Observable {
 		vecinos=pVecinos;
 	}
 	
-	public boolean marcarYdesmarcar(){
-		boolean marcado;
-		if(this.getFlag()){
-			this.setFlag(false);
-			marcado=false;
+	public String marcarYdesmarcar(){
+		String marcado;
+		if(!this.getAbierta()){
+			if(this.getFlag()){
+				this.setFlag(false);
+				marcado="false";
+			}
+			else{
+				this.setFlag(true);
+				marcado="true";
+			}
+			return marcado;
 		}
-		else{
-			this.setFlag(true);
-			marcado=true;
-		}
-		return marcado;
+		return "abierta";
+		
 	}
 }

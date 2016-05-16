@@ -94,9 +94,9 @@ public class TestCasilla {
 	public void testMarcarYdesmarcar(){
 		Casilla c1=new SinMina();
 		//Poner flag
-		assertTrue(c1.marcarYdesmarcar());
+		assertEquals(c1.marcarYdesmarcar(),"true");
 		//Quitar flag
-		assertFalse(c1.marcarYdesmarcar());
+		assertEquals(c1.marcarYdesmarcar(),"false");
 	}
 
 }
