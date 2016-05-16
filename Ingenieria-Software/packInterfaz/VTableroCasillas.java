@@ -3,12 +3,10 @@ package packInterfaz;
 import javax.swing.JInternalFrame;
 import packModelo.Buscaminas;
 import packModelo.Casilla;
-import packModelo.Sesion;
 import packModelo.SinMina;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -79,6 +77,9 @@ public class VTableroCasillas implements Observer {
 								 }		
 							}else if(rango.equals("Ganado")){
 								b.setBackground(Color.RED);
+								frame.removeAll();
+								frame.hide();
+								frame.dispose();
 								new VDialogoVictoria();
 								frmBuscaminas.dispose();
 							}

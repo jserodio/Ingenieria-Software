@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import packModelo.Buscaminas;
 import packModelo.Partida;
-import javax.swing.JScrollBar;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
@@ -18,9 +17,9 @@ public class VRanking {
 
 	private JFrame frame;
 	private JTextArea txtArea;
-	private JScrollBar scrollBar;
 	private JLabel lblRankingDeJugadores;
 	private JButton btnContinuar;
+	private JButton btnSalir;
 
 	/**
 	 * Create the application.
@@ -34,7 +33,7 @@ public class VRanking {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 500, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -49,9 +48,8 @@ public class VRanking {
 		frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getTxtArea());
-		frame.getContentPane().add(getScrollBar());
 		frame.getContentPane().add(getLblRankingDeJugadores());
-		frame.getContentPane().add(getBtnContinuar());
+		frame.getContentPane().add(getBtnSalir());
 		this.generarRanking(getTxtArea());
 		frame.setVisible(true);
 	}
@@ -63,7 +61,7 @@ public class VRanking {
 		int pPosicion = 1;
 		p.append("    Posición                  Usuario                  Puntuación\n");
 		p.append("------------------------------------------------------------------------- \n");
-		while(it.hasNext()){
+		while(it.hasNext()&&pPosicion<=10){
 			Partida partida = it.next();
 			String pUsuario = partida.getNombre();
 			int pPuntuacion = partida.getPuntuacion();
@@ -77,16 +75,9 @@ public class VRanking {
 			txtArea = new JTextArea();
 			txtArea.setLineWrap(true);
 			txtArea.setEditable(false);
-			txtArea.setBounds(22, 39, 360, 151);
+			txtArea.setBounds(22, 39, 360, 229);
 		}
 		return txtArea;
-	}
-	private JScrollBar getScrollBar() {
-		if (scrollBar == null) {
-			scrollBar = new JScrollBar();
-			scrollBar.setBounds(392, 39, 17, 151);
-		}
-		return scrollBar;
 	}
 	private JLabel getLblRankingDeJugadores() {
 		if (lblRankingDeJugadores == null) {
@@ -95,19 +86,18 @@ public class VRanking {
 		}
 		return lblRankingDeJugadores;
 	}
-	
-	private JButton getBtnContinuar() {
-		if (btnContinuar == null) {
-			btnContinuar = new JButton("Continuar");
-			btnContinuar.setBounds(153, 215, 89, 23);
+
+	private JButton getBtnSalir() {
+		if (btnSalir == null) {
+			btnSalir = new JButton("Salir");
+			btnSalir.setBounds(293, 291, 89, 23);
 		}
-		btnContinuar.addMouseListener(new MouseAdapter() {
+		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				System.exit(0);
 			}
 		});
-		return btnContinuar;
+		return btnSalir;
 	}
-	
 }
