@@ -3,6 +3,7 @@ package packInterfaz;
 import javax.swing.JInternalFrame;
 import packModelo.Buscaminas;
 import packModelo.Casilla;
+import packModelo.Sesion;
 import packModelo.SinMina;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -82,6 +83,7 @@ public class VTableroCasillas implements Observer {
 								if (estado==0){
 									System.out.println(estado);
 									new VDialogoDerrota();
+									// parar cronometro
 									frame.removeAll();
 								}
 								else if(estado==2){
