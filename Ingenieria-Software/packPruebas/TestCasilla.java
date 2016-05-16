@@ -89,5 +89,14 @@ public class TestCasilla {
 		assertFalse(c1.getVecinos().getListaCasillas().isEmpty());
 		
 	}
+	
+	@Test
+	public void testMarcarYdesmarcar(){
+		Casilla c1=new SinMina();
+		//Poner flag
+		assertTrue(c1.marcarYdesmarcar());
+		//Quitar flag
+		assertFalse(c1.marcarYdesmarcar());
+	}
 
 }
