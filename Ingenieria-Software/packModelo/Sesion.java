@@ -13,6 +13,7 @@ public class Sesion extends Observable{
 	private String usuario;
 	private String pass;
 	private int tiempoTrans = 0;
+	private int tiempoTransUlt;
 	private Timer timer;
 	
 	private Sesion(){
@@ -74,6 +75,26 @@ public class Sesion extends Observable{
 	
 	public void reiniciarCrono() {
 		this.tiempoTrans = 0;
+	}
+	
+	public void pararCrono(){
+		this.tiempoTransUlt = this.tiempoTrans;
+		this.reiniciarCrono();
+	}
+	
+	public int calcularPuntuacion(){
+		int filas=Buscaminas.getBuscaminas().getTablero().getFilas();
+		int punt;
+		if(filas==7){
+			punt=1/this.tiempoTransUlt;
+		}
+		else if(filas==10){
+			punt=2/this.tiempoTransUlt;
+		}
+		else{
+			punt=3/this.tiempoTransUlt;
+		}
+		return 1;
 	}
 	
 	private void crono(){

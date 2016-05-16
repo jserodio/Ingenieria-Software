@@ -286,6 +286,7 @@ public class Tablero {
 			if(marcada.equals("true")){
 				if(this.numFlags<this.numMaxMinas&&this.numFlags>=0){
 					if(this.comprobarVictoria()){
+						//this.numFlags=this.numFlags+1;
 						return "Ganado";
 					}
 					else{

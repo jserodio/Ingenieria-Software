@@ -86,12 +86,14 @@ public class VTableroCasillas implements Observer {
 								if (estado==0){
 									System.out.println(estado);
 									new VDialogoDerrota();
+									//Sesion.getSesion().pararCrono();
 									// parar cronometro
 									frame.removeAll();
 								}
 								else if(estado==2){
 									System.out.println(estado);
 									new VDialogoVictoria();
+									//Sesion.getSesion().pararCrono();
 									frame.removeAll();
 								}
 								else{

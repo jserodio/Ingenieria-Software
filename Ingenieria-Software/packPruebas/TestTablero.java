@@ -275,6 +275,7 @@ public class TestTablero {
 		//Poner un flag más de lo permitido
 		rango=Buscaminas.getBuscaminas().getTablero().marcarYdesmarcarCasilla(1,9);
 		assertEquals(rango,"Fuera de rango");
+		//
 	}
 	
 	
